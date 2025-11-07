@@ -73,11 +73,11 @@ function About() {
           The assessment consists of 6 questions, each measuring different founder traits:
         </p>
         <ul className="page-list">
-          <li><strong>Wisdom (W)</strong>: Comfort with deep contemplation</li>
-          <li><strong>Innovation (I)</strong>: Ability to generate new ideas</li>
-          <li><strong>Decision (D)</strong>: Trust in gut instincts with limited data</li>
-          <li><strong>Gathering (G)</strong>: Talent for rallying and inspiring people</li>
-          <li><strong>Empathy (E)</strong>: Fulfillment from helping others</li>
+          <li><strong>Wonder (W)</strong>: Comfort with deep contemplation</li>
+          <li><strong>Invention (I)</strong>: Ability to generate new ideas</li>
+          <li><strong>Discernment (D)</strong>: Trust in gut instincts with limited data</li>
+          <li><strong>Galvanizing (G)</strong>: Talent for rallying and inspiring people</li>
+          <li><strong>Enablement (E)</strong>: Fulfillment from helping others</li>
           <li><strong>Tenacity (T)</strong>: Satisfaction from completing projects</li>
         </ul>
         <p className="page-text">

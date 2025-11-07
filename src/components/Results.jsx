@@ -83,23 +83,23 @@ function Results({ scores, onRestart }) {
         <h3 className="scores-title">Your Scores</h3>
         <div className="scores-grid">
           <div className="score-item">
-            <span className="score-label">Wisdom (W)</span>
+            <span className="score-label">Wonder (W)</span>
             <span className="score-value">{scores.W}/2</span>
           </div>
           <div className="score-item">
-            <span className="score-label">Innovation (I)</span>
+            <span className="score-label">Invention (I)</span>
             <span className="score-value">{scores.I}/2</span>
           </div>
           <div className="score-item">
-            <span className="score-label">Decision (D)</span>
+            <span className="score-label">Discernment (D)</span>
             <span className="score-value">{scores.D}/2</span>
           </div>
           <div className="score-item">
-            <span className="score-label">Gathering (G)</span>
+            <span className="score-label">Galvanizing (G)</span>
             <span className="score-value">{scores.G}/2</span>
           </div>
           <div className="score-item">
-            <span className="score-label">Empathy (E)</span>
+            <span className="score-label">Enablement (E)</span>
             <span className="score-value">{scores.E}/2</span>
           </div>
           <div className="score-item">
