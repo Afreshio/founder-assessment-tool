@@ -70,7 +70,7 @@
 }
 
 .answer-button:hover {
-  border-color: #62b487;
+  border-color: rgba(255, 255, 255, 0.4);
   background: #f2fbf7;
   transform: translateY(-2px);
   box-shadow: 0 4px 14px rgba(98, 180, 135, 0.2);
