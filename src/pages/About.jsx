@@ -3,11 +3,11 @@ import './Page.css'
 function About() {
   return (
     <div className="page">
-      <h1 className="page-title">About the Founder Assessment</h1>
+      <h1 className="page-title">About the Founder Fit Quiz</h1>
       
       <div className="page-content">
         <p className="page-text">
-          The Founder Assessment Tool helps entrepreneurs discover their unique founder type 
+          The Founder Fit Quiz helps entrepreneurs discover their unique founder type 
           through a series of carefully crafted questions. Understanding your founder type can 
           help you leverage your strengths, identify areas for growth, and build more effective teams.
         </p>
@@ -70,7 +70,7 @@ function About() {
 
         <h2 className="page-subtitle">How It Works</h2>
         <p className="page-text">
-          The assessment consists of 6 questions, each measuring different founder traits:
+          The quiz consists of 6 questions, each measuring different founder traits:
         </p>
         <ul className="page-list">
           <li><strong>Wonder (W)</strong>: Comfort with deep contemplation</li>

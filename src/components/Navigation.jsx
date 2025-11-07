@@ -7,7 +7,7 @@ function Navigation() {
   return (
     <nav className="navigation">
       <Link to="/" className="nav-logo">
-        Founder Assessment
+        Founder Fit Quiz
       </Link>
       <div className="nav-links">
         <Link 

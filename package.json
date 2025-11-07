@@ -1,7 +1,7 @@
 {
   "name": "founder-assessment-tool",
   "version": "1.0.0",
-  "description": "Assessment tool for founders to determine their founder type",
+  "description": "Quiz for founders to determine their founder type",
   "type": "module",
   "scripts": {
     "dev": "vite",

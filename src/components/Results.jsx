@@ -125,7 +125,7 @@ function Results({ scores, onRestart }) {
       </div>
       
       <button className="restart-button" onClick={onRestart}>
-        Take Assessment Again
+        Take Quiz Again
       </button>
     </div>
   )

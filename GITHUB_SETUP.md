@@ -9,7 +9,7 @@ Your code is ready to push! Follow these steps:
 3. **Click the "+" icon** in the top right → "New repository"
 4. **Repository settings**:
    - Repository name: `founder-assessment-tool` (or any name you like)
-   - Description: "Assessment tool for founders to determine their founder type"
+   - Description: "Quiz for founders to determine their founder type"
    - Visibility: Choose Public or Private
    - **DO NOT** initialize with README, .gitignore, or license (we already have these)
 5. **Click "Create repository"**

@@ -7,7 +7,7 @@ function Contact() {
       
       <div className="page-content">
         <p className="page-text">
-          Have questions about the Founder Assessment Tool? We'd love to hear from you!
+          Have questions about the Founder Fit Quiz? We'd love to hear from you!
         </p>
 
         <div className="contact-form">

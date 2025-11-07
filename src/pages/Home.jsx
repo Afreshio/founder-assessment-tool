@@ -15,7 +15,7 @@ function Home() {
 
   return (
     <div className="home-page">
-      <h1 className="title">Founder Assessment Tool</h1>
+      <h1 className="title">Founder Fit Quiz</h1>
       <p className="subtitle">Discover what type of founder you are</p>
       
       {!results ? (

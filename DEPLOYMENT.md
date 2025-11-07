@@ -1,6 +1,6 @@
 # Deploying to Your Custom Domain
 
-This guide will help you deploy the Founder Assessment Tool to your own domain.
+This guide will help you deploy the Founder Fit Quiz to your own domain.
 
 ## Step-by-Step Guide
 

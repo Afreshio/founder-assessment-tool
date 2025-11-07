@@ -1,16 +1,16 @@
-# Founder Assessment Tool
+# Founder Fit Quiz
 
-A web application that helps founders determine their founder type through a 6-question assessment.
+A web application that helps founders determine their founder type through a 6-question quiz.
 
 ## Features
 
-- 6-question assessment covering key founder traits
+- 6-question quiz covering key founder traits
 - Scoring system: 0-2 points per question
 - Four founder types:
-  - **Visionary**: Higher W (Wisdom) and I (Innovation) scores
-  - **Catalyst**: Higher I (Innovation) and G (Gathering) scores
-  - **Architect**: Higher D (Decision) and T (Tenacity) scores
-  - **Operator**: Higher G (Gathering) and T (Tenacity) scores
+  - **Visionary**: Higher W (Wonder) and I (Invention) scores
+  - **Catalyst**: Higher I (Invention) and G (Galvanizing) scores
+  - **Architect**: Higher D (Discernment) and T (Tenacity) scores
+  - **Operator**: Higher G (Galvanizing) and T (Tenacity) scores
 - Beautiful, modern UI with smooth animations
 - Responsive design for mobile and desktop
 
@@ -45,13 +45,13 @@ npm run build
 
 The built files will be in the `dist` directory.
 
-## Assessment Questions
+## Quiz Questions
 
-1. **W (Wisdom)**: "I am comfortable sitting and contemplating the meaning of things longer than most others are."
-2. **I (Innovation)**: "People say I can't stop innovating or proposing new ideas."
-3. **D (Decision)**: "I am much more capable than most people in using my gut instincts when there is little data or information available."
-4. **G (Gathering)**: "I have a gift for rallying people around a plan or idea, and inspiring them to take action."
-5. **E (Empathy)**: "I find helping people to be more deeply fulfilling than others do."
+1. **W (Wonder)**: "I am comfortable sitting and contemplating the meaning of things longer than most others are."
+2. **I (Invention)**: "People say I can't stop innovating or proposing new ideas."
+3. **D (Discernment)**: "I am much more capable than most people in using my gut instincts when there is little data or information available."
+4. **G (Galvanizing)**: "I have a gift for rallying people around a plan or idea, and inspiring them to take action."
+5. **E (Enablement)**: "I find helping people to be more deeply fulfilling than others do."
 6. **T (Tenacity)**: "I get more satisfaction and fulfillment than most people from seeing a project through to its finish."
 
 ## Scoring
