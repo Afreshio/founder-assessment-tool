@@ -31,80 +31,113 @@ const FOUNDER_TYPES = {
   }
 }
 
+function calculateArchetypeScores(scores) {
+  const { W, I, D, G, T, E } = scores
+  
+  // Calculate weighted archetype scores (0-16 range)
+  const visionaryScore = (W * 1.5) + (I * 1.5) + (D * 1.0)
+  const catalystScore = (G * 1.5) + (I * 1.5) + (D * 0.5) + (T * 0.5)
+  const architectScore = (D * 1.5) + (T * 1.5) + (I * 1.0)
+  const operatorScore = (G * 1.0) + (T * 1.5) + (E * 1.0)
+  
+  return {
+    Visionary: Math.round(visionaryScore * 10) / 10, // Round to 1 decimal
+    Catalyst: Math.round(catalystScore * 10) / 10,
+    Architect: Math.round(architectScore * 10) / 10,
+    Operator: Math.round(operatorScore * 10) / 10
+  }
+}
+
+function getInterpretation(score) {
+  if (score >= 14) return { level: 'Highly aligned', color: '#3c7c5d' }
+  if (score >= 11) return { level: 'Strong tendency', color: '#62b487' }
+  if (score >= 8) return { level: 'Partial alignment', color: '#a8d9b6' }
+  return { level: 'Non-dominant', color: '#d0d0d0' }
+}
+
 function determineFounderType(scores, tiebreaker) {
-  const { W, I, D, G, T } = scores
+  const archetypeScores = calculateArchetypeScores(scores)
   
-  // Calculate type scores
-  const visionaryScore = W + I
-  const catalystScore = I + G
-  const architectScore = D + T
-  const operatorScore = G + T
+  // Sort scores to find top two
+  const sortedScores = Object.entries(archetypeScores)
+    .sort((a, b) => b[1] - a[1])
   
-  // Find the highest score
-  const typeScores = {
-    Visionary: visionaryScore,
-    Catalyst: catalystScore,
-    Architect: architectScore,
-    Operator: operatorScore
-  }
+  const topScore = sortedScores[0][1]
+  const secondScore = sortedScores[1][1]
+  const topType = sortedScores[0][0]
+  const secondType = sortedScores[1][0]
   
-  // Get the type with the highest score
-  const maxScore = Math.max(...Object.values(typeScores))
-  const types = Object.keys(typeScores).filter(type => typeScores[type] === maxScore)
+  // Check if within 1.5 points for hybrid
+  const isHybrid = (topScore - secondScore) <= 1.5
   
-  // If there's a tie, use tiebreaker or secondary criteria
-  if (types.length > 1) {
-    // Use tiebreaker if available
-    if (tiebreaker) {
-      if (tiebreaker === 'whiteboard') {
-        // White board → Visionary or Catalyst
-        // If both Visionary and Catalyst are tied, choose based on W vs I
-        if (types.includes('Visionary') && types.includes('Catalyst')) {
-          return W >= I ? 'Visionary' : 'Catalyst'
-        }
-        // If only one of Visionary/Catalyst is in the tie, choose that one
-        if (types.includes('Visionary') && !types.includes('Catalyst')) return 'Visionary'
-        if (types.includes('Catalyst') && !types.includes('Visionary')) return 'Catalyst'
-        // If tied between Visionary/Catalyst group and Architect/Operator group, prefer Visionary/Catalyst
-        if (types.includes('Visionary')) return 'Visionary'
-        if (types.includes('Catalyst')) return 'Catalyst'
-      } else if (tiebreaker === 'tasklist') {
-        // Task list → Architect or Operator
-        // If both Architect and Operator are tied, choose based on D vs T
-        if (types.includes('Architect') && types.includes('Operator')) {
-          return D >= T ? 'Architect' : 'Operator'
-        }
-        // If only one of Architect/Operator is in the tie, choose that one
-        if (types.includes('Architect') && !types.includes('Operator')) return 'Architect'
-        if (types.includes('Operator') && !types.includes('Architect')) return 'Operator'
-        // If tied between Architect/Operator group and Visionary/Catalyst group, prefer Architect/Operator
-        if (types.includes('Architect')) return 'Architect'
-        if (types.includes('Operator')) return 'Operator'
-      }
+  // Use tiebreaker if hybrid
+  let finalPrimaryType = topType
+  if (isHybrid && tiebreaker) {
+    if (tiebreaker === 'whiteboard') {
+      // White board → Visionary or Catalyst
+      if (topType === 'Visionary' || topType === 'Catalyst') finalPrimaryType = topType
+      else if (secondType === 'Visionary' || secondType === 'Catalyst') finalPrimaryType = secondType
+    } else if (tiebreaker === 'tasklist') {
+      // Task list → Architect or Operator
+      if (topType === 'Architect' || topType === 'Operator') finalPrimaryType = topType
+      else if (secondType === 'Architect' || secondType === 'Operator') finalPrimaryType = secondType
     }
-    
-    // Fallback to secondary criteria if tiebreaker doesn't resolve
-    if (types.includes('Visionary') && W >= I) return 'Visionary'
-    if (types.includes('Catalyst') && I >= G) return 'Catalyst'
-    if (types.includes('Architect') && D >= T) return 'Architect'
-    if (types.includes('Operator') && G >= T) return 'Operator'
-    return types[0] // Default to first type if still tied
   }
   
-  return types[0]
+  return {
+    primaryType: finalPrimaryType,
+    isHybrid: isHybrid,
+    hybridType: isHybrid ? `${topType}–${secondType}` : null,
+    scores: archetypeScores
+  }
 }
 
 function Results({ scores, tiebreaker, onRestart }) {
-  const founderType = determineFounderType(scores, tiebreaker)
+  const result = determineFounderType(scores, tiebreaker)
+  const founderType = result.primaryType
   const typeInfo = FOUNDER_TYPES[founderType]
+  const archetypeScores = result.scores
   
   return (
     <div className="results">
       <div className="results-header">
         <div className="founder-badge" style={{ background: `linear-gradient(135deg, ${typeInfo.color} 0%, ${typeInfo.color}dd 100%)` }}>
-          <h2 className="founder-type">{founderType}</h2>
+          <h2 className="founder-type">
+            {result.isHybrid ? result.hybridType : founderType}
+            {result.isHybrid && <span className="hybrid-label"> (Hybrid)</span>}
+          </h2>
         </div>
         <p className="founder-description">{typeInfo.description}</p>
+      </div>
+      
+      <div className="archetype-scores-section">
+        <h3 className="archetype-scores-title">Your Archetype Scores</h3>
+        <div className="archetype-scores-grid">
+          {Object.entries(archetypeScores).map(([type, score]) => {
+            const interpretation = getInterpretation(score)
+            const isTop = type === founderType
+            return (
+              <div key={type} className={`archetype-score-card ${isTop ? 'top-score' : ''}`}>
+                <div className="archetype-score-header">
+                  <span className="archetype-score-name">{type}</span>
+                  <span className="archetype-score-value">{score.toFixed(1)}/16</span>
+                </div>
+                <div className="archetype-score-bar">
+                  <div 
+                    className="archetype-score-fill" 
+                    style={{ 
+                      width: `${(score / 16) * 100}%`,
+                      backgroundColor: interpretation.color
+                    }}
+                  />
+                </div>
+                <div className="archetype-score-interpretation" style={{ color: interpretation.color }}>
+                  {interpretation.level}
+                </div>
+              </div>
+            )
+          })}
+        </div>
       </div>
       
       <div className="traits-section">
@@ -131,7 +164,8 @@ function Results({ scores, tiebreaker, onRestart }) {
       )}
 
       <div className="scores-section">
-        <h3 className="scores-title">Your Scores</h3>
+        <h3 className="scores-title">Raw Trait Scores</h3>
+        <p className="scores-subtitle">These are your base scores (0-4) used to calculate your archetype scores above.</p>
         <div className="scores-grid">
           <div className="score-item">
             <span className="score-label">Wonder (W)</span>

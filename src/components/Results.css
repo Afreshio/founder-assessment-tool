@@ -41,6 +41,91 @@
   margin: 0;
 }
 
+.hybrid-label {
+  font-size: 1.5rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.archetype-scores-section {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 16px;
+}
+
+.archetype-scores-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 24px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.archetype-scores-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.archetype-score-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+.archetype-score-card.top-score {
+  border-color: #62b487;
+  box-shadow: 0 4px 12px rgba(98, 180, 135, 0.2);
+}
+
+.archetype-score-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.archetype-score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.archetype-score-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.archetype-score-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #3c7c5d;
+}
+
+.archetype-score-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.archetype-score-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+.archetype-score-interpretation {
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+}
+
 .traits-section {
   margin-bottom: 40px;
 }
@@ -118,8 +203,16 @@
 .scores-title {
   font-size: 1.3rem;
   color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   font-weight: 600;
+}
+
+.scores-subtitle {
+  font-size: 0.95rem;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+  font-style: italic;
 }
 
 .scores-grid {
@@ -291,6 +384,14 @@
   
   .scores-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .archetype-scores-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .archetype-scores-section {
+    padding: 20px;
   }
   
   .calendly-section {
