@@ -61,6 +61,47 @@ const ANSWER_OPTIONS = [
 function Assessment({ onComplete }) {
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState({})
+  const [showTiebreaker, setShowTiebreaker] = useState(false)
+
+  const calculateScores = (allAnswers) => {
+    const scores = {
+      W: 0,
+      I: 0,
+      D: 0,
+      G: 0,
+      E: 0,
+      T: 0
+    }
+    
+    // Sum scores for each trait
+    QUESTIONS.forEach((question, index) => {
+      const answerKey = `Q${index}_${question.id}`
+      const answerValue = allAnswers[answerKey] || 0
+      scores[question.id] += answerValue
+    })
+    
+    return scores
+  }
+
+  const checkForTie = (scores) => {
+    const { W, I, D, G, T } = scores
+    const visionaryScore = W + I
+    const catalystScore = I + G
+    const architectScore = D + T
+    const operatorScore = G + T
+    
+    const typeScores = {
+      Visionary: visionaryScore,
+      Catalyst: catalystScore,
+      Architect: architectScore,
+      Operator: operatorScore
+    }
+    
+    const maxScore = Math.max(...Object.values(typeScores))
+    const tiedTypes = Object.keys(typeScores).filter(type => typeScores[type] === maxScore)
+    
+    return tiedTypes.length > 1 ? tiedTypes : null
+  }
 
   const handleAnswer = (value) => {
     const question = QUESTIONS[currentQuestion]
@@ -73,31 +114,69 @@ function Assessment({ onComplete }) {
         setCurrentQuestion(currentQuestion + 1)
       }, 300)
     } else {
-      // Calculate scores - sum all answers for each trait
-      // Since questions can have the same id, we need to sum them
-      const scores = {
-        W: 0,
-        I: 0,
-        D: 0,
-        G: 0,
-        E: 0,
-        T: 0
+      // Calculate scores and check for tie
+      const scores = calculateScores(newAnswers)
+      const tiedTypes = checkForTie(scores)
+      
+      if (tiedTypes) {
+        // Show tiebreaker question
+        setShowTiebreaker(true)
+      } else {
+        // No tie, proceed with results
+        setTimeout(() => {
+          onComplete(scores, null)
+        }, 300)
       }
-      
-      // Sum scores for each trait
-      QUESTIONS.forEach((question, index) => {
-        const answerKey = `Q${index}_${question.id}`
-        const answerValue = newAnswers[answerKey] || 0
-        scores[question.id] += answerValue
-      })
-      
-      setTimeout(() => {
-        onComplete(scores)
-      }, 300)
     }
   }
 
-  const progress = ((currentQuestion + 1) / QUESTIONS.length) * 100
+  const handleTiebreaker = (choice) => {
+    const scores = calculateScores(answers)
+    const tiebreakerAnswer = choice // 'whiteboard' or 'tasklist'
+    
+    setTimeout(() => {
+      onComplete(scores, tiebreakerAnswer)
+    }, 300)
+  }
+
+  const progress = showTiebreaker 
+    ? 100 
+    : ((currentQuestion + 1) / QUESTIONS.length) * 100
+
+  if (showTiebreaker) {
+    return (
+      <div className="assessment">
+        <div className="progress-bar">
+          <div className="progress-fill" style={{ width: `${progress}%` }}></div>
+        </div>
+        
+        <div className="question-container">
+          <div className="question-number">
+            Tiebreaker Question
+          </div>
+          
+          <h2 className="question-text">
+            Which one is your favorite: a white board or a task list?
+          </h2>
+          
+          <div className="answers">
+            <button
+              className="answer-button tiebreaker-button"
+              onClick={() => handleTiebreaker('whiteboard')}
+            >
+              White Board
+            </button>
+            <button
+              className="answer-button tiebreaker-button"
+              onClick={() => handleTiebreaker('tasklist')}
+            >
+              Task List
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="assessment">

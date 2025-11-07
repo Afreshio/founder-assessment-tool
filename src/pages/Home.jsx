@@ -5,8 +5,8 @@ import Results from '../components/Results'
 function Home() {
   const [results, setResults] = useState(null)
 
-  const handleAssessmentComplete = (scores) => {
-    setResults(scores)
+  const handleAssessmentComplete = (scores, tiebreaker) => {
+    setResults({ scores, tiebreaker })
   }
 
   const handleRestart = () => {
@@ -21,7 +21,7 @@ function Home() {
       {!results ? (
         <Assessment onComplete={handleAssessmentComplete} />
       ) : (
-        <Results scores={results} onRestart={handleRestart} />
+        <Results scores={results.scores} tiebreaker={results.tiebreaker} onRestart={handleRestart} />
       )}
     </div>
   )

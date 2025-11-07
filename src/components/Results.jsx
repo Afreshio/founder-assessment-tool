@@ -31,7 +31,7 @@ const FOUNDER_TYPES = {
   }
 }
 
-function determineFounderType(scores) {
+function determineFounderType(scores, tiebreaker) {
   const { W, I, D, G, T } = scores
   
   // Calculate type scores
@@ -52,9 +52,38 @@ function determineFounderType(scores) {
   const maxScore = Math.max(...Object.values(typeScores))
   const types = Object.keys(typeScores).filter(type => typeScores[type] === maxScore)
   
-  // If there's a tie, use secondary criteria
+  // If there's a tie, use tiebreaker or secondary criteria
   if (types.length > 1) {
-    // Prioritize based on individual trait scores
+    // Use tiebreaker if available
+    if (tiebreaker) {
+      if (tiebreaker === 'whiteboard') {
+        // White board → Visionary or Catalyst
+        // If both Visionary and Catalyst are tied, choose based on W vs I
+        if (types.includes('Visionary') && types.includes('Catalyst')) {
+          return W >= I ? 'Visionary' : 'Catalyst'
+        }
+        // If only one of Visionary/Catalyst is in the tie, choose that one
+        if (types.includes('Visionary') && !types.includes('Catalyst')) return 'Visionary'
+        if (types.includes('Catalyst') && !types.includes('Visionary')) return 'Catalyst'
+        // If tied between Visionary/Catalyst group and Architect/Operator group, prefer Visionary/Catalyst
+        if (types.includes('Visionary')) return 'Visionary'
+        if (types.includes('Catalyst')) return 'Catalyst'
+      } else if (tiebreaker === 'tasklist') {
+        // Task list → Architect or Operator
+        // If both Architect and Operator are tied, choose based on D vs T
+        if (types.includes('Architect') && types.includes('Operator')) {
+          return D >= T ? 'Architect' : 'Operator'
+        }
+        // If only one of Architect/Operator is in the tie, choose that one
+        if (types.includes('Architect') && !types.includes('Operator')) return 'Architect'
+        if (types.includes('Operator') && !types.includes('Architect')) return 'Operator'
+        // If tied between Architect/Operator group and Visionary/Catalyst group, prefer Architect/Operator
+        if (types.includes('Architect')) return 'Architect'
+        if (types.includes('Operator')) return 'Operator'
+      }
+    }
+    
+    // Fallback to secondary criteria if tiebreaker doesn't resolve
     if (types.includes('Visionary') && W >= I) return 'Visionary'
     if (types.includes('Catalyst') && I >= G) return 'Catalyst'
     if (types.includes('Architect') && D >= T) return 'Architect'
@@ -65,8 +94,8 @@ function determineFounderType(scores) {
   return types[0]
 }
 
-function Results({ scores, onRestart }) {
-  const founderType = determineFounderType(scores)
+function Results({ scores, tiebreaker, onRestart }) {
+  const founderType = determineFounderType(scores, tiebreaker)
   const typeInfo = FOUNDER_TYPES[founderType]
   
   return (
@@ -132,17 +161,25 @@ function Results({ scores, onRestart }) {
       </div>
       
       <div className="calendly-section">
-        <h3 className="calendly-title">Want to Learn More?</h3>
+        <div className="calendly-icon">💬</div>
+        <h3 className="calendly-title">Ready to Level Up?</h3>
         <p className="calendly-text">
-          Book a free discovery call with Doug Stevenson to learn more about your rough edges as a founder and how to improve them.
+          Book a free 30-minute Zoom discovery call with Doug Stevenson to dive deeper into your founder type, 
+          explore your rough edges, and discover actionable strategies to strengthen your leadership.
         </p>
+        <div className="calendly-features">
+          <span className="calendly-feature">✓ Free 30-min call</span>
+          <span className="calendly-feature">✓ Personalized insights</span>
+          <span className="calendly-feature">✓ Action plan</span>
+        </div>
         <a 
           href="https://calendly.com/douglas-stevenson" 
           target="_blank" 
           rel="noopener noreferrer"
           className="calendly-button"
         >
-          Schedule Your Free Call
+          <span className="calendly-button-icon">📅</span>
+          Schedule Your Free Zoom Call
         </a>
       </div>
       
