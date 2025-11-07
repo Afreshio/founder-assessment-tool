@@ -376,56 +376,174 @@
 
 @media (max-width: 768px) {
   .doug-home {
-    padding: 20px 15px;
-  }
-
-  .hero-name {
-    font-size: 2.5rem;
-  }
-
-  .hero-title {
-    font-size: 1.2rem;
+    padding: 15px 10px;
   }
 
   .hero-section {
-    gap: 20px;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .hero-title {
+    font-size: 1.1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 15px;
   }
 
   .hero-content {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    gap: 20px;
   }
 
   .hero-text {
     flex: 1 1 auto;
   }
 
-  .hero-subtitle {
-    margin-bottom: 10px;
+  .hero-headshot {
+    width: 150px;
+    height: 150px;
+    border-width: 4px;
   }
 
-  .hero-headshot {
-    width: 190px;
-    height: 190px;
+  .hero-logo {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hero-brand-text {
+    font-size: 1.3rem;
+  }
+
+  .content-section {
+    margin-bottom: 20px;
   }
 
   .section-title {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .credentials-section,
+  .mission-section,
+  .experience-section,
+  .personal-section,
+  .education-section {
+    margin-bottom: 20px;
+    padding: 15px;
+  }
+
+  .credentials-list li {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    padding-left: 15px;
+  }
+
+  .mission-text,
+  .experience-text,
+  .personal-text,
+  .education-text {
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .quote {
+    font-size: 0.95rem;
+    padding: 12px 15px;
+    margin: 15px 0;
+  }
+
+  .services-section {
+    margin-bottom: 20px;
   }
 
   .services-grid {
     grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .service-card {
+    padding: 15px;
+  }
+
+  .service-title {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+  }
+
+  .cta-section {
+    padding: 20px 15px;
+    margin: 20px 0;
+  }
+
+  .cta-title {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+
+  .cta-text {
+    font-size: 0.95rem;
+    margin-bottom: 15px;
   }
 
   .cta-button {
-    font-size: 1rem;
-    padding: 16px 30px;
+    font-size: 0.95rem;
+    padding: 14px 25px;
   }
 
-  .quote {
-    font-size: 1.1rem;
-    padding: 15px 20px;
+  .cta-button-secondary {
+    font-size: 0.95rem;
+    padding: 14px 25px;
+    margin-top: 12px;
+  }
+
+  .testimonials-section {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 20px 0;
+  }
+
+  .testimonial-card {
+    padding: 15px;
+  }
+
+  .testimonial-quote {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  .testimonial-author {
+    font-size: 0.85rem;
+  }
+
+  .contact-section {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .contact-text {
+    font-size: 0.9rem;
+  }
+
+  .linkedin-logo-section {
+    margin-top: 15px;
+    padding-top: 15px;
   }
 }
 

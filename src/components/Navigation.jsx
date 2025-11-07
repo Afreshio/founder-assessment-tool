@@ -20,7 +20,8 @@ function Navigation() {
           to="/quiz" 
           className={location.pathname === '/quiz' ? 'nav-link active' : 'nav-link'}
         >
-          Founder Fit Quiz
+          <span className="nav-link-text-full">Founder Fit Quiz</span>
+          <span className="nav-link-text-short">Quiz</span>
         </Link>
         <Link 
           to="/articles" 
