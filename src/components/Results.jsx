@@ -10,7 +10,8 @@ const FOUNDER_TYPES = {
   Catalyst: {
     description: "You're a Catalyst founder! You're constantly innovating and have a gift for inspiring and rallying people around your ideas.",
     traits: ["Innovation", "Inspiration", "Team building"],
-    color: "#f093fb"
+    color: "#f093fb",
+    roughEdges: "Your rough edges can include coming across as disingenuous and over-the-top in your excitement - hard to believe that anyone can be that excited about anything. Constant micro-innovations even after a decision has been made. Can be careless and hasty."
   },
   Architect: {
     description: "You're an Architect founder! You trust your instincts when data is scarce and excel at seeing projects through to completion.",
