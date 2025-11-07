@@ -106,6 +106,54 @@
   color: #667eea;
 }
 
+.calendly-section {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: linear-gradient(135deg, #f8f9ff 0%, #fff5f8 100%);
+  border-radius: 16px;
+  text-align: center;
+  border: 2px solid rgba(102, 126, 234, 0.1);
+}
+
+.calendly-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.calendly-text {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 25px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.calendly-button {
+  display: inline-block;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.calendly-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.calendly-button:active {
+  transform: translateY(0);
+}
+
 .restart-button {
   width: 100%;
   padding: 18px 24px;
@@ -140,6 +188,23 @@
   
   .scores-grid {
     grid-template-columns: 1fr;
+  }
+  
+  .calendly-section {
+    padding: 20px;
+  }
+  
+  .calendly-title {
+    font-size: 1.3rem;
+  }
+  
+  .calendly-text {
+    font-size: 1rem;
+  }
+  
+  .calendly-button {
+    padding: 14px 28px;
+    font-size: 1rem;
   }
 }
 

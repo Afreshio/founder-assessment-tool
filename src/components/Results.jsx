@@ -109,6 +109,21 @@ function Results({ scores, onRestart }) {
         </div>
       </div>
       
+      <div className="calendly-section">
+        <h3 className="calendly-title">Want to Learn More?</h3>
+        <p className="calendly-text">
+          Book a free discovery call with Doug Stevenson to learn more about your rough edges as a founder and how to improve them.
+        </p>
+        <a 
+          href="https://calendly.com/douglas-stevenson" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="calendly-button"
+        >
+          Schedule Your Free Call
+        </a>
+      </div>
+      
       <button className="restart-button" onClick={onRestart}>
         Take Assessment Again
       </button>
