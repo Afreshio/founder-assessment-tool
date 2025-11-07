@@ -1,6 +1,52 @@
+import { useState } from 'react'
 import './Page.css'
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [status, setStatus] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdkpqvnj'
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+    setStatus('') // Clear status when user types
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setStatus('')
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      })
+
+      if (response.ok) {
+        setStatus('success')
+        setFormData({ name: '', email: '', message: '' })
+      } else {
+        setStatus('error')
+      }
+    } catch (error) {
+      setStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <div className="page">
       <h1 className="page-title">Contact Us</h1>
@@ -11,7 +57,7 @@ function Contact() {
         </p>
 
         <div className="contact-form">
-          <form className="form">
+          <form className="form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name" className="form-label">Name</label>
               <input 
@@ -20,6 +66,9 @@ function Contact() {
                 name="name" 
                 className="form-input"
                 placeholder="Your name"
+                value={formData.name}
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -31,6 +80,9 @@ function Contact() {
                 name="email" 
                 className="form-input"
                 placeholder="your.email@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
             </div>
 
@@ -42,21 +94,34 @@ function Contact() {
                 className="form-textarea"
                 rows="5"
                 placeholder="Your message here..."
+                value={formData.message}
+                onChange={handleChange}
+                required
               ></textarea>
             </div>
 
-            <button type="submit" className="form-button">
-              Send Message
+            {status === 'success' && (
+              <div className="form-message form-message-success">
+                Thank you! Your message has been sent successfully.
+              </div>
+            )}
+
+            {status === 'error' && (
+              <div className="form-message form-message-error">
+                Sorry, there was an error sending your message. Please try again or contact us directly.
+              </div>
+            )}
+
+            <button 
+              type="submit" 
+              className="form-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         </div>
 
-        <div className="contact-info">
-          <p className="page-text">
-            <strong>Note:</strong> This is a demo contact form. To make it functional, you'll need 
-            to connect it to a backend service or email service like Formspree, EmailJS, or your own API.
-          </p>
-        </div>
       </div>
     </div>
   )
