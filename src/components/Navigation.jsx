@@ -23,6 +23,12 @@ function Navigation() {
           Founder Fit Quiz
         </Link>
         <Link 
+          to="/articles" 
+          className={location.pathname === '/articles' ? 'nav-link active' : 'nav-link'}
+        >
+          Articles
+        </Link>
+        <Link 
           to="/about" 
           className={location.pathname === '/about' ? 'nav-link active' : 'nav-link'}
         >
