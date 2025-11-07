@@ -200,7 +200,7 @@
   border-left: 3px solid rgba(255, 255, 255, 0.5);
   padding: 24px 32px;
   margin: 32px 0;
-  background: rgba(168, 217, 182, 0.08);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 12px;
   line-height: 1.7;
 }
@@ -235,7 +235,7 @@
 }
 
 .service-card {
-  background: #fafbfc;
+  background: #ffffff;
   padding: 32px;
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -266,7 +266,7 @@
 .cta-section {
   text-align: center;
   padding: 64px 40px;
-  background: linear-gradient(135deg, rgba(168, 217, 182, 0.1) 0%, rgba(98, 180, 135, 0.15) 100%);
+  background: #ffffff;
   border-radius: 24px;
   margin: 48px 0;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -360,7 +360,7 @@
 .contact-section {
   text-align: center;
   padding: 30px;
-  background: #f2fbf7;
+  background: #ffffff;
   border-radius: 12px;
   margin-top: 40px;
 }

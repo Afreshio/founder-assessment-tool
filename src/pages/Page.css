@@ -62,7 +62,7 @@
 }
 
 .founder-type-card {
-  background: #f2fbf7;
+  background: #ffffff;
   padding: 25px;
   border-radius: 12px;
   border-left: 4px solid rgba(255, 255, 255, 0.5);
@@ -197,7 +197,7 @@
 .contact-info {
   margin-top: 30px;
   padding: 20px;
-  background: #f2fbf7;
+  background: #ffffff;
   border-radius: 8px;
   text-align: center;
 }
@@ -317,7 +317,7 @@
 .video-link-item {
   margin-bottom: 30px;
   padding: 20px;
-  background: #f2fbf7;
+  background: #ffffff;
   border-radius: 12px;
   border-left: 4px solid rgba(255, 255, 255, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
