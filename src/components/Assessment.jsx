@@ -25,6 +25,30 @@ const QUESTIONS = [
   {
     id: 'T',
     text: "I get more satisfaction and fulfillment than most people from seeing a project through to its finish."
+  },
+  {
+    id: 'W',
+    text: "I can't help but get lost in pondering the bigger picture of things."
+  },
+  {
+    id: 'I',
+    text: "I prefer to create something by working from a \"clean slate\" rather than having to tweak something that has already been established."
+  },
+  {
+    id: 'D',
+    text: "People say that I have a rare talent for providing uniquely insightful advice and perspective."
+  },
+  {
+    id: 'G',
+    text: "When momentum and progress slow down, I enjoy being the one to reenergize people to push forward."
+  },
+  {
+    id: 'E',
+    text: "Compared to most others, I am an exceedingly responsive and helpful person."
+  },
+  {
+    id: 'T',
+    text: "I rarely miss a deadline or target and couldn't imagine letting it happen."
   }
 ]
 
@@ -39,8 +63,9 @@ function Assessment({ onComplete }) {
   const [answers, setAnswers] = useState({})
 
   const handleAnswer = (value) => {
-    const questionId = QUESTIONS[currentQuestion].id
-    const newAnswers = { ...answers, [questionId]: value }
+    const question = QUESTIONS[currentQuestion]
+    const answerKey = `Q${currentQuestion}_${question.id}`
+    const newAnswers = { ...answers, [answerKey]: value }
     setAnswers(newAnswers)
 
     if (currentQuestion < QUESTIONS.length - 1) {
@@ -48,15 +73,24 @@ function Assessment({ onComplete }) {
         setCurrentQuestion(currentQuestion + 1)
       }, 300)
     } else {
-      // Calculate scores
+      // Calculate scores - sum all answers for each trait
+      // Since questions can have the same id, we need to sum them
       const scores = {
-        W: newAnswers.W || 0,
-        I: newAnswers.I || 0,
-        D: newAnswers.D || 0,
-        G: newAnswers.G || 0,
-        E: newAnswers.E || 0,
-        T: newAnswers.T || 0
+        W: 0,
+        I: 0,
+        D: 0,
+        G: 0,
+        E: 0,
+        T: 0
       }
+      
+      // Sum scores for each trait
+      QUESTIONS.forEach((question, index) => {
+        const answerKey = `Q${index}_${question.id}`
+        const answerValue = newAnswers[answerKey] || 0
+        scores[question.id] += answerValue
+      })
+      
       setTimeout(() => {
         onComplete(scores)
       }, 300)

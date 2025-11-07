@@ -106,27 +106,27 @@ function Results({ scores, onRestart }) {
         <div className="scores-grid">
           <div className="score-item">
             <span className="score-label">Wonder (W)</span>
-            <span className="score-value">{scores.W}/2</span>
+            <span className="score-value">{scores.W}/4</span>
           </div>
           <div className="score-item">
             <span className="score-label">Invention (I)</span>
-            <span className="score-value">{scores.I}/2</span>
+            <span className="score-value">{scores.I}/4</span>
           </div>
           <div className="score-item">
             <span className="score-label">Discernment (D)</span>
-            <span className="score-value">{scores.D}/2</span>
+            <span className="score-value">{scores.D}/4</span>
           </div>
           <div className="score-item">
             <span className="score-label">Galvanizing (G)</span>
-            <span className="score-value">{scores.G}/2</span>
+            <span className="score-value">{scores.G}/4</span>
           </div>
           <div className="score-item">
             <span className="score-label">Enablement (E)</span>
-            <span className="score-value">{scores.E}/2</span>
+            <span className="score-value">{scores.E}/4</span>
           </div>
           <div className="score-item">
             <span className="score-label">Tenacity (T)</span>
-            <span className="score-value">{scores.T}/2</span>
+            <span className="score-value">{scores.T}/4</span>
           </div>
         </div>
       </div>

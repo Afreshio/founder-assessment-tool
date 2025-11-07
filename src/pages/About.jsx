@@ -70,7 +70,7 @@ function About() {
 
         <h2 className="page-subtitle">How It Works</h2>
         <p className="page-text">
-          The quiz consists of 6 questions, each measuring different founder traits:
+          The quiz consists of 12 questions (2 per trait), measuring different founder traits:
         </p>
         <ul className="page-list">
           <li><strong>Wonder (W)</strong>: Comfort with deep contemplation</li>

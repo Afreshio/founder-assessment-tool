@@ -170,7 +170,7 @@ function DougHome() {
 
         <div className="contact-section">
           <p className="contact-text">
-            <a href="https://www.linkedin.com/in/dougstevenson" target="_blank" rel="noopener noreferrer" className="contact-link">
+            <a href="https://www.linkedin.com/in/douglasstevenson/" target="_blank" rel="noopener noreferrer" className="contact-link">
               LinkedIn Bio
             </a>
             {' | '}
