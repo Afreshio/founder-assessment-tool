@@ -140,28 +140,71 @@ function Results({ scores, tiebreaker, onRestart }) {
         </div>
       </div>
       
-      <div className="traits-section">
-        <h3 className="traits-title">Your Key Traits</h3>
-        <div className="traits-list">
-          {typeInfo.traits.map((trait, index) => (
-            <span key={index} className="trait-badge">{trait}</span>
-          ))}
+      <div className="founder-fit-grid-section">
+        <h3 className="founder-fit-grid-title">Founder Fit 2×2 Grid</h3>
+        <div className="founder-fit-grid-container">
+          <div className="founder-fit-grid">
+            {/* Y-Axis Label (Vision) */}
+            <div className="grid-y-axis-label grid-y-axis-top">Vision</div>
+            
+            {/* Grid Quadrants */}
+            <div className="grid-quadrant grid-quadrant-top-left">
+              <h4 className="quadrant-title">Visionary Founders</h4>
+              <p className="quadrant-core"><strong>Core:</strong> Wonder + Invention</p>
+              <p className="quadrant-focus"><strong>Focus:</strong> Meaning, ideas, possibility</p>
+              <ul className="quadrant-examples">
+                <li>The Dreamer – Elon Musk</li>
+                <li>The Prophet – Marc Benioff</li>
+                <li>The Sage – Yvon Chouinard</li>
+              </ul>
+              <p className="quadrant-description">They live in "what could be." They imagine the future and challenge assumptions.</p>
+            </div>
+            
+            <div className="grid-quadrant grid-quadrant-top-right">
+              <h4 className="quadrant-title">Catalyst Founders</h4>
+              <p className="quadrant-core"><strong>Core:</strong> Invention + Galvanizing</p>
+              <p className="quadrant-focus"><strong>Focus:</strong> Momentum, inspiration, disruption</p>
+              <ul className="quadrant-examples">
+                <li>The Firestarter – Richard Branson</li>
+                <li>The Evangelist – Brian Chesky</li>
+                <li>The Inventor – Steve Jobs</li>
+              </ul>
+              <p className="quadrant-description">They mobilize people and energy to make bold ideas real.</p>
+            </div>
+            
+            <div className="grid-quadrant grid-quadrant-bottom-left">
+              <h4 className="quadrant-title">Architect Founders</h4>
+              <p className="quadrant-core"><strong>Core:</strong> Discernment + Tenacity</p>
+              <p className="quadrant-focus"><strong>Focus:</strong> Systems, judgment, scale</p>
+              <ul className="quadrant-examples">
+                <li>The Strategist – Warren Buffett</li>
+                <li>The Architect – Reed Hastings</li>
+                <li>The Builder – Sundar Pichai</li>
+              </ul>
+              <p className="quadrant-description">They design enduring structures, balancing innovation with rigor.</p>
+            </div>
+            
+            <div className="grid-quadrant grid-quadrant-bottom-right">
+              <h4 className="quadrant-title">Operator Founders</h4>
+              <p className="quadrant-core"><strong>Core:</strong> Galvanizing + Tenacity</p>
+              <p className="quadrant-focus"><strong>Focus:</strong> Accountability, discipline, delivery</p>
+              <ul className="quadrant-examples">
+                <li>The Executor – Frank Slootman</li>
+                <li>The Steward – Tim Cook</li>
+                <li>The Operator – Bob Iger</li>
+              </ul>
+              <p className="quadrant-description">They ensure precision, urgency, and performance at scale.</p>
+            </div>
+            
+            {/* Y-Axis Label (Execution) */}
+            <div className="grid-y-axis-label grid-y-axis-bottom">Execution</div>
+            
+            {/* X-Axis Labels */}
+            <div className="grid-x-axis-label grid-x-axis-left">Creative</div>
+            <div className="grid-x-axis-label grid-x-axis-right">Operational</div>
+          </div>
         </div>
       </div>
-      
-      {typeInfo.roughEdges && (
-        <div className="rough-edges-section">
-          <h3 className="rough-edges-title">Your Rough Edges</h3>
-          <p className="rough-edges-text">{typeInfo.roughEdges}</p>
-        </div>
-      )}
-
-      {typeInfo.idealPartner && (
-        <div className="cofounder-section">
-          <h3 className="cofounder-title">Ideal Co-Founder Match</h3>
-          <p className="cofounder-text">{typeInfo.idealPartner}</p>
-        </div>
-      )}
 
       <div className="scores-section">
         <h3 className="scores-title">Raw Trait Scores</h3>
@@ -193,6 +236,29 @@ function Results({ scores, tiebreaker, onRestart }) {
           </div>
         </div>
       </div>
+      
+      <div className="traits-section">
+        <h3 className="traits-title">Your Key Traits</h3>
+        <div className="traits-list">
+          {typeInfo.traits.map((trait, index) => (
+            <span key={index} className="trait-badge">{trait}</span>
+          ))}
+        </div>
+      </div>
+      
+      {typeInfo.roughEdges && (
+        <div className="rough-edges-section">
+          <h3 className="rough-edges-title">Your Rough Edges</h3>
+          <p className="rough-edges-text">{typeInfo.roughEdges}</p>
+        </div>
+      )}
+
+      {typeInfo.idealPartner && (
+        <div className="cofounder-section">
+          <h3 className="cofounder-title">Ideal Co-Founder Match</h3>
+          <p className="cofounder-text">{typeInfo.idealPartner}</p>
+        </div>
+      )}
       
       <div className="calendly-section">
         <div className="calendly-icon">💬</div>
