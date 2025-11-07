@@ -59,7 +59,7 @@
 .answer-button {
   padding: 18px 24px;
   font-size: 1.1rem;
-  border: 2px solid #e0e0e0;
+  border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 12px;
   background: white;
   color: #333;
@@ -70,10 +70,10 @@
 }
 
 .answer-button:hover {
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: rgba(0, 0, 0, 0.2);
   background: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(98, 180, 135, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 
 .answer-button:active {

@@ -228,7 +228,7 @@
   padding: 15px 20px;
   background: #ffffff;
   border-radius: 12px;
-  border-left: 4px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .score-label {
@@ -249,7 +249,7 @@
   background: #ffffff;
   border-radius: 20px;
   text-align: center;
-  border: 3px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 10px 40px rgba(98, 180, 135, 0.25);
   position: relative;
   overflow: hidden;
@@ -354,7 +354,7 @@
   width: 100%;
   padding: 18px 24px;
   font-size: 1.1rem;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   background: linear-gradient(135deg, #62b487 0%, #3c7c5d 100%);
   color: white;

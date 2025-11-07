@@ -1,9 +1,67 @@
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import headshotImg from '../assets/doug-headshot.jpeg'
 import afreshLogo from '../assets/Afresh.png'
 import './DougHome.css'
 
 function DougHome() {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  const heroImageRef = useRef(null)
+  const sectionRefs = useRef([])
+
+  useEffect(() => {
+    // Parallax effect for hero image (desktop only)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    if (isTouchDevice) return
+
+    const handleMouseMove = (e) => {
+      const { clientX, clientY } = e
+      const { innerWidth, innerHeight } = window
+      const x = (clientX / innerWidth - 0.5) * 20
+      const y = (clientY / innerHeight - 0.5) * 20
+      setMousePosition({ x, y })
+    }
+
+    window.addEventListener('mousemove', handleMouseMove)
+    return () => window.removeEventListener('mousemove', handleMouseMove)
+  }, [])
+
+  useEffect(() => {
+    // Scroll-triggered animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in')
+        }
+      })
+    }, observerOptions)
+
+    // Observe all refs after a short delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      sectionRefs.current.forEach((ref) => {
+        if (ref) observer.observe(ref)
+      })
+    }, 100)
+
+    return () => {
+      clearTimeout(timeoutId)
+      sectionRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref)
+      })
+    }
+  }, [])
+
+  const addToRefs = (el) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el)
+    }
+  }
+
   return (
     <div className="doug-home">
       <div className="hero-section">
@@ -12,19 +70,28 @@ function DougHome() {
           <span className="hero-brand-text">Afresh.io</span>
         </div>
         <div className="hero-content">
-          <div className="hero-text">
-            <h1 className="hero-name">Doug Stevenson</h1>
-            <p className="hero-title">Founder & Exec Coach</p>
-            <p className="hero-subtitle">Helping founders and executives build cohesive, high-accountability teams.</p>
-          </div>
-          <div className="hero-image-wrapper">
-            <img src={headshotImg} alt="Doug Stevenson" className="hero-headshot" />
+          <div className="hero-profile">
+            <div className="hero-image-wrapper" ref={heroImageRef}>
+              <img 
+                src={headshotImg} 
+                alt="Doug Stevenson" 
+                className="hero-headshot"
+                style={{
+                  transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
+                }}
+              />
+            </div>
+            <div className="hero-text">
+              <h1 className="hero-name">Doug Stevenson</h1>
+              <p className="hero-title">Founder & Exec Coach</p>
+              <p className="hero-subtitle">Helping founders and executives build cohesive, high-accountability teams.</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div className="content-section">
-        <div className="credentials-section">
+        <div className="credentials-section scroll-animate" ref={addToRefs}>
           <h2 className="section-title">Credentials</h2>
           <ul className="credentials-list">
             <li>Ernst & Young Entrepreneur of the Year</li>
@@ -37,7 +104,7 @@ function DougHome() {
           </ul>
         </div>
 
-        <div className="mission-section">
+        <div className="mission-section scroll-animate" ref={addToRefs}>
           <h2 className="section-title">My Mission</h2>
           <p className="mission-text">
             I help founders and executives build cohesive teams. Building trust, mastering conflict, 
@@ -52,7 +119,7 @@ function DougHome() {
           </blockquote>
         </div>
 
-        <div className="experience-section">
+        <div className="experience-section scroll-animate" ref={addToRefs}>
           <h2 className="section-title">Experience</h2>
           <p className="experience-text">
             With over 25 years of experience in building Adtech as the CEO and Co-founder of 
@@ -64,7 +131,7 @@ function DougHome() {
           </p>
         </div>
 
-        <div className="personal-section">
+        <div className="personal-section scroll-animate" ref={addToRefs}>
           <h2 className="section-title">Personal</h2>
           <p className="personal-text">
             My wife and I are based in San Francisco and enjoy weekend trips to Marin. 
@@ -72,29 +139,29 @@ function DougHome() {
           </p>
         </div>
 
-        <div className="education-section">
+        <div className="education-section scroll-animate" ref={addToRefs}>
           <h2 className="section-title">Education</h2>
           <p className="education-text">
             B.Sc. in Electrical & Electronic Engineering from the University of Edinburgh
           </p>
         </div>
 
-        <div className="services-section">
+        <div className="services-section scroll-animate" ref={addToRefs}>
           <h2 className="section-title">How to Work with Doug</h2>
           <div className="services-grid">
-            <div className="service-card">
+            <div className="service-card scroll-animate" ref={addToRefs}>
               <h3 className="service-title">1-1 Founder & CEO Coaching</h3>
               <p className="service-desc">
                 Using frameworks from Matt Mochary and Pat Lencioni; CEO accelerator
               </p>
             </div>
-            <div className="service-card">
+            <div className="service-card scroll-animate" ref={addToRefs}>
               <h3 className="service-title">'Founder Fit' Clinic</h3>
               <p className="service-desc">
                 Founder productivity, real time feedback and embracing healthy conflict
               </p>
             </div>
-            <div className="service-card">
+            <div className="service-card scroll-animate" ref={addToRefs}>
               <h3 className="service-title">Exec Team Events & Offsites</h3>
               <p className="service-desc">
                 Five behaviors of a Cohesive team and Productivity Team Mapping
@@ -103,7 +170,7 @@ function DougHome() {
           </div>
         </div>
 
-        <div className="cta-section">
+        <div className="cta-section scroll-animate" ref={addToRefs}>
           <a 
             href="https://calendly.com/douglas-stevenson" 
             target="_blank" 
@@ -117,51 +184,51 @@ function DougHome() {
           </Link>
         </div>
 
-        <div className="testimonials-section">
-          <div className="testimonial-card">
+        <div className="testimonials-section scroll-animate" ref={addToRefs}>
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
             <p className="testimonial-quote">
               "Doug has been an immense help for us, not only giving guidance in master level strategy and sales, but also with growth as a professional and business owner. Within the short time we have worked with Doug, I can actively look and see all the improvements he was able to help us with. I would highly recommend him to anyone."
             </p>
             <p className="testimonial-author">- Will Jones</p>
           </div>
-          <div className="testimonial-card">
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
             <p className="testimonial-quote">
               "I've been fortunate to have Douglas as a mentor since 2019, supporting me in my role as a CEO and C-suite executive. His insight, guidance, and interpersonal support have been invaluable in helping me navigate challenges and grow as a leader. I'm deeply grateful for his perspective and encouragement, and I look forward to continuing our work together, both individually and in a team setting."
             </p>
             <p className="testimonial-author">- Richard Henry</p>
           </div>
-          <div className="testimonial-card">
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
             <p className="testimonial-quote">
               "Our executive team was interested in some team building exercises so that we could get to know each other on a deeper level. Doug did an amazing job helping us achieve this goal. We utilized Patrick Lencioni's Five Behaviors of a Cohesive Team and Working Genius. Our team enjoyed it immensely and Doug helped us navigate the experience. In the end we are building toward an anti-fragile team."
             </p>
             <p className="testimonial-author">- Bob Powell</p>
           </div>
-          <div className="testimonial-card">
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
             <p className="testimonial-quote">
               "Douglas has been a fantastic coach and mentor over the past few years. His entrepreneurial spirit and leadership skills, combined with his compassion, patience, and willingness to explore challenges, have reshaped my view of the world. His perspective has helped me well beyond my professional landscape. He is a great listener, considers all angles, and provides insightful perspectives."
             </p>
             <p className="testimonial-author">- Renaud De Vreker</p>
           </div>
-          <div className="testimonial-card">
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
             <p className="testimonial-quote">
               "Doug Stevenson is an excellent coach. His thorough business intelligence, broad vision, and quick analysis on any topic make him an expert. With his strength in seeing the big picture, he helps you articulate your business model and goals. His leadership experience combined with mindfulness makes his approach unique."
             </p>
             <p className="testimonial-author">- Anne-Marie Stoehr</p>
           </div>
-          <div className="testimonial-card">
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
             <p className="testimonial-quote">
               "I hold the position of Senior Director of Engineering at Rippling, and I recently collaborated with Douglas for executive coaching to develop one of my promising talents. After eight sessions, the transformation is evident in their patience, wisdom, and intentionality toward strategic thinking, planning, and cross-functional communication. I can directly attribute tangible business-level impact to Douglas's coaching."
             </p>
             <p className="testimonial-author">- Daniel Buscaglia</p>
           </div>
-          <div className="testimonial-card">
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
             <p className="testimonial-quote">
               "We want to double down on real-time feedback and encouraging productive conflict."
               <span className="testimonial-rating"> 9/10 rating</span>
             </p>
             <p className="testimonial-author">- Sami Inkinen, CEO & Founder, Virta Health (Pre-IPO), Co-founder Trulia</p>
           </div>
-          <div className="testimonial-card">
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
             <p className="testimonial-quote">
               "I am very thankful for the amazing team of Vibrant people I have been able to work with on the entrepreneurial journey!"
             </p>
