@@ -4,7 +4,8 @@ const FOUNDER_TYPES = {
   Visionary: {
     description: "You're a Visionary founder! You excel at deep contemplation and innovation, bringing fresh ideas and long-term thinking to your ventures.",
     traits: ["Deep thinking", "Innovation", "Long-term vision"],
-    color: "#667eea"
+    color: "#667eea",
+    roughEdges: "Your rough edges can include being a chaos maker and not valuing practicality as much as originality. Less thought given to implementation which puts stress and chaos on teammates."
   },
   Catalyst: {
     description: "You're a Catalyst founder! You're constantly innovating and have a gift for inspiring and rallying people around your ideas.",
@@ -78,6 +79,13 @@ function Results({ scores, onRestart }) {
           ))}
         </div>
       </div>
+      
+      {typeInfo.roughEdges && (
+        <div className="rough-edges-section">
+          <h3 className="rough-edges-title">Your Rough Edges</h3>
+          <p className="rough-edges-text">{typeInfo.roughEdges}</p>
+        </div>
+      )}
       
       <div className="scores-section">
         <h3 className="scores-title">Your Scores</h3>
