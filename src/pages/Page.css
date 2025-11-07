@@ -19,7 +19,7 @@
   color: #333;
   text-align: center;
   margin-bottom: 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #a8d9b6 0%, #62b487 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -38,7 +38,7 @@
 .page-subtitle {
   font-size: 1.8rem;
   font-weight: 600;
-  color: #333;
+  color: #2f5142;
   margin-top: 40px;
   margin-bottom: 20px;
 }
@@ -62,22 +62,22 @@
 }
 
 .founder-type-card {
-  background: #f8f9fa;
+  background: #f2fbf7;
   padding: 25px;
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #62b487;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .founder-type-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 10px 24px rgba(98, 180, 135, 0.2);
 }
 
 .founder-type-name {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #667eea;
+  color: #3c7c5d;
   margin-bottom: 10px;
 }
 
@@ -98,7 +98,7 @@
   background: white;
   border-radius: 20px;
   font-size: 0.85rem;
-  color: #667eea;
+  color: #3c7c5d;
   font-weight: 500;
 }
 
@@ -137,7 +137,7 @@
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #62b487;
 }
 
 .form-textarea {
@@ -151,17 +151,17 @@
   font-size: 1.1rem;
   border: none;
   border-radius: 12px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #62b487 0%, #3c7c5d 100%);
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   font-weight: 600;
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 14px rgba(60, 124, 93, 0.3);
 }
 
 .form-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 6px 20px rgba(60, 124, 93, 0.35);
 }
 
 .form-button:active {
@@ -197,7 +197,7 @@
 .contact-info {
   margin-top: 30px;
   padding: 20px;
-  background: #f8f9fa;
+  background: #f2fbf7;
   border-radius: 8px;
   text-align: center;
 }

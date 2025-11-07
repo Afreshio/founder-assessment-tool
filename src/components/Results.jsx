@@ -4,26 +4,30 @@ const FOUNDER_TYPES = {
   Visionary: {
     description: "You're a Visionary founder! You excel at deep contemplation and innovation, bringing fresh ideas and long-term thinking to your ventures.",
     traits: ["Deep thinking", "Innovation", "Long-term vision"],
-    color: "#667eea",
-    roughEdges: "Your rough edges can include being a chaos maker and not valuing practicality as much as originality. Less thought given to implementation which puts stress and chaos on teammates."
+    color: "#62b487",
+    roughEdges: "Your rough edges can include being a chaos maker and not valuing practicality as much as originality. Less thought given to implementation which puts stress and chaos on teammates.",
+    idealPartner: "Partner with an Operator co-founder who loves execution, organizational rhythm, and translating your bold ideas into dependable results."
   },
   Catalyst: {
     description: "You're a Catalyst founder! You're constantly innovating and have a gift for inspiring and rallying people around your ideas.",
     traits: ["Innovation", "Inspiration", "Team building"],
-    color: "#f093fb",
-    roughEdges: "Your rough edges can include coming across as disingenuous and over-the-top in your excitement - hard to believe that anyone can be that excited about anything. Constant micro-innovations even after a decision has been made. Can be careless and hasty."
+    color: "#52a276",
+    roughEdges: "Your rough edges can include coming across as disingenuous and over-the-top in your excitement - hard to believe that anyone can be that excited about anything. Constant micro-innovations even after a decision has been made. Can be careless and hasty.",
+    idealPartner: "Pair with an Operator co-founder who creates operating cadence, anchors focus, and keeps the team aligned once your vision is set."
   },
   Architect: {
     description: "You're an Architect founder! You trust your instincts when data is scarce and excel at seeing projects through to completion.",
     traits: ["Intuition", "Execution", "Reliability"],
-    color: "#4facfe",
-    roughEdges: "Your rough edges can include angst around getting things done - can get judgmental when people are not meeting your standards and expectations. Relentless sense of responsibility can cause you to lean into your T before discerning - need to make sure you prioritize and discern BEFORE finishing."
+    color: "#7cc8a0",
+    roughEdges: "Your rough edges can include angst around getting things done - can get judgmental when people are not meeting your standards and expectations. Relentless sense of responsibility can cause you to lean into your T before discerning - need to make sure you prioritize and discern BEFORE finishing.",
+    idealPartner: "Partner with a Visionary or Catalyst co-founder who stretches the long-term horizon, keeps new ideas flowing, and balances your execution focus."
   },
   Operator: {
     description: "You're an Operator founder! You're great at rallying teams and ensuring projects are completed successfully.",
     traits: ["Team leadership", "Execution", "Results"],
-    color: "#43e97b",
-    roughEdges: "Your rough edges can include being impatient, pushy and a little domineering. Can be overconfident, cavalier in your declarations of what is true and good and dismiss others when there is more nuance involved."
+    color: "#3c7c5d",
+    roughEdges: "Your rough edges can include being impatient, pushy and a little domineering. Can be overconfident, cavalier in your declarations of what is true and good and dismiss others when there is more nuance involved.",
+    idealPartner: "Partner with a Visionary co-founder who expands the big picture, challenges assumptions, and fuels long-range innovation."
   }
 }
 
@@ -89,7 +93,14 @@ function Results({ scores, onRestart }) {
           <p className="rough-edges-text">{typeInfo.roughEdges}</p>
         </div>
       )}
-      
+
+      {typeInfo.idealPartner && (
+        <div className="cofounder-section">
+          <h3 className="cofounder-title">Ideal Co-Founder Match</h3>
+          <p className="cofounder-text">{typeInfo.idealPartner}</p>
+        </div>
+      )}
+
       <div className="scores-section">
         <h3 className="scores-title">Your Scores</h3>
         <div className="scores-grid">

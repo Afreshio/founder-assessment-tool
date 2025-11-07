@@ -1,0 +1,188 @@
+import { Link } from 'react-router-dom'
+import headshotImg from '../assets/doug-headshot.jpeg'
+import afreshLogo from '../assets/Afresh.png'
+import './DougHome.css'
+
+function DougHome() {
+  return (
+    <div className="doug-home">
+      <div className="hero-section">
+        <div className="hero-branding">
+          <img src={afreshLogo} alt="Afresh logo" className="hero-logo" />
+          <span className="hero-brand-text">Afresh.io</span>
+        </div>
+        <div className="hero-content">
+          <div className="hero-text">
+            <h1 className="hero-name">Doug Stevenson</h1>
+            <p className="hero-title">Founder & Exec Coach</p>
+            <p className="hero-subtitle">Helping founders and executives build cohesive, high-accountability teams.</p>
+          </div>
+          <div className="hero-image-wrapper">
+            <img src={headshotImg} alt="Doug Stevenson" className="hero-headshot" />
+          </div>
+        </div>
+      </div>
+
+      <div className="content-section">
+        <div className="credentials-section">
+          <h2 className="section-title">Credentials</h2>
+          <ul className="credentials-list">
+            <li>Ernst & Young Entrepreneur of the Year</li>
+            <li>Inc. 100 and 500 Honoree</li>
+            <li>Matt Mochary Method CEO Coach Training</li>
+            <li>Patrick Lencioni - Table Group - Certified Facilitator Working Genius</li>
+            <li>Stanford Behavior Design - Healdsburg Course and Tiny Habits Certification with BJ Fogg</li>
+            <li>Certified Laser Focused Coaching Masterclass ICF and SHRM approved</li>
+          </ul>
+        </div>
+
+        <div className="mission-section">
+          <h2 className="section-title">My Mission</h2>
+          <p className="mission-text">
+            I help founders and executives build cohesive teams. Building trust, mastering conflict, 
+            achieving commitment, embracing accountability and focusing on results!
+          </p>
+          <p className="mission-text">
+            Sharing my experience as a founder, scaling our company Vibrant from zero to 
+            more than $120M with 20% EBITDA margins across the US, UK, France and Germany.
+          </p>
+          <blockquote className="quote">
+            "The team you build, is the company you build" - Vinod Khosla - Khosla Ventures
+          </blockquote>
+        </div>
+
+        <div className="experience-section">
+          <h2 className="section-title">Experience</h2>
+          <p className="experience-text">
+            With over 25 years of experience in building Adtech as the CEO and Co-founder of 
+            Vibrant Media and Quintesse, two companies at the forefront of the digital marketing 
+            and online advertising industry.
+          </p>
+          <p className="experience-text">
+            My mission now is to help Founders and CEOs scale their companies and build cohesive teams.
+          </p>
+        </div>
+
+        <div className="personal-section">
+          <h2 className="section-title">Personal</h2>
+          <p className="personal-text">
+            My wife and I are based in San Francisco and enjoy weekend trips to Marin. 
+            Our two sons are studying film and design in NY.
+          </p>
+        </div>
+
+        <div className="education-section">
+          <h2 className="section-title">Education</h2>
+          <p className="education-text">
+            B.Sc. in Electrical & Electronic Engineering from the University of Edinburgh
+          </p>
+        </div>
+
+        <div className="services-section">
+          <h2 className="section-title">How to Work with Doug</h2>
+          <div className="services-grid">
+            <div className="service-card">
+              <h3 className="service-title">1-1 Founder & CEO Coaching</h3>
+              <p className="service-desc">
+                Using frameworks from Matt Mochary and Pat Lencioni; CEO accelerator
+              </p>
+            </div>
+            <div className="service-card">
+              <h3 className="service-title">'Founder Fit' Clinic</h3>
+              <p className="service-desc">
+                Founder productivity, real time feedback and embracing healthy conflict
+              </p>
+            </div>
+            <div className="service-card">
+              <h3 className="service-title">Exec Team Events & Offsites</h3>
+              <p className="service-desc">
+                Five behaviors of a Cohesive team and Productivity Team Mapping
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="cta-section">
+          <a 
+            href="https://calendly.com/douglas-stevenson" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="cta-button"
+          >
+            Book a 30 Minute Complimentary Coaching Session
+          </a>
+          <Link to="/quiz" className="cta-button-secondary">
+            Take the Founder Fit Quiz
+          </Link>
+        </div>
+
+        <div className="testimonials-section">
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "Doug has been an immense help for us, not only giving guidance in master level strategy and sales, but also with growth as a professional and business owner. Within the short time we have worked with Doug, I can actively look and see all the improvements he was able to help us with. I would highly recommend him to anyone."
+            </p>
+            <p className="testimonial-author">- Will Jones</p>
+          </div>
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "I've been fortunate to have Douglas as a mentor since 2019, supporting me in my role as a CEO and C-suite executive. His insight, guidance, and interpersonal support have been invaluable in helping me navigate challenges and grow as a leader. I'm deeply grateful for his perspective and encouragement, and I look forward to continuing our work together, both individually and in a team setting."
+            </p>
+            <p className="testimonial-author">- Richard Henry</p>
+          </div>
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "Our executive team was interested in some team building exercises so that we could get to know each other on a deeper level. Doug did an amazing job helping us achieve this goal. We utilized Patrick Lencioni's Five Behaviors of a Cohesive Team and Working Genius. Our team enjoyed it immensely and Doug helped us navigate the experience. In the end we are building toward an anti-fragile team."
+            </p>
+            <p className="testimonial-author">- Bob Powell</p>
+          </div>
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "Douglas has been a fantastic coach and mentor over the past few years. His entrepreneurial spirit and leadership skills, combined with his compassion, patience, and willingness to explore challenges, have reshaped my view of the world. His perspective has helped me well beyond my professional landscape. He is a great listener, considers all angles, and provides insightful perspectives."
+            </p>
+            <p className="testimonial-author">- Renaud De Vreker</p>
+          </div>
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "Doug Stevenson is an excellent coach. His thorough business intelligence, broad vision, and quick analysis on any topic make him an expert. With his strength in seeing the big picture, he helps you articulate your business model and goals. His leadership experience combined with mindfulness makes his approach unique."
+            </p>
+            <p className="testimonial-author">- Anne-Marie Stoehr</p>
+          </div>
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "I hold the position of Senior Director of Engineering at Rippling, and I recently collaborated with Douglas for executive coaching to develop one of my promising talents. After eight sessions, the transformation is evident in their patience, wisdom, and intentionality toward strategic thinking, planning, and cross-functional communication. I can directly attribute tangible business-level impact to Douglas's coaching."
+            </p>
+            <p className="testimonial-author">- Daniel Buscaglia</p>
+          </div>
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "We want to double down on real-time feedback and encouraging productive conflict."
+              <span className="testimonial-rating"> 9/10 rating</span>
+            </p>
+            <p className="testimonial-author">- Sami Inkinen, CEO & Founder, Virta Health (Pre-IPO), Co-founder Trulia</p>
+          </div>
+          <div className="testimonial-card">
+            <p className="testimonial-quote">
+              "I am very thankful for the amazing team of Vibrant people I have been able to work with on the entrepreneurial journey!"
+            </p>
+            <p className="testimonial-author">- Doug Stevenson</p>
+          </div>
+        </div>
+
+        <div className="contact-section">
+          <p className="contact-text">
+            <a href="https://www.linkedin.com/in/dougstevenson" target="_blank" rel="noopener noreferrer" className="contact-link">
+              LinkedIn Bio
+            </a>
+            {' | '}
+            <a href="mailto:doug@afresh.io" className="contact-link">
+              Email: doug@afresh.io
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default DougHome
+

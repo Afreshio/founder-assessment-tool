@@ -7,7 +7,7 @@ function Navigation() {
   return (
     <nav className="navigation">
       <Link to="/" className="nav-logo">
-        Founder Fit Quiz
+        Afresh.io
       </Link>
       <div className="nav-links">
         <Link 
@@ -15,6 +15,12 @@ function Navigation() {
           className={location.pathname === '/' ? 'nav-link active' : 'nav-link'}
         >
           Home
+        </Link>
+        <Link 
+          to="/quiz" 
+          className={location.pathname === '/quiz' ? 'nav-link active' : 'nav-link'}
+        >
+          Founder Fit Quiz
         </Link>
         <Link 
           to="/about" 

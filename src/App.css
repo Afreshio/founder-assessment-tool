@@ -9,11 +9,16 @@
 .container {
   background: white;
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 55px rgba(60, 124, 93, 0.18);
   padding: 40px;
   width: 100%;
-  max-width: 900px;
+  max-width: 1100px;
   margin-top: 20px;
+}
+
+.container .doug-home {
+  padding: 0;
+  max-width: 100%;
 }
 
 .home-page {
@@ -26,7 +31,7 @@
   color: #333;
   text-align: center;
   margin-bottom: 10px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #a8d9b6 0%, #62b487 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -34,7 +39,7 @@
 
 .subtitle {
   text-align: center;
-  color: #666;
+  color: #4a705a;
   font-size: 1.1rem;
   margin-bottom: 40px;
 }
