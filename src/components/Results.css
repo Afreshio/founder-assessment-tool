@@ -127,7 +127,7 @@
 }
 
 .traits-section {
-  margin-top: -298px;
+  margin-top: 0;
   margin-bottom: 40px;
 }
 
@@ -565,6 +565,14 @@
   border-top: 1px solid #e0e0e0;
 }
 
+.rough-edges-section,
+.cofounder-section,
+.calendly-section,
+.scores-section,
+.restart-button {
+  margin-top: 0;
+}
+
 @media (max-width: 768px) {
   .founder-type {
     font-size: 2rem;
@@ -642,46 +650,38 @@
   
   .founder-fit-grid-section {
     padding: 20px;
+    margin-bottom: 20px;
   }
   
   .founder-fit-grid {
-    grid-template-columns: auto 1fr 1fr;
-    grid-template-rows: auto auto auto auto auto;
-    gap: 10px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 16px;
   }
   
   .grid-y-axis-label {
-    font-size: 1rem;
-    padding: 5px;
-  }
-  
-  .grid-y-axis-top {
-    grid-column: 1;
-    grid-row: 1;
-  }
-  
-  .grid-y-axis-bottom {
-    grid-column: 1;
-    grid-row: 5;
+    display: none;
   }
   
   .grid-x-axis-label {
     font-size: 1rem;
-    padding: 5px;
+    padding: 0;
+    grid-column: 1;
+    margin-top: 0;
   }
   
   .grid-x-axis-left {
-    grid-column: 2;
-    grid-row: 5;
+    grid-row: auto;
+    margin-top: 0;
   }
   
   .grid-x-axis-right {
-    grid-column: 3;
-    grid-row: 5;
+    grid-row: auto;
+    margin-top: 0;
   }
   
   .grid-quadrant {
-    padding: 20px;
+    min-height: auto;
   }
   
   .grid-quadrant-top-left {
@@ -723,6 +723,20 @@
   
   .quadrant-description {
     font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .traits-section {
+    margin-top: -298px;
+  }
+
+  .rough-edges-section,
+  .cofounder-section,
+  .calendly-section,
+  .scores-section,
+  .restart-button {
+    margin-top: -248px;
   }
 }
 
