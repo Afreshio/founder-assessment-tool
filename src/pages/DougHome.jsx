@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import headshotImg from '../assets/doug-headshot.jpeg'
+import headshotImg from '../assets/headshot linen tight crop.png'
 import afreshLogo from '../assets/Afresh.png'
 import './DougHome.css'
 
@@ -67,7 +67,6 @@ function DougHome() {
       <div className="hero-section">
         <div className="hero-branding">
           <img src={afreshLogo} alt="Afresh logo" className="hero-logo" />
-          <span className="hero-brand-text">Afresh.io</span>
         </div>
         <div className="hero-content">
           <div className="hero-profile">
@@ -91,6 +90,36 @@ function DougHome() {
       </div>
 
       <div className="content-section">
+        <div className="services-section scroll-animate" ref={addToRefs}>
+          <h2 className="section-title">How to Work with Doug</h2>
+          <div className="services-grid">
+            <div className="service-card scroll-animate" ref={addToRefs}>
+              <h3 className="service-title">1-1 Founder & CEO Coaching</h3>
+              <p className="service-desc">
+                Using frameworks from Matt Mochary and Pat Lencioni; CEO accelerator
+              </p>
+            </div>
+            <div className="service-card scroll-animate" ref={addToRefs}>
+              <h3 className="service-title">'Founder Fit' Clinic</h3>
+              <p className="service-desc">
+                Founder productivity, real time feedback and embracing healthy conflict
+              </p>
+            </div>
+            <div className="service-card scroll-animate" ref={addToRefs}>
+              <h3 className="service-title">Exec Team Events & Offsites</h3>
+              <p className="service-desc">
+                Five behaviors of a Cohesive team and Productivity Team Mapping
+              </p>
+            </div>
+            <div className="service-card scroll-animate" ref={addToRefs}>
+              <h3 className="service-title">Strategic Sounding Board (Advisory Retainer)</h3>
+              <p className="service-desc">
+                An ongoing, high-leverage partnership for founders navigating scale, product-market inflection, or leadership transitions.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <div className="credentials-section scroll-animate" ref={addToRefs}>
           <h2 className="section-title">Credentials</h2>
           <ul className="credentials-list">
@@ -102,6 +131,20 @@ function DougHome() {
             <li>Certified Laser Focused Coaching Masterclass ICF and SHRM approved</li>
             <li>Guest Faculty Speaker at Eric Partaker's CEO Accelerator (last three cohorts)</li>
           </ul>
+        </div>
+
+        <div className="cta-section scroll-animate" ref={addToRefs}>
+          <a 
+            href="https://calendly.com/douglas-stevenson" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="cta-button"
+          >
+            Book a 30 Minute Complimentary Coaching Session
+          </a>
+          <Link to="/quiz" className="cta-button-secondary">
+            Take the Founder Fit Quiz
+          </Link>
         </div>
 
         <div className="mission-section scroll-animate" ref={addToRefs}>
@@ -144,44 +187,6 @@ function DougHome() {
           <p className="education-text">
             B.Sc. in Electrical & Electronic Engineering from the University of Edinburgh
           </p>
-        </div>
-
-        <div className="services-section scroll-animate" ref={addToRefs}>
-          <h2 className="section-title">How to Work with Doug</h2>
-          <div className="services-grid">
-            <div className="service-card scroll-animate" ref={addToRefs}>
-              <h3 className="service-title">1-1 Founder & CEO Coaching</h3>
-              <p className="service-desc">
-                Using frameworks from Matt Mochary and Pat Lencioni; CEO accelerator
-              </p>
-            </div>
-            <div className="service-card scroll-animate" ref={addToRefs}>
-              <h3 className="service-title">'Founder Fit' Clinic</h3>
-              <p className="service-desc">
-                Founder productivity, real time feedback and embracing healthy conflict
-              </p>
-            </div>
-            <div className="service-card scroll-animate" ref={addToRefs}>
-              <h3 className="service-title">Exec Team Events & Offsites</h3>
-              <p className="service-desc">
-                Five behaviors of a Cohesive team and Productivity Team Mapping
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="cta-section scroll-animate" ref={addToRefs}>
-          <a 
-            href="https://calendly.com/douglas-stevenson" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="cta-button"
-          >
-            Book a 30 Minute Complimentary Coaching Session
-          </a>
-          <Link to="/quiz" className="cta-button-secondary">
-            Take the Founder Fit Quiz
-          </Link>
         </div>
 
         <div className="testimonials-section scroll-animate" ref={addToRefs}>

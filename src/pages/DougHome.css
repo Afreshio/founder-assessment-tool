@@ -33,12 +33,9 @@
 }
 
 .hero-logo {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
-  border-radius: 50%;
-  background: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
 .hero-brand-text {

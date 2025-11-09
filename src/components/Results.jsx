@@ -110,36 +110,6 @@ function Results({ scores, tiebreaker, onRestart }) {
         <p className="founder-description">{typeInfo.description}</p>
       </div>
       
-      <div className="archetype-scores-section">
-        <h3 className="archetype-scores-title">Your Archetype Scores</h3>
-        <div className="archetype-scores-grid">
-          {Object.entries(archetypeScores).map(([type, score]) => {
-            const interpretation = getInterpretation(score)
-            const isTop = type === founderType
-            return (
-              <div key={type} className={`archetype-score-card ${isTop ? 'top-score' : ''}`}>
-                <div className="archetype-score-header">
-                  <span className="archetype-score-name">{type}</span>
-                  <span className="archetype-score-value">{score.toFixed(1)}/16</span>
-                </div>
-                <div className="archetype-score-bar">
-                  <div 
-                    className="archetype-score-fill" 
-                    style={{ 
-                      width: `${(score / 16) * 100}%`,
-                      backgroundColor: interpretation.color
-                    }}
-                  />
-                </div>
-                <div className="archetype-score-interpretation" style={{ color: interpretation.color }}>
-                  {interpretation.level}
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
-      
       <div className="founder-fit-grid-section">
         <h3 className="founder-fit-grid-title">Founder Fit 2×2 Grid</h3>
         <div className="founder-fit-grid-container">
@@ -206,37 +176,6 @@ function Results({ scores, tiebreaker, onRestart }) {
         </div>
       </div>
 
-      <div className="scores-section">
-        <h3 className="scores-title">Raw Trait Scores</h3>
-        <p className="scores-subtitle">These are your base scores (0-4) used to calculate your archetype scores above.</p>
-        <div className="scores-grid">
-          <div className="score-item">
-            <span className="score-label">Wonder (W)</span>
-            <span className="score-value">{scores.W}/4</span>
-          </div>
-          <div className="score-item">
-            <span className="score-label">Invention (I)</span>
-            <span className="score-value">{scores.I}/4</span>
-          </div>
-          <div className="score-item">
-            <span className="score-label">Discernment (D)</span>
-            <span className="score-value">{scores.D}/4</span>
-          </div>
-          <div className="score-item">
-            <span className="score-label">Galvanizing (G)</span>
-            <span className="score-value">{scores.G}/4</span>
-          </div>
-          <div className="score-item">
-            <span className="score-label">Enablement (E)</span>
-            <span className="score-value">{scores.E}/4</span>
-          </div>
-          <div className="score-item">
-            <span className="score-label">Tenacity (T)</span>
-            <span className="score-value">{scores.T}/4</span>
-          </div>
-        </div>
-      </div>
-      
       <div className="traits-section">
         <h3 className="traits-title">Your Key Traits</h3>
         <div className="traits-list">
@@ -281,6 +220,67 @@ function Results({ scores, tiebreaker, onRestart }) {
           <span className="calendly-button-icon">📅</span>
           Schedule Your Free Zoom Call
         </a>
+      </div>
+
+      <div className="archetype-scores-section">
+        <h3 className="archetype-scores-title">Your Archetype Scores</h3>
+        <div className="archetype-scores-grid">
+          {Object.entries(archetypeScores).map(([type, score]) => {
+            const interpretation = getInterpretation(score)
+            const isTop = type === founderType
+            return (
+              <div key={type} className={`archetype-score-card ${isTop ? 'top-score' : ''}`}>
+                <div className="archetype-score-header">
+                  <span className="archetype-score-name">{type}</span>
+                  <span className="archetype-score-value">{score.toFixed(1)}/16</span>
+                </div>
+                <div className="archetype-score-bar">
+                  <div 
+                    className="archetype-score-fill" 
+                    style={{ 
+                      width: `${(score / 16) * 100}%`,
+                      backgroundColor: interpretation.color
+                    }}
+                  />
+                </div>
+                <div className="archetype-score-interpretation" style={{ color: interpretation.color }}>
+                  {interpretation.level}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      <div className="scores-section">
+        <h3 className="scores-title">Raw Trait Scores</h3>
+        <p className="scores-subtitle">These are your base scores (0-4) used to calculate your archetype scores above.</p>
+        <div className="scores-grid">
+          <div className="score-item">
+            <span className="score-label">Wonder (W)</span>
+            <span className="score-value">{scores.W}/4</span>
+          </div>
+          <div className="score-item">
+            <span className="score-label">Invention (I)</span>
+            <span className="score-value">{scores.I}/4</span>
+          </div>
+          <div className="score-item">
+            <span className="score-label">Discernment (D)</span>
+            <span className="score-value">{scores.D}/4</span>
+          </div>
+          <div className="score-item">
+            <span className="score-label">Galvanizing (G)</span>
+            <span className="score-value">{scores.G}/4</span>
+          </div>
+          <div className="score-item">
+            <span className="score-label">Enablement (E)</span>
+            <span className="score-value">{scores.E}/4</span>
+          </div>
+          <div className="score-item">
+            <span className="score-label">Tenacity (T)</span>
+            <span className="score-value">{scores.T}/4</span>
+          </div>
+        </div>
       </div>
       
       <button className="restart-button" onClick={onRestart}>
