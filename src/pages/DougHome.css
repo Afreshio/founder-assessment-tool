@@ -49,9 +49,10 @@
 }
 
 .hero-headshot {
-  width: 160px;
-  height: 160px;
+  width: 220px;
+  height: 220px;
   object-fit: cover;
+  object-position: center top;
   border-radius: 50%;
   border: 3px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
