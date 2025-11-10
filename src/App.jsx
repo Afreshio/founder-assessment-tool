@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Articles from './pages/Articles'
+import PainPoints from './pages/PainPoints'
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<DougHome />} />
           <Route path="/quiz" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/pain-points" element={<PainPoints />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/articles" element={<Articles />} />
         </Routes>

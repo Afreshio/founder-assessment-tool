@@ -25,6 +25,12 @@ function Navigation() {
           <span className="nav-link-text-short">Quiz</span>
         </Link>
         <Link 
+          to="/pain-points" 
+          className={location.pathname === '/pain-points' ? 'nav-link active' : 'nav-link'}
+        >
+          Pain Points
+        </Link>
+        <Link 
           to="/articles" 
           className={location.pathname === '/articles' ? 'nav-link active' : 'nav-link'}
         >
