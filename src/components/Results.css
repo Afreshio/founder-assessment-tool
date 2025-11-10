@@ -127,7 +127,7 @@
 }
 
 .traits-section {
-  margin-top: 0;
+  margin-top: 12px;
   margin-bottom: 40px;
 }
 
@@ -375,7 +375,7 @@
 }
 
 .founder-fit-grid-section {
-  margin-bottom: 8px;
+  margin-bottom: 24px;
   padding: 0;
   background: #ffffff;
   border-radius: 16px;
@@ -647,7 +647,7 @@
 .calendly-section,
 .scores-section,
 .restart-button {
-  margin-top: 0;
+  margin-top: 12px;
 }
 
 @media (max-width: 768px) {
@@ -806,17 +806,5 @@
   }
 }
 
-@media (min-width: 1024px) {
-  .traits-section {
-    margin-top: -298px;
-  }
-
-  .rough-edges-section,
-  .cofounder-section,
-  .calendly-section,
-  .scores-section,
-  .restart-button {
-    margin-top: -248px;
-  }
-}
+/* Removed large-screen negative offsets to prevent overlap */
 
