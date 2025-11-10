@@ -662,6 +662,16 @@
   margin-top: 48px;
 }
 
+.traits-section,
+.archetype-scores-section,
+.scores-section,
+.rough-edges-section,
+.cofounder-section,
+.calendly-section {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
   .founder-type {
     font-size: 2rem;
