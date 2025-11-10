@@ -375,7 +375,7 @@
 }
 
 .founder-fit-grid-section {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
   padding: 0;
   background: #ffffff;
   border-radius: 16px;
@@ -647,7 +647,12 @@
 .calendly-section,
 .scores-section,
 .restart-button {
-  margin-top: 12px;
+  margin-top: 32px;
+  margin-bottom: 0;
+}
+
+.restart-button {
+  margin-top: 48px;
 }
 
 @media (max-width: 768px) {
