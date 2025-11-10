@@ -13,45 +13,6 @@ body {
   background: #ffffff;
   min-height: 100vh;
   padding: 0;
-  cursor: none;
-}
-
-/* Custom cursor */
-.custom-cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(98, 180, 135, 0.8);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: transform 0.15s ease-out, width 0.2s ease-out, height 0.2s ease-out, border-color 0.2s ease-out;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
-}
-
-.custom-cursor.hover {
-  width: 40px;
-  height: 40px;
-  border-color: rgba(98, 180, 135, 1);
-  background: rgba(98, 180, 135, 0.1);
-}
-
-.custom-cursor.pointer {
-  width: 8px;
-  height: 8px;
-  border: none;
-  background: rgba(98, 180, 135, 0.9);
-}
-
-@media (max-width: 768px) {
-  body {
-    cursor: auto;
-  }
-  
-  .custom-cursor {
-    display: none;
-  }
 }
 
 #root {
