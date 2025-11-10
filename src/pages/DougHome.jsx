@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import headshotImg from '../assets/headshot linen air force blue.png'
+import headshotImg from '../assets/headshot linen crop bigger.png'
 import afreshLogo from '../assets/Afresh.png'
 import './DougHome.css'
 
