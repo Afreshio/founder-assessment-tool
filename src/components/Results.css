@@ -393,6 +393,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .founder-fit-grid {
@@ -404,6 +406,81 @@
   width: 100%;
   position: relative;
   align-items: stretch;
+  margin: 0 auto;
+}
+
+.founder-fit-slider {
+  display: none;
+}
+
+.founder-fit-slider-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding: 4px 4px 16px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.founder-fit-slider-card {
+  flex: 0 0 85%;
+  background: #ffffff;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  padding: 24px;
+  scroll-snap-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.slider-axis-badge {
+  align-self: flex-start;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #3c7c5d;
+  background: rgba(98, 180, 135, 0.12);
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.slider-card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.slider-card-core,
+.slider-card-focus,
+.slider-card-description {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.slider-card-examples {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.slider-card-examples li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+}
+
+.slider-card-examples li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #3c7c5d;
 }
 
 .grid-y-axis-label {
@@ -652,11 +729,17 @@
     padding: 20px;
     margin-bottom: 20px;
   }
+
+  .founder-fit-grid-container {
+    gap: 16px;
+  }
   
   .founder-fit-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 16px;
+    display: none;
+  }
+  
+  .founder-fit-slider {
+    display: block;
   }
   
   .grid-y-axis-label {
@@ -664,20 +747,17 @@
   }
   
   .grid-x-axis-label {
-    font-size: 1rem;
-    padding: 0;
-    grid-column: 1;
-    margin-top: 0;
+    display: none;
   }
   
-  .grid-x-axis-left {
-    grid-row: auto;
-    margin-top: 0;
+  .founder-fit-slider-track {
+    padding: 4px 12px 16px;
+    gap: 20px;
   }
   
-  .grid-x-axis-right {
-    grid-row: auto;
-    margin-top: 0;
+  .founder-fit-slider-card {
+    flex: 0 0 90%;
+    padding: 20px;
   }
   
   .grid-quadrant {

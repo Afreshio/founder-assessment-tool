@@ -31,6 +31,65 @@ const FOUNDER_TYPES = {
   }
 }
 
+const GRID_QUADRANTS = [
+  {
+    id: 'visionary',
+    title: 'Visionary Founders',
+    core: 'Wonder + Invention',
+    focus: 'Meaning, ideas, possibility',
+    examples: [
+      'The Dreamer – Elon Musk',
+      'The Prophet – Marc Benioff',
+      'The Sage – Yvon Chouinard'
+    ],
+    description: 'They live in "what could be." They imagine the future and challenge assumptions.',
+    positionClass: 'grid-quadrant-top-left',
+    axisBadge: 'Vision • Creative'
+  },
+  {
+    id: 'catalyst',
+    title: 'Catalyst Founders',
+    core: 'Invention + Galvanizing',
+    focus: 'Momentum, inspiration, disruption',
+    examples: [
+      'The Firestarter – Richard Branson',
+      'The Evangelist – Brian Chesky',
+      'The Inventor – Steve Jobs'
+    ],
+    description: 'They mobilize people and energy to make bold ideas real.',
+    positionClass: 'grid-quadrant-top-right',
+    axisBadge: 'Vision • Operational'
+  },
+  {
+    id: 'architect',
+    title: 'Architect Founders',
+    core: 'Discernment + Tenacity',
+    focus: 'Systems, judgment, scale',
+    examples: [
+      'The Strategist – Warren Buffett',
+      'The Architect – Reed Hastings',
+      'The Builder – Sundar Pichai'
+    ],
+    description: 'They design enduring structures, balancing innovation with rigor.',
+    positionClass: 'grid-quadrant-bottom-left',
+    axisBadge: 'Execution • Creative'
+  },
+  {
+    id: 'operator',
+    title: 'Operator Founders',
+    core: 'Galvanizing + Tenacity',
+    focus: 'Accountability, discipline, delivery',
+    examples: [
+      'The Executor – Frank Slootman',
+      'The Steward – Tim Cook',
+      'The Operator – Bob Iger'
+    ],
+    description: 'They ensure precision, urgency, and performance at scale.',
+    positionClass: 'grid-quadrant-bottom-right',
+    axisBadge: 'Execution • Operational'
+  }
+]
+
 function calculateArchetypeScores(scores) {
   const { W, I, D, G, T, E } = scores
   
@@ -118,53 +177,19 @@ function Results({ scores, tiebreaker, onRestart }) {
             <div className="grid-y-axis-label grid-y-axis-top">Vision</div>
             
             {/* Grid Quadrants */}
-            <div className="grid-quadrant grid-quadrant-top-left">
-              <h4 className="quadrant-title">Visionary Founders</h4>
-              <p className="quadrant-core"><strong>Core:</strong> Wonder + Invention</p>
-              <p className="quadrant-focus"><strong>Focus:</strong> Meaning, ideas, possibility</p>
-              <ul className="quadrant-examples">
-                <li>The Dreamer – Elon Musk</li>
-                <li>The Prophet – Marc Benioff</li>
-                <li>The Sage – Yvon Chouinard</li>
-              </ul>
-              <p className="quadrant-description">They live in "what could be." They imagine the future and challenge assumptions.</p>
-            </div>
-            
-            <div className="grid-quadrant grid-quadrant-top-right">
-              <h4 className="quadrant-title">Catalyst Founders</h4>
-              <p className="quadrant-core"><strong>Core:</strong> Invention + Galvanizing</p>
-              <p className="quadrant-focus"><strong>Focus:</strong> Momentum, inspiration, disruption</p>
-              <ul className="quadrant-examples">
-                <li>The Firestarter – Richard Branson</li>
-                <li>The Evangelist – Brian Chesky</li>
-                <li>The Inventor – Steve Jobs</li>
-              </ul>
-              <p className="quadrant-description">They mobilize people and energy to make bold ideas real.</p>
-            </div>
-            
-            <div className="grid-quadrant grid-quadrant-bottom-left">
-              <h4 className="quadrant-title">Architect Founders</h4>
-              <p className="quadrant-core"><strong>Core:</strong> Discernment + Tenacity</p>
-              <p className="quadrant-focus"><strong>Focus:</strong> Systems, judgment, scale</p>
-              <ul className="quadrant-examples">
-                <li>The Strategist – Warren Buffett</li>
-                <li>The Architect – Reed Hastings</li>
-                <li>The Builder – Sundar Pichai</li>
-              </ul>
-              <p className="quadrant-description">They design enduring structures, balancing innovation with rigor.</p>
-            </div>
-            
-            <div className="grid-quadrant grid-quadrant-bottom-right">
-              <h4 className="quadrant-title">Operator Founders</h4>
-              <p className="quadrant-core"><strong>Core:</strong> Galvanizing + Tenacity</p>
-              <p className="quadrant-focus"><strong>Focus:</strong> Accountability, discipline, delivery</p>
-              <ul className="quadrant-examples">
-                <li>The Executor – Frank Slootman</li>
-                <li>The Steward – Tim Cook</li>
-                <li>The Operator – Bob Iger</li>
-              </ul>
-              <p className="quadrant-description">They ensure precision, urgency, and performance at scale.</p>
-            </div>
+            {GRID_QUADRANTS.map((quadrant) => (
+              <div key={quadrant.id} className={`grid-quadrant ${quadrant.positionClass}`}>
+                <h4 className="quadrant-title">{quadrant.title}</h4>
+                <p className="quadrant-core"><strong>Core:</strong> {quadrant.core}</p>
+                <p className="quadrant-focus"><strong>Focus:</strong> {quadrant.focus}</p>
+                <ul className="quadrant-examples">
+                  {quadrant.examples.map((example, exIndex) => (
+                    <li key={exIndex}>{example}</li>
+                  ))}
+                </ul>
+                <p className="quadrant-description">{quadrant.description}</p>
+              </div>
+            ))}
             
             {/* Y-Axis Label (Execution) */}
             <div className="grid-y-axis-label grid-y-axis-bottom">Execution</div>
@@ -172,6 +197,25 @@ function Results({ scores, tiebreaker, onRestart }) {
             {/* X-Axis Labels */}
             <div className="grid-x-axis-label grid-x-axis-left">Creative</div>
             <div className="grid-x-axis-label grid-x-axis-right">Operational</div>
+          </div>
+
+          <div className="founder-fit-slider" role="region" aria-label="Founder Fit quadrants">
+            <div className="founder-fit-slider-track">
+              {GRID_QUADRANTS.map((quadrant) => (
+                <article key={`${quadrant.id}-mobile`} className="founder-fit-slider-card">
+                  <span className="slider-axis-badge">{quadrant.axisBadge}</span>
+                  <h4 className="slider-card-title">{quadrant.title}</h4>
+                  <p className="slider-card-core"><strong>Core:</strong> {quadrant.core}</p>
+                  <p className="slider-card-focus"><strong>Focus:</strong> {quadrant.focus}</p>
+                  <ul className="slider-card-examples">
+                    {quadrant.examples.map((example, exIndex) => (
+                      <li key={exIndex}>{example}</li>
+                    ))}
+                  </ul>
+                  <p className="slider-card-description">{quadrant.description}</p>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </div>
