@@ -78,7 +78,6 @@ function DougHome() {
               />
             </div>
             <div className="hero-text">
-              <img src={afreshLogo} alt="Afresh logo" className="hero-logo" />
               <h1 className="hero-name">Doug Stevenson</h1>
               <p className="hero-title">Founder & Exec Coach</p>
               <p className="hero-subtitle">Helping founders and executives build cohesive, high-accountability teams.</p>

@@ -113,6 +113,10 @@
   .hero-name {
     font-size: 3rem;
   }
+
+  .hero-subtitle {
+    white-space: normal;
+  }
 }
 
 .hero-title {
@@ -127,7 +131,8 @@
   color: #555;
   margin-top: 16px;
   line-height: 1.7;
-  max-width: 600px;
+  max-width: none;
+  white-space: nowrap;
 }
 
 .content-section {

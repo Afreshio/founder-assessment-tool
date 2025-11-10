@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
+import afreshLogo from '../assets/Afresh.png'
 import './Navigation.css'
 
 function Navigation() {
@@ -6,8 +7,8 @@ function Navigation() {
 
   return (
     <nav className="navigation">
-      <Link to="/" className="nav-logo">
-        Afresh.io
+      <Link to="/" className="nav-logo" aria-label="Afresh home">
+        <img src={afreshLogo} alt="Afresh" className="nav-logo-img" />
       </Link>
       <div className="nav-links">
         <Link 
