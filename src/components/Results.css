@@ -375,7 +375,7 @@
 }
 
 .founder-fit-grid-section {
-  margin-bottom: 32px;
+  margin-bottom: 20px;
   padding: 0;
   background: #ffffff;
   border-radius: 16px;
@@ -536,6 +536,13 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 240px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.grid-quadrant-active {
+  background: linear-gradient(180deg, rgba(98, 180, 135, 0.14) 0%, rgba(98, 180, 135, 0.05) 100%);
+  border-color: rgba(98, 180, 135, 0.5);
+  box-shadow: 0 10px 24px rgba(98, 180, 135, 0.18);
 }
 
 .grid-quadrant + .grid-quadrant {

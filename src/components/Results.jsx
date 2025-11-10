@@ -177,19 +177,25 @@ function Results({ scores, tiebreaker, onRestart }) {
             <div className="grid-y-axis-label grid-y-axis-top">Vision</div>
             
             {/* Grid Quadrants */}
-            {GRID_QUADRANTS.map((quadrant) => (
-              <div key={quadrant.id} className={`grid-quadrant ${quadrant.positionClass}`}>
-                <h4 className="quadrant-title">{quadrant.title}</h4>
-                <p className="quadrant-core"><strong>Core:</strong> {quadrant.core}</p>
-                <p className="quadrant-focus"><strong>Focus:</strong> {quadrant.focus}</p>
-                <ul className="quadrant-examples">
-                  {quadrant.examples.map((example, exIndex) => (
-                    <li key={exIndex}>{example}</li>
-                  ))}
-                </ul>
-                <p className="quadrant-description">{quadrant.description}</p>
-              </div>
-            ))}
+            {GRID_QUADRANTS.map((quadrant) => {
+              const isActive = quadrant.id.toLowerCase().includes(founderType.toLowerCase());
+              return (
+                <div
+                  key={quadrant.id}
+                  className={`grid-quadrant ${quadrant.positionClass} ${isActive ? 'grid-quadrant-active' : ''}`}
+                >
+                  <h4 className="quadrant-title">{quadrant.title}</h4>
+                  <p className="quadrant-core"><strong>Core:</strong> {quadrant.core}</p>
+                  <p className="quadrant-focus"><strong>Focus:</strong> {quadrant.focus}</p>
+                  <ul className="quadrant-examples">
+                    {quadrant.examples.map((example, exIndex) => (
+                      <li key={exIndex}>{example}</li>
+                    ))}
+                  </ul>
+                  <p className="quadrant-description">{quadrant.description}</p>
+                </div>
+              )
+            })}
             
             {/* Y-Axis Label (Execution) */}
             <div className="grid-y-axis-label grid-y-axis-bottom">Execution</div>
