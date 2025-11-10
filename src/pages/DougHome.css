@@ -25,24 +25,11 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.hero-branding {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
-
 .hero-logo {
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: auto;
   object-fit: contain;
-}
-
-.hero-brand-text {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #3c7c5d;
-  letter-spacing: 0.05em;
+  margin-bottom: 16px;
 }
 
 .hero-content {

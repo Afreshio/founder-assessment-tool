@@ -65,9 +65,6 @@ function DougHome() {
   return (
     <div className="doug-home">
       <div className="hero-section">
-        <div className="hero-branding">
-          <img src={afreshLogo} alt="Afresh logo" className="hero-logo" />
-        </div>
         <div className="hero-content">
           <div className="hero-profile">
             <div className="hero-image-wrapper" ref={heroImageRef}>
@@ -81,6 +78,7 @@ function DougHome() {
               />
             </div>
             <div className="hero-text">
+              <img src={afreshLogo} alt="Afresh logo" className="hero-logo" />
               <h1 className="hero-name">Doug Stevenson</h1>
               <p className="hero-title">Founder & Exec Coach</p>
               <p className="hero-subtitle">Helping founders and executives build cohesive, high-accountability teams.</p>
