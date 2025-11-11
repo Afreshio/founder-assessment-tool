@@ -3,7 +3,7 @@ import './Page.css'
 function PainPoints() {
   return (
     <div className="page">
-      <h1 className="page-title">Founder Pain Points We Solve</h1>
+      <h1 className="page-title">Transform your founding / executive team into a high-trust, high-performance engine.</h1>
 
       <div className="page-content">
         <p className="page-text">

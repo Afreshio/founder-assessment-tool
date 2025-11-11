@@ -3,6 +3,168 @@
   margin: 0 auto;
   padding: 60px 24px;
   animation: fadeIn 0.6s ease-out;
+  display: block;
+}
+
+.hero-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(7, 20, 16, 0.82) 15%, rgba(7, 20, 16, 0.65) 55%, rgba(7, 20, 16, 0.3) 100%);
+}
+
+.hero-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 80px 72px;
+}
+
+.hero-panel {
+  max-width: 560px;
+  background: rgba(7, 20, 16, 0.85);
+  border-radius: 26px;
+  padding: 52px 56px;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 24px 48px rgba(7, 20, 16, 0.45);
+}
+
+.hero-kicker {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(210, 246, 223, 0.85);
+  margin-bottom: 22px;
+}
+
+.hero-name {
+  font-size: 3.8rem;
+  font-weight: 700;
+  color: #e9fef1;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-size: 1.5rem;
+  color: #b7f0cc;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: rgba(233, 254, 241, 0.9);
+  line-height: 1.8;
+  max-width: none;
+}
+
+@media (max-width: 968px) {
+  .hero-inner {
+    padding: 48px 32px;
+    align-items: center;
+  }
+
+  .hero-panel {
+    padding: 36px;
+    border-radius: 24px;
+    max-width: 100%;
+  }
+
+  .hero-name {
+    font-size: 2.8rem;
+  }
+
+  .hero-title {
+    font-size: 1.25rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+}
+
+.services-section {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  min-height: 520px;
+  background-image: url('../assets/laughing founding team.png');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 24px 48px rgba(7, 20, 16, 0.28);
+}
+
+.services-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, rgba(7, 20, 16, 0.82) 20%, rgba(7, 20, 16, 0.6) 60%, rgba(7, 20, 16, 0.32) 100%);
+}
+
+.services-inner {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  padding: 60px;
+}
+
+.services-panel {
+  width: 100%;
+  max-width: 640px;
+  background: rgba(7, 20, 16, 0.84);
+  border-radius: 24px;
+  padding: 48px 56px;
+  color: #e9fef1;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 20px 40px rgba(7, 20, 16, 0.35);
+}
+
+.services-panel .section-title {
+  color: #e9fef1;
+  margin-bottom: 32px;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 18px;
+  border: none;
+  box-shadow: none;
+  color: #1f362c;
+  padding: 28px;
+}
+
+.service-title {
+  color: #1f362c;
+}
+
+.service-desc {
+  color: #355543;
+}
+
+@media (max-width: 968px) {
+  .services-inner {
+    padding: 36px 24px;
+    justify-content: center;
+  }
+
+  .services-panel {
+    padding: 32px;
+  }
 }
 
 @keyframes fadeIn {
@@ -16,20 +178,24 @@
   }
 }
 
-.hero-section {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+.hero-branding {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .hero-logo {
-  width: 120px;
+  width: 110px;
   height: auto;
   object-fit: contain;
-  margin-bottom: 16px;
+}
+
+.hero-brand-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #3c7c5d;
+  letter-spacing: 0.05em;
 }
 
 .hero-content {
@@ -52,7 +218,7 @@
   width: 200px;
   height: 200px;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center 25%;
   border-radius: 50%;
   border: 3px solid rgba(0, 0, 0, 0.15);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -114,10 +280,6 @@
   .hero-name {
     font-size: 3rem;
   }
-
-  .hero-subtitle {
-    white-space: normal;
-  }
 }
 
 .hero-title {
@@ -132,8 +294,7 @@
   color: #555;
   margin-top: 16px;
   line-height: 1.7;
-  max-width: none;
-  white-space: nowrap;
+  max-width: 600px;
 }
 
 .content-section {

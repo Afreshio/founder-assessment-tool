@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import headshotImg from '../assets/headshot linen crop bigger.png'
+import headshotImg from '../assets/Headshot bigger airforce blue.png'
 import afreshLogo from '../assets/Afresh.png'
 import './DougHome.css'
 
@@ -10,7 +10,6 @@ function DougHome() {
   const sectionRefs = useRef([])
 
   useEffect(() => {
-    // Parallax effect for hero image (desktop only)
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
     if (isTouchDevice) return
 
@@ -27,7 +26,6 @@ function DougHome() {
   }, [])
 
   useEffect(() => {
-    // Scroll-triggered animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -41,7 +39,6 @@ function DougHome() {
       })
     }, observerOptions)
 
-    // Observe all refs after a short delay to ensure DOM is ready
     const timeoutId = setTimeout(() => {
       sectionRefs.current.forEach((ref) => {
         if (ref) observer.observe(ref)
@@ -65,12 +62,15 @@ function DougHome() {
   return (
     <div className="doug-home">
       <div className="hero-section">
+        <div className="hero-branding">
+          <img src={afreshLogo} alt="Afresh logo" className="hero-logo" />
+        </div>
         <div className="hero-content">
           <div className="hero-profile">
             <div className="hero-image-wrapper" ref={heroImageRef}>
-              <img 
-                src={headshotImg} 
-                alt="Doug Stevenson" 
+              <img
+                src={headshotImg}
+                alt="Doug Stevenson"
                 className="hero-headshot"
                 style={{
                   transform: `translate(${mousePosition.x}px, ${mousePosition.y}px)`
@@ -88,31 +88,36 @@ function DougHome() {
 
       <div className="content-section">
         <div className="services-section scroll-animate" ref={addToRefs}>
-          <h2 className="section-title">How to Work with Doug</h2>
-          <div className="services-grid">
-            <div className="service-card scroll-animate" ref={addToRefs}>
-              <h3 className="service-title">1-1 Founder & CEO Coaching</h3>
-              <p className="service-desc">
-                Using frameworks from Matt Mochary and Pat Lencioni; CEO accelerator
-              </p>
-            </div>
-            <div className="service-card scroll-animate" ref={addToRefs}>
-              <h3 className="service-title">'Founder Fit' Clinic</h3>
-              <p className="service-desc">
-                Founder productivity, real time feedback and embracing healthy conflict
-              </p>
-            </div>
-            <div className="service-card scroll-animate" ref={addToRefs}>
-              <h3 className="service-title">Exec Team Events & Offsites</h3>
-              <p className="service-desc">
-                Five behaviors of a Cohesive team and Productivity Team Mapping
-              </p>
-            </div>
-            <div className="service-card scroll-animate" ref={addToRefs}>
-              <h3 className="service-title">Strategic Sounding Board (Advisory Retainer)</h3>
-              <p className="service-desc">
-                An ongoing, high-leverage partnership for founders navigating scale, product-market inflection, or leadership transitions.
-              </p>
+          <div className="services-overlay" />
+          <div className="services-inner">
+            <div className="services-panel">
+              <h2 className="section-title">How to Work with Doug</h2>
+              <div className="services-grid">
+                <div className="service-card scroll-animate" ref={addToRefs}>
+                  <h3 className="service-title">1-1 Founder & CEO Coaching</h3>
+                  <p className="service-desc">
+                    Using frameworks from Matt Mochary and Pat Lencioni; CEO accelerator
+                  </p>
+                </div>
+                <div className="service-card scroll-animate" ref={addToRefs}>
+                  <h3 className="service-title">'Founder Fit' Clinic</h3>
+                  <p className="service-desc">
+                    Founder productivity, real time feedback and embracing healthy conflict
+                  </p>
+                </div>
+                <div className="service-card scroll-animate" ref={addToRefs}>
+                  <h3 className="service-title">Exec Team Events & Offsites</h3>
+                  <p className="service-desc">
+                    Five behaviors of a Cohesive team and Productivity Team Mapping
+                  </p>
+                </div>
+                <div className="service-card scroll-animate" ref={addToRefs}>
+                  <h3 className="service-title">Strategic Sounding Board (Advisory Retainer)</h3>
+                  <p className="service-desc">
+                    An ongoing, high-leverage partnership for founders navigating scale, product-market inflection, or leadership transitions.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
