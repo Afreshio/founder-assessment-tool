@@ -13,9 +13,10 @@ function Contact() {
   const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xdkpqvnj'
 
   const handleChange = (e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: value
     })
     setStatus('') // Clear status when user types
   }
@@ -53,11 +54,35 @@ function Contact() {
       
       <div className="page-content">
         <p className="page-text">
-          Have questions about the Founder Fit Quiz? We'd love to hear from you!
+          Have questions about coaching? We'd love to hear from you!
         </p>
 
-        <div className="contact-form">
-          <form className="form" onSubmit={handleSubmit}>
+        <div className="contact-options">
+          <div className="contact-option">
+            <h3 className="contact-option-title">Book a Complimentary Call</h3>
+            <p className="contact-option-description">
+              Schedule a free 30-minute Zoom call to discuss your coaching needs
+            </p>
+            <a 
+              href="https://calendly.com/douglas-stevenson" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="calendly-button-contact"
+            >
+              Book a Complimentary Call
+            </a>
+          </div>
+
+          <div className="contact-divider">
+            <span className="divider-text">OR</span>
+          </div>
+
+          <div className="contact-option">
+            <h3 className="contact-option-title">Send Us a Message</h3>
+            <p className="contact-option-description">
+              Prefer to email? Fill out the form below and we'll get back to you
+            </p>
+            <form className="form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name" className="form-label">Name</label>
               <input 
@@ -120,6 +145,7 @@ function Contact() {
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>
+          </div>
         </div>
 
       </div>
