@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import headshotImg from '../assets/Headshot bigger airforce blue.png'
-import afreshLogo from '../assets/Afresh.png'
 import './DougHome.css'
 
 function DougHome() {
@@ -62,9 +61,6 @@ function DougHome() {
   return (
     <div className="doug-home">
       <div className="hero-section">
-        <div className="hero-branding">
-          <img src={afreshLogo} alt="Afresh logo" className="hero-logo" />
-        </div>
         <div className="hero-content">
           <div className="hero-profile">
             <div className="hero-image-wrapper" ref={heroImageRef}>
@@ -88,36 +84,31 @@ function DougHome() {
 
       <div className="content-section">
         <div className="services-section scroll-animate" ref={addToRefs}>
-          <div className="services-overlay" />
-          <div className="services-inner">
-            <div className="services-panel">
-              <h2 className="section-title">How to Work with Doug</h2>
-              <div className="services-grid">
-                <div className="service-card scroll-animate" ref={addToRefs}>
-                  <h3 className="service-title">1-1 Founder & CEO Coaching</h3>
-                  <p className="service-desc">
-                    Using frameworks from Matt Mochary and Pat Lencioni; CEO accelerator
-                  </p>
-                </div>
-                <div className="service-card scroll-animate" ref={addToRefs}>
-                  <h3 className="service-title">'Founder Fit' Clinic</h3>
-                  <p className="service-desc">
-                    Founder productivity, real time feedback and embracing healthy conflict
-                  </p>
-                </div>
-                <div className="service-card scroll-animate" ref={addToRefs}>
-                  <h3 className="service-title">Exec Team Events & Offsites</h3>
-                  <p className="service-desc">
-                    Five behaviors of a Cohesive team and Productivity Team Mapping
-                  </p>
-                </div>
-                <div className="service-card scroll-animate" ref={addToRefs}>
-                  <h3 className="service-title">Strategic Sounding Board (Advisory Retainer)</h3>
-                  <p className="service-desc">
-                    An ongoing, high-leverage partnership for founders navigating scale, product-market inflection, or leadership transitions.
-                  </p>
-                </div>
-              </div>
+          <h2 className="section-title">How to Work with Doug</h2>
+          <div className="services-grid">
+            <div className="service-card scroll-animate" ref={addToRefs}>
+              <h3 className="service-title">1-1 Founder & CEO Coaching</h3>
+              <p className="service-desc">
+                Using frameworks from Matt Mochary and Pat Lencioni; CEO accelerator
+              </p>
+            </div>
+            <div className="service-card scroll-animate" ref={addToRefs}>
+              <h3 className="service-title">'Founder Fit' Clinic</h3>
+              <p className="service-desc">
+                Founder productivity, real time feedback and embracing healthy conflict
+              </p>
+            </div>
+            <div className="service-card scroll-animate" ref={addToRefs}>
+              <h3 className="service-title">Exec Team Events & Offsites</h3>
+              <p className="service-desc">
+                Five behaviors of a Cohesive team and Productivity Team Mapping
+              </p>
+            </div>
+            <div className="service-card scroll-animate" ref={addToRefs}>
+              <h3 className="service-title">Strategic Sounding Board (Advisory Retainer)</h3>
+              <p className="service-desc">
+                An ongoing, high-leverage partnership for founders navigating scale, product-market inflection, or leadership transitions.
+              </p>
             </div>
           </div>
         </div>

@@ -98,71 +98,78 @@
 }
 
 .services-section {
-  position: relative;
-  border-radius: 28px;
-  overflow: hidden;
-  min-height: 520px;
-  background-image: url('../assets/laughing_founding_team.png');
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 24px 48px rgba(7, 20, 16, 0.28);
-}
-
-.services-overlay {
-  position: absolute;
-  inset: 0;
-  background: transparent;
-}
-
-.services-inner {
-  position: relative;
-  height: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: stretch;
-  padding: 60px;
-}
-
-.services-panel {
-  width: 100%;
-  max-width: 640px;
   background: #ffffff;
-  border-radius: 24px;
-  padding: 48px 56px;
-  color: #1f362c;
-  box-shadow: 0 20px 38px rgba(7, 20, 16, 0.18);
+  padding: 48px 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.services-panel .section-title {
-  color: #1f362c;
+.services-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.services-section .section-title {
+  color: #1a2e24;
   margin-bottom: 32px;
 }
 
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
 .service-card {
-  background: #f8fbf9;
-  border-radius: 18px;
-  border: none;
-  box-shadow: none;
-  color: #1f362c;
-  padding: 28px;
+  background: #ffffff;
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.service-card:hover {
+  border-color: rgba(0, 0, 0, 0.25);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+  background: #ffffff;
 }
 
 .service-title {
-  color: #1f362c;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #3c7c5d;
+  margin-bottom: 12px;
 }
 
 .service-desc {
-  color: #2f5140;
+  font-size: 1rem;
+  color: #4a705a;
+  line-height: 1.6;
+  margin: 0;
 }
 
-@media (max-width: 968px) {
-  .services-inner {
-    padding: 36px 24px;
-    justify-content: center;
+@media (max-width: 768px) {
+  .services-section {
+    padding: 32px 24px;
   }
 
-  .services-panel {
-    padding: 32px;
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .service-card {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -392,50 +399,6 @@
   margin-bottom: 15px;
 }
 
-.services-section {
-  background: #ffffff;
-  padding: 48px 40px;
-  border-radius: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04);
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
-  margin-top: 32px;
-}
-
-.service-card {
-  background: #ffffff;
-  padding: 32px;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.service-card:hover {
-  border-color: rgba(0, 0, 0, 0.25);
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-  background: #ffffff;
-}
-
-.service-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #3c7c5d;
-  margin-bottom: 12px;
-}
-
-.service-desc {
-  font-size: 1rem;
-  color: #4a705a;
-  line-height: 1.6;
-  margin: 0;
-}
-
 .cta-section {
   text-align: center;
   padding: 64px 40px;
@@ -597,10 +560,6 @@
     grid-template-columns: 1fr;
   }
   
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .testimonials-section {
     grid-template-columns: 1fr;
   }
@@ -689,10 +648,6 @@
     padding: 24px 20px;
   }
   
-  .services-section {
-    padding: 32px 24px;
-  }
-  
   .cta-section {
     padding: 48px 24px;
   }
@@ -727,54 +682,6 @@
     font-size: 0.95rem;
     padding: 12px 15px;
     margin: 15px 0;
-  }
-
-  .services-section {
-    margin-bottom: 20px;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-    gap: 15px;
-  }
-
-  .service-card {
-    padding: 15px;
-  }
-
-  .service-title {
-    font-size: 1.1rem;
-    margin-bottom: 8px;
-  }
-
-  .service-description {
-    font-size: 0.9rem;
-  }
-
-  .cta-section {
-    padding: 20px 15px;
-    margin: 20px 0;
-  }
-
-  .cta-title {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-  }
-
-  .cta-text {
-    font-size: 0.95rem;
-    margin-bottom: 15px;
-  }
-
-  .cta-button {
-    font-size: 0.95rem;
-    padding: 14px 25px;
-  }
-
-  .cta-button-secondary {
-    font-size: 0.95rem;
-    padding: 14px 25px;
-    margin-top: 12px;
   }
 
   .testimonials-section {
