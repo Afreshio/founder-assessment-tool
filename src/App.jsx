@@ -7,6 +7,7 @@ import Contact from './pages/Contact'
 import Articles from './pages/Articles'
 import PainPoints from './pages/PainPoints'
 import AntifragilityDiagnostic from './pages/AntifragilityDiagnostic'
+import TeamDiagnostic from './pages/TeamDiagnostic'
 import './App.css'
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
           <Route path="/" element={<DougHome />} />
           <Route path="/quiz" element={<Home />} />
           <Route path="/antifragility-diagnostic" element={<AntifragilityDiagnostic />} />
+          <Route path="/team-diagnostic" element={<TeamDiagnostic />} />
+          <Route path="/productive-meetings" element={<TeamDiagnostic />} />
           <Route path="/about" element={<About />} />
           <Route path="/pain-points" element={<PainPoints />} />
           <Route path="/contact" element={<Contact />} />
