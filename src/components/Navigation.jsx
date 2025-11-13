@@ -34,7 +34,7 @@ function Navigation() {
           to="/productive-meetings" 
           className={location.pathname === '/productive-meetings' || location.pathname === '/team-diagnostic' ? 'nav-link active' : 'nav-link'}
         >
-          Productive Meetings
+          Team Diagnostic
         </Link>
         <Link 
           to="/pain-points" 
