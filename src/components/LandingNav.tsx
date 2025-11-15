@@ -66,7 +66,7 @@ export const LandingNav = () => {
               About
             </button>
             <Button
-              onClick={() => scrollToSection('final-cta')}
+              onClick={() => window.open('https://calendly.com/douglas-stevenson', '_blank')}
               size="sm"
             >
               Book a Founder Call
@@ -135,7 +135,7 @@ export const LandingNav = () => {
             </button>
             <Button
               onClick={() => {
-                scrollToSection('final-cta');
+                window.open('https://calendly.com/douglas-stevenson', '_blank');
                 setMobileMenuOpen(false);
               }}
               size="md"

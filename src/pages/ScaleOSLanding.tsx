@@ -36,7 +36,7 @@ const ScaleOSLanding: React.FC = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
-                  onClick={() => scrollToSection('final-cta')}
+                  onClick={() => window.open('https://calendly.com/douglas-stevenson', '_blank')}
                   size="lg"
                   className="w-full sm:w-auto"
                 >
@@ -345,7 +345,7 @@ const ScaleOSLanding: React.FC = () => {
           
           <div className="text-center">
             <Button
-              onClick={() => scrollToSection('final-cta')}
+              onClick={() => window.open('https://calendly.com/douglas-stevenson', '_blank')}
               size="lg"
             >
               Talk About Fit
@@ -522,10 +522,7 @@ const ScaleOSLanding: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Button
-              onClick={() => {
-                // In a real app, this would open a calendar booking link
-                window.location.href = 'mailto:hello@afresh.io?subject=Founder Call Request';
-              }}
+              onClick={() => window.open('https://calendly.com/douglas-stevenson', '_blank')}
               variant="primary"
               size="lg"
               className="bg-accent hover:bg-accent-dark"
