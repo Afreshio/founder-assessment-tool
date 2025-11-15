@@ -8,25 +8,69 @@ import Articles from './pages/Articles'
 import PainPoints from './pages/PainPoints'
 import AntifragilityDiagnostic from './pages/AntifragilityDiagnostic'
 import TeamDiagnostic from './pages/TeamDiagnostic'
+import ScaleOSLanding from './pages/ScaleOSLanding'
 import './App.css'
 
 function App() {
   return (
     <div className="app">
-      <div className="container">
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<DougHome />} />
-          <Route path="/quiz" element={<Home />} />
-          <Route path="/antifragility-diagnostic" element={<AntifragilityDiagnostic />} />
-          <Route path="/team-diagnostic" element={<TeamDiagnostic />} />
-          <Route path="/productive-meetings" element={<TeamDiagnostic />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/pain-points" element={<PainPoints />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/articles" element={<Articles />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/scaleos" element={<ScaleOSLanding />} />
+        <Route path="/" element={
+          <div className="container">
+            <Navigation />
+            <DougHome />
+          </div>
+        } />
+        <Route path="/quiz" element={
+          <div className="container">
+            <Navigation />
+            <Home />
+          </div>
+        } />
+        <Route path="/antifragility-diagnostic" element={
+          <div className="container">
+            <Navigation />
+            <AntifragilityDiagnostic />
+          </div>
+        } />
+        <Route path="/team-diagnostic" element={
+          <div className="container">
+            <Navigation />
+            <TeamDiagnostic />
+          </div>
+        } />
+        <Route path="/productive-meetings" element={
+          <div className="container">
+            <Navigation />
+            <TeamDiagnostic />
+          </div>
+        } />
+        <Route path="/about" element={
+          <div className="container">
+            <Navigation />
+            <About />
+          </div>
+        } />
+        <Route path="/pain-points" element={
+          <div className="container">
+            <Navigation />
+            <PainPoints />
+          </div>
+        } />
+        <Route path="/contact" element={
+          <div className="container">
+            <Navigation />
+            <Contact />
+          </div>
+        } />
+        <Route path="/articles" element={
+          <div className="container">
+            <Navigation />
+            <Articles />
+          </div>
+        } />
+      </Routes>
     </div>
   )
 }

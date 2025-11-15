@@ -18,6 +18,12 @@ function Navigation() {
           Home
         </Link>
         <Link 
+          to="/scaleos" 
+          className={location.pathname === '/scaleos' ? 'nav-link active' : 'nav-link'}
+        >
+          ScaleOS
+        </Link>
+        <Link 
           to="/quiz" 
           className={location.pathname === '/quiz' ? 'nav-link active' : 'nav-link'}
         >
