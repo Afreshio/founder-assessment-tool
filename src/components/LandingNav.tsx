@@ -4,10 +4,12 @@ import { Button } from './ui/Button';
 
 export const LandingNav = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 50);
+    setPastHero(latest > window.innerHeight * 0.8);
   });
 
   const scrollToSection = (id: string) => {
@@ -23,16 +25,26 @@ export const LandingNav = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-white/90 backdrop-blur-md shadow-lg py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-white/80 backdrop-blur-xl shadow-md border-b border-charcoal-100/50'
+          : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <motion.div 
+          className="flex items-center justify-between"
+          animate={{
+            height: scrolled ? 64 : 80,
+          }}
+          transition={{ duration: 0.3 }}
+        >
           <motion.div
             whileHover={{ scale: 1.05 }}
+            animate={{
+              scale: pastHero ? 0.9 : 1,
+            }}
+            transition={{ duration: 0.3 }}
             className="text-2xl font-bold text-charcoal-900 cursor-pointer"
             onClick={() => scrollToSection('hero')}
           >
@@ -43,25 +55,25 @@ export const LandingNav = () => {
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('scaleos')}
-              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors"
+              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors text-sm"
             >
               ScaleOS
             </button>
             <button
               onClick={() => scrollToSection('engagement')}
-              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors"
+              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors text-sm"
             >
               Engagement
             </button>
             <button
               onClick={() => scrollToSection('why-this')}
-              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors"
+              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors text-sm"
             >
               Why This
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors"
+              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors text-sm"
             >
               About
             </button>
@@ -87,16 +99,16 @@ export const LandingNav = () => {
               )}
             </svg>
           </button>
-        </div>
+          </motion.div>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 space-y-4 pb-4"
-          >
+          {/* Mobile Menu */}
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden mt-4 space-y-4 pb-4"
+            >
             <button
               onClick={() => {
                 scrollToSection('scaleos');
@@ -143,9 +155,9 @@ export const LandingNav = () => {
             >
               Book a Founder Call
             </Button>
-          </motion.div>
-        )}
-      </div>
+            </motion.div>
+          )}
+        </div>
     </motion.nav>
   );
 };

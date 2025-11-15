@@ -74,7 +74,7 @@ const ZONES = {
 }
 
 const ZONE_DESCRIPTIONS = {
-  fragile: 'Breaks or withdraws under pressure. Growth requires psychological safety and trust.',
+  fragile: 'Breaks or withdraws under pressure. Growth requires constructive dissent, healthy conflict, and vulnerability based trust.',
   resilient: 'Absorbs shocks but returns to baseline. Focus on learning loops.',
   adaptive: 'Learns and evolves through challenge. Focus on experimentation and distributed ownership.',
   antifragile: 'Gains from stress, builds strength through volatility. Seek larger, riskier opportunities to test and grow the system.'
@@ -213,6 +213,8 @@ function AntifragilityDiagnostic() {
             or organization is across six core dimensions. Each question is scored 1–5, where 1 
             represents fragile responses and 5 represents antifragile responses.
           </p>
+          
+          <ContinuumVisualizationIntro />
           
           <div className="phase-selector">
             <label>Assessment Phase:</label>
@@ -376,6 +378,35 @@ function ResultsView({ score, zone, continuumPosition, answers, phase, onRestart
           </select>
         </div>
       </div>
+    </div>
+  )
+}
+
+function ContinuumVisualizationIntro() {
+  return (
+    <div className="continuum-container">
+      <h3>Antifragility Continuum</h3>
+      <div className="continuum-bar">
+        {CONTINUUM_LABELS.map((label, idx) => {
+          return (
+            <div
+              key={idx}
+              className="continuum-point"
+              style={{ 
+                left: `${(idx / (CONTINUUM_LABELS.length - 1)) * 100}%`,
+                opacity: 0.7
+              }}
+              title={`${idx + 1}. ${label}`}
+            >
+              <div className="continuum-marker" />
+              <span className="continuum-label">{label}</span>
+            </div>
+          )
+        })}
+      </div>
+      <p className="continuum-description">
+        This assessment will help you understand where your team falls on the continuum from <strong>Fragile</strong> to <strong>Antifragile</strong>.
+      </p>
     </div>
   )
 }

@@ -127,14 +127,16 @@
 }
 
 .traits-section {
-  margin-top: 12px;
+  margin-top: -250px;
   margin-bottom: 40px;
+  padding: 0;
 }
 
 .traits-title {
   font-size: 1.3rem;
   color: #333;
   margin-bottom: 20px;
+  margin-top: 0;
   font-weight: 600;
 }
 
@@ -375,16 +377,18 @@
 }
 
 .founder-fit-grid-section {
-  margin-bottom: 20px;
+  margin-bottom: 0;
   padding: 0;
-  background: #ffffff;
-  border-radius: 16px;
+  padding-bottom: 0;
+  background: transparent;
+  border-radius: 0;
 }
 
 .founder-fit-grid-title {
   font-size: 1.5rem;
   color: #333;
   margin-bottom: 30px;
+  margin-top: 0;
   text-align: center;
   font-weight: 600;
 }
@@ -395,6 +399,8 @@
   width: 100%;
   flex-direction: column;
   gap: 20px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .founder-fit-grid {
@@ -407,6 +413,7 @@
   position: relative;
   align-items: stretch;
   margin: 0 auto;
+  margin-bottom: 0;
 }
 
 .founder-fit-slider {
@@ -662,7 +669,6 @@
   margin-top: 48px;
 }
 
-.traits-section,
 .archetype-scores-section,
 .scores-section,
 .rough-edges-section,

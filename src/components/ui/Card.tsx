@@ -8,12 +8,13 @@ interface CardProps {
 }
 
 export const Card: React.FC<CardProps> = ({ children, className = '', hover = true }) => {
-  const baseClasses = 'bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg border border-charcoal-200/50 p-6 transition-all duration-300';
-  const hoverClasses = hover ? 'hover:shadow-xl hover:scale-[1.02]' : '';
+  const baseClasses = 'bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 p-6 transition-all duration-300';
+  const hoverClasses = hover ? 'hover:shadow-2xl hover:scale-[1.02]' : '';
   
   return (
     <motion.div
-      whileHover={hover ? { y: -4 } : {}}
+      whileHover={hover ? { y: -4, scale: 1.02 } : {}}
+      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       className={`${baseClasses} ${hoverClasses} ${className}`}
     >
       {children}

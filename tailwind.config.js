@@ -28,14 +28,18 @@ export default {
           500: '#adb5bd',
           600: '#868e96',
           700: '#495057',
-          800: '#343a40',
-          900: '#212529',
+          800: '#1a1f24',
+          900: '#0f1419',
         },
         accent: {
           DEFAULT: '#3b82f6',
           light: '#60a5fa',
           dark: '#2563eb',
         },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],

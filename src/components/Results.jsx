@@ -34,13 +34,13 @@ const FOUNDER_TYPES = {
 const GRID_QUADRANTS = [
   {
     id: 'visionary',
-    title: 'Visionary Founders',
+    title: 'The Visionary',
     core: 'Wonder + Invention',
     focus: 'Meaning, ideas, possibility',
     examples: [
       'The Dreamer – Elon Musk',
       'The Prophet – Marc Benioff',
-      'The Sage – Yvon Chouinard'
+      'The Sage – Melanie Perkins'
     ],
     description: 'They live in "what could be." They imagine the future and challenge assumptions.',
     positionClass: 'grid-quadrant-top-left',
@@ -48,12 +48,12 @@ const GRID_QUADRANTS = [
   },
   {
     id: 'catalyst',
-    title: 'Catalyst Founders',
+    title: 'The Catalyst',
     core: 'Invention + Galvanizing',
     focus: 'Momentum, inspiration, disruption',
     examples: [
       'The Firestarter – Richard Branson',
-      'The Evangelist – Brian Chesky',
+      'The Evangelist – Arianna Huffington',
       'The Inventor – Steve Jobs'
     ],
     description: 'They mobilize people and energy to make bold ideas real.',
@@ -62,7 +62,7 @@ const GRID_QUADRANTS = [
   },
   {
     id: 'architect',
-    title: 'Architect Founders',
+    title: 'The Architect',
     core: 'Discernment + Tenacity',
     focus: 'Systems, judgment, scale',
     examples: [
@@ -76,13 +76,13 @@ const GRID_QUADRANTS = [
   },
   {
     id: 'operator',
-    title: 'Operator Founders',
+    title: 'The Operator',
     core: 'Galvanizing + Tenacity',
     focus: 'Accountability, discipline, delivery',
     examples: [
       'The Executor – Frank Slootman',
       'The Steward – Tim Cook',
-      'The Operator – Bob Iger'
+      'The Operator – Gwynne Shotwell'
     ],
     description: 'They ensure precision, urgency, and performance at scale.',
     positionClass: 'grid-quadrant-bottom-right',
