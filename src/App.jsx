@@ -9,6 +9,7 @@ import PainPoints from './pages/PainPoints'
 import AntifragilityDiagnostic from './pages/AntifragilityDiagnostic'
 import TeamDiagnostic from './pages/TeamDiagnostic'
 import ScaleOSLanding from './pages/ScaleOSLanding'
+import ScalabilityDiagnosticPage from './pages/ScalabilityDiagnosticPage'
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
     <div className="app">
       <Routes>
         <Route path="/scaleos" element={<ScaleOSLanding />} />
+        <Route path="/scalability-diagnostic" element={<ScalabilityDiagnosticPage />} />
         <Route path="/" element={
           <div className="container">
             <Navigation />

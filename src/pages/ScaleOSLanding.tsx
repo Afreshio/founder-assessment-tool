@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { LandingNav } from '../components/LandingNav';
 import { Section } from '../components/ui/Section';
 import { Card } from '../components/ui/Card';
@@ -7,6 +8,21 @@ import { Button } from '../components/ui/Button';
 import { TimelineItem } from '../components/ui/TimelineItem';
 
 const ScaleOSLanding: React.FC = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Handle hash-based navigation when page loads or hash changes
+    const hash = location.hash.replace('#', '');
+    if (hash) {
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 200);
+    }
+  }, [location.hash]);
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {

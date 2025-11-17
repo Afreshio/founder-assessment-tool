@@ -1,11 +1,15 @@
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from './ui/Button';
 
 export const LandingNav = () => {
   const [scrolled, setScrolled] = useState(false);
   const [pastHero, setPastHero] = useState(false);
   const { scrollY } = useScroll();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isOnScaleOSPage = location.pathname === '/scaleos';
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     setScrolled(latest > 50);
@@ -13,9 +17,28 @@ export const LandingNav = () => {
   });
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (isOnScaleOSPage) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    } else {
+      // Navigate to ScaleOS page with hash
+      navigate(`/scaleos#${id}`);
+    }
+  };
+
+  const handleHomeClick = () => {
+    if (isOnScaleOSPage) {
+      scrollToSection('hero');
+    } else {
+      navigate('/scaleos#hero');
+      setTimeout(() => {
+        const element = document.getElementById('hero');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
   };
 
@@ -46,13 +69,19 @@ export const LandingNav = () => {
             }}
             transition={{ duration: 0.3 }}
             className="text-2xl font-bold text-charcoal-900 cursor-pointer"
-            onClick={() => scrollToSection('hero')}
+            onClick={handleHomeClick}
           >
             Afresh
           </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link
+              to="/scalability-diagnostic"
+              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors text-sm"
+            >
+              Diagnostic
+            </Link>
             <button
               onClick={() => scrollToSection('scaleos')}
               className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors text-sm"
@@ -109,6 +138,13 @@ export const LandingNav = () => {
               exit={{ opacity: 0, height: 0 }}
               className="md:hidden mt-4 space-y-4 pb-4"
             >
+            <Link
+              to="/scalability-diagnostic"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block w-full text-left text-charcoal-700 hover:text-charcoal-900 font-medium py-2"
+            >
+              Diagnostic
+            </Link>
             <button
               onClick={() => {
                 scrollToSection('scaleos');
