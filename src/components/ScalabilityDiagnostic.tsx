@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import EmailCapture from './EmailCapture';
+import { generatePDF } from '../utils/pdfGenerator';
 
 const QUESTIONS = [
   {
@@ -370,8 +372,12 @@ const AnimatedScore: React.FC<{ score: number }> = ({ score }) => {
 };
 
 export default function ScalabilityDiagnostic() {
-  const [currentStep, setCurrentStep] = useState(0); // 0 = intro, 1-12 = questions, 13 = results
+  const [currentStep, setCurrentStep] = useState(0); // 0 = intro, 1-12 = questions, 13 = email capture, 14 = results
   const [answers, setAnswers] = useState<(number | null)[]>(Array(12).fill(null));
+  const [userEmail, setUserEmail] = useState<string>('');
+  const [pdfBlob, setPdfBlob] = useState<Blob | null>(null);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [isGeneratingPDF, setIsGeneratingPDF] = useState(false);
 
   const handleAnswer = (value: number) => {
     const newAnswers = [...answers];
@@ -381,7 +387,7 @@ export default function ScalabilityDiagnostic() {
     // Auto-advance to next question after a short delay to allow selection visual feedback
     setTimeout(() => {
       if (currentStep === 12) {
-        // If on last question, go to results
+        // If on last question, go to email capture
         setCurrentStep(13);
       } else if (currentStep >= 1 && currentStep < 12) {
         // Otherwise, go to next question
@@ -395,7 +401,7 @@ export default function ScalabilityDiagnostic() {
       setCurrentStep(1);
     } else if (currentStep >= 1 && currentStep <= 12) {
       if (currentStep === 12) {
-        setCurrentStep(13);
+        setCurrentStep(13); // Go to email capture
       } else {
         setCurrentStep(currentStep + 1);
       }
@@ -404,18 +410,242 @@ export default function ScalabilityDiagnostic() {
 
   const handleBack = () => {
     if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
+      if (currentStep === 13) {
+        // If on email capture, go back to question 12
+        setCurrentStep(12);
+      } else if (currentStep === 14) {
+        // If on results, go back to email capture
+        setCurrentStep(13);
+      } else {
+        setCurrentStep(currentStep - 1);
+      }
     }
   };
 
   const handleResetToBeginning = () => {
     setCurrentStep(0);
     setAnswers(Array(12).fill(null));
+    setUserEmail('');
+    setPdfBlob(null);
+    setEmailError(null);
+  };
+
+  const handleEmailSubmit = (email: string) => {
+    setUserEmail(email);
+    setCurrentStep(14); // Go to results
   };
 
   const handleCTA = () => {
     window.open('https://calendly.com/douglas-stevenson', '_blank');
   };
+
+  const sendResultsEmail = async ({
+    to,
+    pdfBlob,
+    score,
+    category,
+    maturityLabel,
+    answers,
+  }: {
+    to: string;
+    pdfBlob: Blob;
+    score: number;
+    category: string;
+    maturityLabel: string;
+    answers: (number | null)[];
+  }): Promise<{ success: boolean; error?: string }> => {
+    try {
+      // Convert PDF blob to base64
+      const pdfBase64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          const result = reader.result as string;
+          const base64String = result.includes(',') ? result.split(',')[1] : result;
+          resolve(base64String);
+        };
+        reader.onerror = () => reject(new Error('Failed to read PDF blob'));
+        reader.readAsDataURL(pdfBlob);
+      });
+
+      // Determine API endpoint based on deployment
+      const apiEndpoint = '/api/send-report';
+      
+      console.log(`[Email] Sending report to ${to}...`);
+      console.log(`[Email] PDF size: ${pdfBlob.size} bytes, Base64 length: ${pdfBase64.length}`);
+
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          to,
+          pdfBase64,
+          score,
+          category,
+          maturityLabel,
+          answers: answers.map((answer, index) => ({
+            question: QUESTIONS[index]?.text || `Question ${index + 1}`,
+            answer: answer !== null && answer > 0 
+              ? QUESTIONS[index]?.answerOptions[answer - 1] || 'No answer'
+              : 'No answer',
+          })),
+        }),
+      });
+
+      console.log(`[Email] Response status: ${response.status}`);
+      
+      const responseText = await response.text();
+      console.log(`[Email] Response body:`, responseText);
+      
+      if (!response.ok) {
+        let errorDetails = responseText;
+        try {
+          const errorJson = JSON.parse(responseText);
+          errorDetails = errorJson.error || errorJson.message || responseText;
+          console.error(`[Email] HTTP error! status: ${response.status}, error:`, errorJson);
+        } catch {
+          console.error(`[Email] HTTP error! status: ${response.status}, body: ${responseText}`);
+        }
+        throw new Error(`HTTP ${response.status}: ${errorDetails || 'Unknown error'}`);
+      }
+
+      let result;
+      try {
+        result = JSON.parse(responseText);
+      } catch {
+        throw new Error(`Invalid JSON response: ${responseText}`);
+      }
+      
+      console.log(`[Email] Success response:`, result);
+      
+      if (result.success === false) {
+        throw new Error(result.error || result.details || 'Email sending failed');
+      }
+
+      return { success: true };
+    } catch (error: any) {
+      console.error(`[Email] Error sending email to ${to}:`, {
+        error: error.message,
+        stack: error.stack,
+        endpoint: '/api/send-report',
+      });
+      return { 
+        success: false, 
+        error: error.message || 'Failed to send email' 
+      };
+    }
+  };
+
+  const handleDownloadPDF = () => {
+    if (pdfBlob) {
+      const url = URL.createObjectURL(pdfBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'scalability-report.pdf';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  // Generate PDF when results are shown
+  useEffect(() => {
+    if (currentStep === 14 && !isGeneratingPDF && !pdfBlob) {
+      setIsGeneratingPDF(true);
+      
+      const generatePDFAsync = async () => {
+        try {
+          // Wait a bit for DOM to render
+          await new Promise(resolve => setTimeout(resolve, 500));
+          
+          const totalScore = getTotalScore(answers);
+          const avgMaturity = getAverageMaturity(answers);
+          const maturityLabel = getMaturityLabel(avgMaturity);
+          const category = getCategory(totalScore);
+          const categoryInfo = CATEGORIES[category];
+          
+          // Get radar chart SVG
+          const radarSvg = document.querySelector('[data-radar-chart]') as SVGElement;
+          let radarChartSvg = '';
+          if (radarSvg) {
+            radarChartSvg = new XMLSerializer().serializeToString(radarSvg);
+          }
+          
+          // Get gradient bar HTML
+          const gradientBar = document.querySelector('[data-gradient-bar]') as HTMLElement;
+          let gradientBarHtml = '';
+          if (gradientBar) {
+            gradientBarHtml = gradientBar.outerHTML;
+          }
+          
+          // Generate PDF
+          const pdf = await generatePDF({
+            score: totalScore,
+            answers,
+            category,
+            categoryLabel: categoryInfo.label,
+            categoryDescription: categoryInfo.description,
+            maturityLabel,
+            questions: QUESTIONS,
+            radarChartSvg,
+            gradientBarHtml,
+          });
+          
+          setPdfBlob(pdf);
+          
+          // Send emails (fail-safe, don't block UI)
+          if (userEmail) {
+            // Send to user
+            sendResultsEmail({
+              to: userEmail,
+              pdfBlob: pdf,
+              score: totalScore,
+              category: categoryInfo.label,
+              maturityLabel,
+              answers,
+            }).then((result) => {
+              if (!result.success) {
+                console.error('[Email] Failed to send to user:', result.error);
+                setEmailError('We couldn\'t email your report automatically. You can download the PDF directly instead.');
+              } else {
+                console.log('[Email] Successfully sent to user');
+              }
+            }).catch((error) => {
+              console.error('[Email] Unexpected error sending to user:', error);
+              setEmailError('We couldn\'t email your report automatically. You can download the PDF directly instead.');
+            });
+            
+            // Send to douglas@afresh.io
+            sendResultsEmail({
+              to: 'douglas@afresh.io',
+              pdfBlob: pdf,
+              score: totalScore,
+              category: categoryInfo.label,
+              maturityLabel,
+              answers,
+            }).then((result) => {
+              if (!result.success) {
+                console.error('[Email] Failed to send to douglas@afresh.io:', result.error);
+              } else {
+                console.log('[Email] Successfully sent to douglas@afresh.io');
+              }
+            }).catch((error) => {
+              console.error('[Email] Unexpected error sending to douglas@afresh.io:', error);
+            });
+          }
+        } catch (error) {
+          console.error('Failed to generate PDF:', error);
+          setEmailError('We couldn\'t generate the PDF report, but your results are shown below.');
+        } finally {
+          setIsGeneratingPDF(false);
+        }
+      };
+      
+      generatePDFAsync();
+    }
+  }, [currentStep, isGeneratingPDF, pdfBlob, userEmail, answers]);
 
   const currentAnswer = currentStep > 0 && currentStep <= 12 ? answers[currentStep - 1] : null;
   const canProceed = currentStep === 0 || currentAnswer !== null;
@@ -787,7 +1017,7 @@ export default function ScalabilityDiagnostic() {
     },
   };
 
-  const progress = currentStep === 0 ? 0 : currentStep === 13 ? 100 : (currentStep / 12) * 100;
+  const progress = currentStep === 0 ? 0 : currentStep === 14 ? 100 : currentStep === 13 ? 100 : (currentStep / 12) * 100;
 
   return (
     <>
@@ -872,6 +1102,10 @@ export default function ScalabilityDiagnostic() {
             </motion.div>
           )}
 
+          {currentStep === 13 && (
+            <EmailCapture onSubmit={handleEmailSubmit} />
+          )}
+
           {currentStep >= 1 && currentStep <= 12 && (
             <motion.div
               key={`question-${currentStep}`}
@@ -940,7 +1174,7 @@ export default function ScalabilityDiagnostic() {
             </motion.div>
           )}
 
-          {currentStep === 13 && (
+          {currentStep === 14 && (
             <motion.div
               key="results"
               initial={{ opacity: 0, x: 20 }}
@@ -1012,7 +1246,7 @@ export default function ScalabilityDiagnostic() {
                     <p style={styles.categoryDescription}>{categoryInfo.description}</p>
 
                     {/* Gradient Continuum Bar */}
-                    <div style={styles.gradientBarContainer}>
+                    <div style={styles.gradientBarContainer} data-gradient-bar>
                       <div style={styles.gradientBar}>
                         {(() => {
                           // Calculate position as 0-1 for color interpolation
@@ -1062,6 +1296,7 @@ export default function ScalabilityDiagnostic() {
                             >
                               {/* Halo glow */}
                               <div
+                                data-pdf-marker="halo"
                                 style={{
                                   ...styles.gradientIndicatorHalo,
                                   background: `radial-gradient(circle, ${rgbaColor} 0%, ${rgbaColorTransparent} 70%)`,
@@ -1071,6 +1306,7 @@ export default function ScalabilityDiagnostic() {
                               
                               {/* Glass indicator */}
                               <div
+                                data-pdf-marker="indicator"
                                 style={{
                                   ...styles.gradientIndicator,
                                   border: `1px solid ${gradientColor}`,
@@ -1080,6 +1316,7 @@ export default function ScalabilityDiagnostic() {
                               {/* Vertical guide line */}
                               <div
                                 className="gradient-guide-line"
+                                data-pdf-marker="guide-line"
                                 style={{
                                   ...styles.gradientIndicatorGuideLine,
                                   backgroundColor: gradientColor,
@@ -1163,6 +1400,7 @@ export default function ScalabilityDiagnostic() {
                               viewBox="-50 -20 300 240"
                               style={styles.radarChartSvg}
                               preserveAspectRatio="xMidYMid meet"
+                              data-radar-chart
                             >
                               {/* Grid rings for levels 1-5 */}
                               {[1, 2, 3, 4, 5].map((level) => {
@@ -1261,6 +1499,46 @@ export default function ScalabilityDiagnostic() {
                       </>
                     )}
 
+                    {/* Error Notice */}
+                    {emailError && (
+                      <div style={{
+                        padding: '16px',
+                        borderRadius: '8px',
+                        backgroundColor: '#FEF3C7',
+                        border: '1px solid #FCD34D',
+                        color: '#92400E',
+                        fontSize: '14px',
+                        marginBottom: '16px',
+                        textAlign: 'left' as const,
+                      }}>
+                        <div style={{ fontWeight: 600, marginBottom: '8px' }}>Email Error</div>
+                        <div>{emailError}</div>
+                        <div style={{ marginTop: '8px', fontSize: '12px', opacity: 0.8 }}>
+                          Check browser console (F12) for detailed error messages.
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Download PDF Button */}
+                    {pdfBlob && (
+                      <button
+                        style={{
+                          ...styles.ctaButton,
+                          backgroundColor: '#6B7280',
+                          marginBottom: '12px',
+                        }}
+                        onClick={handleDownloadPDF}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.backgroundColor = '#4B5563';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.backgroundColor = '#6B7280';
+                        }}
+                      >
+                        Download PDF Report
+                      </button>
+                    )}
+
                     <button
                       style={styles.ctaButton}
                       onClick={handleCTA}
@@ -1271,7 +1549,7 @@ export default function ScalabilityDiagnostic() {
                         e.currentTarget.style.backgroundColor = '#2A66FF';
                       }}
                     >
-                      Schedule a Scalability Session with Doug and Jim
+                      Review your scalability profile with Doug & Jim
                     </button>
                   </>
                 );

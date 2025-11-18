@@ -60,7 +60,7 @@ const ScaleOSLanding: React.FC = () => {
                 Scale Without Chaos
               </h1>
               <p className="text-xl md:text-2xl text-charcoal-700 leading-relaxed max-w-2xl" style={{ lineHeight: '1.75' }}>
-                ScaleOS is the operating system for Seed–Series B founders who have found product traction but are hitting organizational limits. Built by operators who scaled to over $100M and led engineering at Amazon and Facebook.
+                ScaleOS is the operating system for Seed–Series C founders who have found product traction but are hitting organizational limits. Built by operators who scaled to over $1Bn and led engineering at Amazon and Facebook.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
@@ -371,6 +371,7 @@ const ScaleOSLanding: React.FC = () => {
                 tag: 'For Series A / B',
                 badge: 'Most Popular',
                 features: [
+                  '90-day commitment with two sessions per month',
                   'Full ScaleOS diagnostic',
                   'Operating cadence installation',
                   'CEO and CTO alignment',
@@ -628,7 +629,7 @@ const ScaleOSLanding: React.FC = () => {
                 </h3>
                 <div className="text-accent font-semibold mb-4">Founder & CEO Coach</div>
                 <p className="text-charcoal-700 leading-relaxed">
-                  Founder and CEO coach based in San Francisco, scaled a contextual technology company from zero to over $100 million with strong margins, deep experience in cofounder dynamics, executive hiring, and board alignment. Certified in Working Genius and related team tools.
+                  Founder and CEO coach based in San Francisco, scaled a contextual technology company from zero to over $1 billion in revenues with strong margins, deep experience in cofounder dynamics, executive hiring, and board alignment. Certified in Working Genius and related team tools.
                 </p>
               </Card>
             </motion.div>
