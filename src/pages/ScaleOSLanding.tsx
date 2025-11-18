@@ -60,7 +60,7 @@ const ScaleOSLanding: React.FC = () => {
                 Scale Without Chaos
               </h1>
               <p className="text-xl md:text-2xl text-charcoal-700 leading-relaxed max-w-2xl" style={{ lineHeight: '1.75' }}>
-                ScaleOS is the operating system for Seed–Series C founders who have found product traction but are hitting organizational limits. Built by operators who scaled to over $1Bn and led engineering at Amazon and Facebook.
+                ScaleOS equips high-growth founders and leaders with the operating system required to scale beyond early traction. Its frameworks come from operators who've built to $1B+ and led engineering at Amazon and Facebook.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button
