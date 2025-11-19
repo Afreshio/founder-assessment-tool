@@ -468,6 +468,17 @@ export default function ScalabilityDiagnostic() {
       });
 
       // Determine API endpoint based on deployment
+      // In local development, email sending is not available (use `vercel dev` to test locally)
+      const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      
+      if (isLocalhost) {
+        console.warn('[Email] Running locally - email sending skipped. Use `vercel dev` to test emails locally, or deploy to Vercel.');
+        return {
+          success: false,
+          error: 'Email sending is not available in local development. The PDF can be downloaded directly. To test email functionality, use `vercel dev` or deploy to Vercel.'
+        };
+      }
+      
       const apiEndpoint = '/api/send-report';
       
       console.log(`[Email] Sending report to ${to}...`);
