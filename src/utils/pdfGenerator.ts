@@ -65,41 +65,49 @@ export async function exportGradientBarToPNG(gradientBarElement: HTMLElement): P
   
   const originalStyles: { [key: string]: any } = {};
   
-  // Enhance indicator - make it larger and more visible
+  // Enhance indicator - make it much larger and more visible for PDF
   if (indicator) {
     originalStyles.indicator = {
       width: indicator.style.width,
       height: indicator.style.height,
       border: indicator.style.border,
       boxShadow: indicator.style.boxShadow,
+      backgroundColor: indicator.style.backgroundColor,
     };
-    indicator.style.width = '26px';
-    indicator.style.height = '26px';
-    indicator.style.border = '3px solid #2A66FF';
-    indicator.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.4), 0 0 0 3px rgba(255, 255, 255, 1)';
+    // Much larger indicator for PDF visibility
+    indicator.style.width = '36px';
+    indicator.style.height = '36px';
+    // Thicker, more prominent border
+    indicator.style.border = '4px solid #2A66FF';
+    // Strong shadow for depth and visibility
+    indicator.style.boxShadow = '0 4px 12px rgba(42, 102, 255, 0.6), 0 0 0 4px rgba(255, 255, 255, 1), 0 2px 8px rgba(0, 0, 0, 0.3)';
+    // Solid background color for better visibility
+    indicator.style.backgroundColor = '#FFFFFF';
   }
   
-  // Enhance halo - make it larger and fully opaque
+  // Enhance halo - make it much larger and more visible
   if (halo) {
     originalStyles.halo = {
       width: halo.style.width,
       height: halo.style.height,
       opacity: halo.style.opacity,
     };
-    halo.style.width = '48px';
-    halo.style.height = '48px';
+    // Larger halo for better visibility
+    halo.style.width = '64px';
+    halo.style.height = '64px';
     halo.style.opacity = '1';
   }
   
-  // Enhance guide line - make it thicker and more visible
+  // Enhance guide line - make it much thicker and more visible
   if (guideLine) {
     originalStyles.guideLine = {
       width: guideLine.style.width,
       opacity: guideLine.style.opacity,
       backgroundColor: guideLine.style.backgroundColor,
     };
-    guideLine.style.width = '3px';
-    guideLine.style.opacity = '0.9';
+    // Thicker guide line
+    guideLine.style.width = '4px';
+    guideLine.style.opacity = '1';
     guideLine.style.backgroundColor = '#2A66FF';
   }
   
