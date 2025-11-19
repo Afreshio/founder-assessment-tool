@@ -104,12 +104,22 @@ export async function exportGradientBarToPNG(gradientBarElement: HTMLElement): P
   }
   
   try {
+    // Make the gradient bar element larger for PDF export
+    const originalWidth = gradientBarElement.style.width;
+    const originalHeight = gradientBarElement.style.height;
+    gradientBarElement.style.width = '600px'; // Larger width for PDF
+    gradientBarElement.style.height = 'auto';
+    
     const canvas = await html2canvas(gradientBarElement, {
       backgroundColor: '#FFFFFF',
-      scale: 2,
-      width: gradientBarElement.offsetWidth,
-      height: gradientBarElement.offsetHeight + 30, // Include labels
+      scale: 3, // Higher scale for better quality
+      width: 600,
+      height: gradientBarElement.offsetHeight + 40, // Include labels with more space
     });
+    
+    // Restore original width/height
+    if (originalWidth) gradientBarElement.style.width = originalWidth;
+    if (originalHeight) gradientBarElement.style.height = originalHeight;
     
     // Restore original styles
     if (indicator && originalStyles.indicator) {
@@ -257,20 +267,20 @@ export async function generatePDF(params: PDFGenerationParams): Promise<Blob> {
       tempDiv.innerHTML = params.gradientBarHtml;
       tempDiv.style.position = 'absolute';
       tempDiv.style.left = '-9999px';
-      tempDiv.style.width = '500px';
+      tempDiv.style.width = '600px'; // Larger width to match PDF export size
       document.body.appendChild(tempDiv);
       
       const gradientBlob = await exportGradientBarToPNG(tempDiv);
       const gradientImage = await pdfDoc.embedPng(await gradientBlob.arrayBuffer());
       
-      // Scale to be larger - use more of the content width
+      // Scale to be much larger - use more of the content width
       const imageAspectRatio = gradientImage.width / gradientImage.height;
-      const targetHeight = 60; // Increased from 32 to 60
-      const targetWidth = Math.min(contentWidth * 0.95, targetHeight * imageAspectRatio); // Use 95% of content width
+      const targetHeight = 100; // Significantly increased for better visibility
+      const targetWidth = Math.min(contentWidth * 0.98, targetHeight * imageAspectRatio); // Use 98% of content width
       const scaledHeight = targetHeight;
       const scaledWidth = targetWidth;
       
-      checkPageBreak(scaledHeight + 30);
+      checkPageBreak(scaledHeight + 40);
       
       // Center the image
       const imageX = marginLeft + (contentWidth - scaledWidth) / 2;
@@ -281,7 +291,7 @@ export async function generatePDF(params: PDFGenerationParams): Promise<Blob> {
         height: scaledHeight,
       });
       
-      currentY -= scaledHeight + 30; // Increased spacing
+      currentY -= scaledHeight + 40; // Increased spacing
       document.body.removeChild(tempDiv);
     } catch (error) {
       console.error('Failed to add gradient bar to PDF:', error);
@@ -329,9 +339,18 @@ export async function generatePDF(params: PDFGenerationParams): Promise<Blob> {
     }
   }
   
-  // Questions and Answers section
-  currentY -= 20; // Increased spacing before "Your Answers" section
-  addText('Your Answers', 16, true, rgb(0, 0, 0), 18, 12);
+  // Questions and Answers section - Force to start on a new page
+  // Check if we need a new page, and if not, create one anyway
+  if (currentY > pageHeight - marginTop - 100) {
+    currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+    currentY = pageHeight - marginTop;
+  } else {
+    // Force a new page for answers section
+    currentPage = pdfDoc.addPage([pageWidth, pageHeight]);
+    currentY = pageHeight - marginTop;
+  }
+  
+  addText('Your Answers', 18, true, rgb(0, 0, 0), 20, 16);
   
   questions.forEach((question, index) => {
     const answerIndex = answers[index];
@@ -339,10 +358,10 @@ export async function generatePDF(params: PDFGenerationParams): Promise<Blob> {
       const answerText = question.answerOptions[answerIndex - 1];
       
       // Question text (bold)
-      addText(`${index + 1}. ${question.text}`, 11, true, rgb(0, 0, 0), 13, 4);
+      addText(`${index + 1}. ${question.text}`, 12, true, rgb(0, 0, 0), 14, 6);
       
       // Answer text (regular)
-      addText(`   ${answerText}`, 10, false, rgb(0.3, 0.3, 0.3), 12, 10);
+      addText(`   ${answerText}`, 11, false, rgb(0.3, 0.3, 0.3), 13, 12);
     }
   });
   
