@@ -58,12 +58,29 @@ export async function exportRadarChartToPNG(svgElement: SVGElement): Promise<Blo
 
 export async function exportGradientBarToPNG(gradientBarElement: HTMLElement): Promise<Blob> {
   // Enhance the marker visibility for PDF export
-  // Find elements using data attributes
+  // Find elements using data attributes - search within the gradient bar container
   const indicator = gradientBarElement.querySelector('[data-pdf-marker="indicator"]') as HTMLElement;
   const halo = gradientBarElement.querySelector('[data-pdf-marker="halo"]') as HTMLElement;
   const guideLine = gradientBarElement.querySelector('[data-pdf-marker="guide-line"]') as HTMLElement;
+  const wrapper = indicator?.parentElement as HTMLElement;
   
   const originalStyles: { [key: string]: any } = {};
+  
+  // Ensure wrapper is visible and properly positioned
+  if (wrapper) {
+    originalStyles.wrapper = {
+      position: wrapper.style.position,
+      display: wrapper.style.display,
+      visibility: wrapper.style.visibility,
+      opacity: wrapper.style.opacity,
+      zIndex: wrapper.style.zIndex,
+    };
+    wrapper.style.position = 'absolute';
+    wrapper.style.display = 'block';
+    wrapper.style.visibility = 'visible';
+    wrapper.style.opacity = '1';
+    wrapper.style.zIndex = '1000';
+  }
   
   // Enhance indicator - make it much larger and more visible for PDF
   if (indicator) {
@@ -73,16 +90,24 @@ export async function exportGradientBarToPNG(gradientBarElement: HTMLElement): P
       border: indicator.style.border,
       boxShadow: indicator.style.boxShadow,
       backgroundColor: indicator.style.backgroundColor,
+      display: indicator.style.display,
+      visibility: indicator.style.visibility,
+      opacity: indicator.style.opacity,
+      position: indicator.style.position,
     };
     // Much larger indicator for PDF visibility
-    indicator.style.width = '36px';
-    indicator.style.height = '36px';
-    // Thicker, more prominent border
-    indicator.style.border = '4px solid #2A66FF';
+    indicator.style.width = '40px';
+    indicator.style.height = '40px';
+    // Thicker, more prominent border with solid color
+    indicator.style.border = '5px solid #2A66FF';
     // Strong shadow for depth and visibility
-    indicator.style.boxShadow = '0 4px 12px rgba(42, 102, 255, 0.6), 0 0 0 4px rgba(255, 255, 255, 1), 0 2px 8px rgba(0, 0, 0, 0.3)';
-    // Solid background color for better visibility
+    indicator.style.boxShadow = '0 4px 16px rgba(42, 102, 255, 0.8), 0 0 0 5px rgba(255, 255, 255, 1), 0 2px 10px rgba(0, 0, 0, 0.4)';
+    // Solid white background for maximum contrast
     indicator.style.backgroundColor = '#FFFFFF';
+    indicator.style.display = 'block';
+    indicator.style.visibility = 'visible';
+    indicator.style.opacity = '1';
+    indicator.style.position = 'relative';
   }
   
   // Enhance halo - make it much larger and more visible
@@ -91,11 +116,17 @@ export async function exportGradientBarToPNG(gradientBarElement: HTMLElement): P
       width: halo.style.width,
       height: halo.style.height,
       opacity: halo.style.opacity,
+      display: halo.style.display,
+      visibility: halo.style.visibility,
+      position: halo.style.position,
     };
     // Larger halo for better visibility
-    halo.style.width = '64px';
-    halo.style.height = '64px';
+    halo.style.width = '72px';
+    halo.style.height = '72px';
     halo.style.opacity = '1';
+    halo.style.display = 'block';
+    halo.style.visibility = 'visible';
+    halo.style.position = 'absolute';
   }
   
   // Enhance guide line - make it much thicker and more visible
@@ -104,25 +135,40 @@ export async function exportGradientBarToPNG(gradientBarElement: HTMLElement): P
       width: guideLine.style.width,
       opacity: guideLine.style.opacity,
       backgroundColor: guideLine.style.backgroundColor,
+      display: guideLine.style.display,
+      visibility: guideLine.style.visibility,
+      position: guideLine.style.position,
     };
     // Thicker guide line
-    guideLine.style.width = '4px';
+    guideLine.style.width = '5px';
     guideLine.style.opacity = '1';
     guideLine.style.backgroundColor = '#2A66FF';
+    guideLine.style.display = 'block';
+    guideLine.style.visibility = 'visible';
+    guideLine.style.position = 'absolute';
   }
   
   try {
+    // Wait a moment to ensure all styles are applied and animations are complete
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
     // Make the gradient bar element larger for PDF export
     const originalWidth = gradientBarElement.style.width;
     const originalHeight = gradientBarElement.style.height;
     gradientBarElement.style.width = '600px'; // Larger width for PDF
     gradientBarElement.style.height = 'auto';
     
+    // Force a reflow to ensure styles are applied
+    gradientBarElement.offsetHeight;
+    
     const canvas = await html2canvas(gradientBarElement, {
       backgroundColor: '#FFFFFF',
       scale: 3, // Higher scale for better quality
       width: 600,
-      height: gradientBarElement.offsetHeight + 40, // Include labels with more space
+      height: gradientBarElement.offsetHeight + 60, // Include labels with more space for larger marker
+      useCORS: true,
+      logging: false,
+      allowTaint: false,
     });
     
     // Restore original width/height
@@ -130,6 +176,9 @@ export async function exportGradientBarToPNG(gradientBarElement: HTMLElement): P
     if (originalHeight) gradientBarElement.style.height = originalHeight;
     
     // Restore original styles
+    if (wrapper && originalStyles.wrapper) {
+      Object.assign(wrapper.style, originalStyles.wrapper);
+    }
     if (indicator && originalStyles.indicator) {
       Object.assign(indicator.style, originalStyles.indicator);
     }
@@ -151,6 +200,9 @@ export async function exportGradientBarToPNG(gradientBarElement: HTMLElement): P
     });
   } catch (error) {
     // Restore original styles even on error
+    if (wrapper && originalStyles.wrapper) {
+      Object.assign(wrapper.style, originalStyles.wrapper);
+    }
     if (indicator && originalStyles.indicator) {
       Object.assign(indicator.style, originalStyles.indicator);
     }
