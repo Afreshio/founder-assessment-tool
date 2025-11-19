@@ -1,6 +1,8 @@
 // Vercel serverless function for sending email reports
 // Configure with your email service (Resend, SendGrid, Postmark, etc.)
 
+import { Resend } from 'resend';
+
 export default async function handler(req: any, res: any) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -51,8 +53,6 @@ export default async function handler(req: any, res: any) {
     // 5. Nodemailer with SMTP
 
     // Resend email service
-    const { Resend } = require('resend');
-    
     if (!process.env.RESEND_API_KEY) {
       console.error('[API] RESEND_API_KEY environment variable is not set');
       return res.status(500).json({ 

@@ -608,13 +608,16 @@ export default function ScalabilityDiagnostic() {
             }).then((result) => {
               if (!result.success) {
                 console.error('[Email] Failed to send to user:', result.error);
-                setEmailError('We couldn\'t email your report automatically. You can download the PDF directly instead.');
+                const errorMsg = result.error || 'Unknown error';
+                setEmailError(`We couldn't email your report automatically: ${errorMsg}. You can download the PDF directly instead.`);
               } else {
                 console.log('[Email] Successfully sent to user');
+                setEmailError(null); // Clear any previous errors
               }
             }).catch((error) => {
               console.error('[Email] Unexpected error sending to user:', error);
-              setEmailError('We couldn\'t email your report automatically. You can download the PDF directly instead.');
+              const errorMsg = error?.message || 'Unknown error';
+              setEmailError(`We couldn't email your report automatically: ${errorMsg}. You can download the PDF directly instead.`);
             });
             
             // Send to douglas@afresh.io
@@ -1526,9 +1529,15 @@ export default function ScalabilityDiagnostic() {
                         textAlign: 'left' as const,
                       }}>
                         <div style={{ fontWeight: 600, marginBottom: '8px' }}>Email Error</div>
-                        <div>{emailError}</div>
+                        <div style={{ marginBottom: '8px' }}>{emailError}</div>
                         <div style={{ marginTop: '8px', fontSize: '12px', opacity: 0.8 }}>
-                          Check browser console (F12) for detailed error messages.
+                          <strong>Debug steps:</strong>
+                          <ol style={{ marginTop: '4px', paddingLeft: '20px' }}>
+                            <li>Open browser console (F12) and check for <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>[Email]</code> messages</li>
+                            <li>Check Network tab → find <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>/api/send-report</code> request</li>
+                            <li>Check Vercel function logs (Deployments → Functions → /api/send-report)</li>
+                            <li>Verify <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>RESEND_API_KEY</code> is set in Vercel environment variables</li>
+                          </ol>
                         </div>
                       </div>
                     )}
