@@ -1085,9 +1085,23 @@ export default function ScalabilityDiagnostic() {
               transition={{ duration: 0.3 }}
             >
               <h1 style={styles.title}>The Scalability Diagnostic</h1>
-              <p style={styles.subtitle}>
-                12 questions. 2 minutes. A brutally honest read on how scalable your company is.
-              </p>
+              <div style={{ marginBottom: '32px', textAlign: 'left' }}>
+                <p style={{ ...styles.subtitle, marginBottom: '16px', fontSize: '18px', lineHeight: '1.6', color: '#374151' }}>
+                  Most companies scale on hope, not mechanisms. This diagnostic helps you see where your operating system is strong—and where it will break as you grow.
+                </p>
+                <p style={{ ...styles.subtitle, marginBottom: '16px', fontSize: '18px', lineHeight: '1.6', color: '#374151' }}>
+                  In just <strong style={{ color: '#0A0A0A' }}>12 questions</strong> (about 2 minutes), you'll get:
+                </p>
+                <ul style={{ marginLeft: '24px', marginBottom: '24px', fontSize: '16px', lineHeight: '1.8', color: '#374151' }}>
+                  <li style={{ marginBottom: '8px' }}>A clear assessment of your scalability across 5 critical dimensions</li>
+                  <li style={{ marginBottom: '8px' }}>Specific insights into where you're exposed and where you're strong</li>
+                  <li style={{ marginBottom: '8px' }}>A personalized PDF report you can share with your team</li>
+                  <li style={{ marginBottom: '8px' }}>Actionable next steps based on proven practices from Amazon and other high-growth companies</li>
+                </ul>
+                <p style={{ ...styles.subtitle, fontSize: '16px', lineHeight: '1.6', color: '#6B7280', fontStyle: 'italic' }}>
+                  This isn't a marketing quiz. It's a diagnostic tool used by founders and engineering leaders who want to scale without chaos.
+                </p>
+              </div>
               <div style={styles.buttonRow}>
                 <button
                   style={{

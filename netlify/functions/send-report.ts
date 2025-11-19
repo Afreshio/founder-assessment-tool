@@ -80,14 +80,35 @@ export const handler: Handler = async (event, context) => {
         headers,
         body: JSON.stringify({ 
           success: false,
-          error: 'Email service not configured. RESEND_API_KEY is missing.' 
+          error: 'Email service not configured. RESEND_API_KEY is missing.',
+          details: 'Please add RESEND_API_KEY to your environment variables and redeploy.'
         }),
       };
     }
     
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    // Validate API key format
+    const apiKey = process.env.RESEND_API_KEY.trim(); // Remove any whitespace
+    if (!apiKey.startsWith('re_')) {
+      console.error('[API] Invalid Resend API key format. Should start with "re_"');
+      return {
+        statusCode: 500,
+        headers,
+        body: JSON.stringify({ 
+          success: false,
+          error: 'Invalid Resend API key format',
+          details: 'Resend API keys should start with "re_". Please check your environment variable.'
+        }),
+      };
+    }
+    
+    console.log('[API] Resend API key present: Yes');
+    console.log('[API] Resend API key length:', apiKey.length);
+    console.log('[API] Resend API key starts with re_:', apiKey.startsWith('re_'));
+    
+    const resend = new Resend(apiKey);
     
     try {
+      console.log('[API] Attempting to send email to:', to);
       const emailResult = await resend.emails.send({
         // Use 'onboarding@resend.dev' for testing, or your verified domain email
         from: 'ScaleOS <onboarding@resend.dev>', // TODO: Change to your domain email once verified
@@ -110,7 +131,7 @@ export const handler: Handler = async (event, context) => {
         ],
       });
       
-      console.log('[API] Email sent successfully via Resend:', emailResult);
+      console.log('[API] Email sent successfully via Resend:', JSON.stringify(emailResult, null, 2));
       return {
         statusCode: 200,
         headers,
@@ -120,14 +141,29 @@ export const handler: Handler = async (event, context) => {
         }),
       };
     } catch (resendError: any) {
-      console.error('[API] Resend error:', resendError);
+      console.error('[API] Resend error details:', {
+        message: resendError.message,
+        name: resendError.name,
+        stack: resendError.stack,
+        response: resendError.response ? JSON.stringify(resendError.response, null, 2) : 'No response',
+      });
+      
+      // Provide more helpful error messages
+      let errorMessage = 'Failed to send email via Resend';
+      if (resendError.message) {
+        errorMessage = resendError.message;
+      }
+      if (resendError.response) {
+        errorMessage = `Resend API error: ${JSON.stringify(resendError.response)}`;
+      }
+      
       return {
         statusCode: 500,
         headers,
         body: JSON.stringify({ 
           success: false,
-          error: 'Failed to send email via Resend',
-          message: resendError.message || 'Unknown error'
+          error: errorMessage,
+          details: resendError.message || 'Unknown error'
         }),
       };
     }
@@ -163,18 +199,15 @@ export const handler: Handler = async (event, context) => {
     console.log('[API] Email sent successfully via SendGrid');
     */
 
-    // For now, return success (you'll need to implement actual email sending)
-    // In production, replace this with actual email service integration
-    console.log('[API] Email would be sent to:', to);
-    console.log('[API] PDF size:', pdfBuffer.length, 'bytes');
-    console.log('[API] Returning success (placeholder - configure email service)');
-
+    // If Resend code above doesn't execute, this won't be reached
+    // But keeping as fallback just in case
+    console.error('[API] Email sending code path not reached');
     return {
-      statusCode: 200,
+      statusCode: 500,
       headers,
       body: JSON.stringify({ 
-        success: true,
-        message: 'Email sent successfully (placeholder - configure email service)' 
+        success: false,
+        error: 'Email service not properly configured' 
       }),
     };
   } catch (error: any) {
