@@ -104,6 +104,29 @@ export default async function handler(req: any, res: any) {
       });
       
       console.log('[API] Email sent successfully via Resend:', JSON.stringify(emailResult, null, 2));
+      
+      // Send notification email to doug@afresh.io with user's email
+      try {
+        await resend.emails.send({
+          from: 'ScaleOS <onboarding@resend.dev>',
+          to: 'doug@afresh.io',
+          subject: 'New Scalability Diagnostic Completed',
+          html: `
+            <h2>New Diagnostic Completed</h2>
+            <p>Someone has completed the ScaleOS Scalability Diagnostic.</p>
+            <p><strong>User Email:</strong> ${to}</p>
+            <p><strong>Score:</strong> ${score} / 60</p>
+            <p><strong>Category:</strong> ${category}</p>
+            <p><strong>Maturity Level:</strong> ${maturityLabel}</p>
+            <p>Their full report has been sent to their email address.</p>
+          `,
+        });
+        console.log('[API] Notification email sent to doug@afresh.io');
+      } catch (notificationError: any) {
+        // Don't fail the main email send if notification fails
+        console.error('[API] Failed to send notification email:', notificationError);
+      }
+      
       return res.status(200).json({ 
         success: true,
         message: 'Email sent successfully' 
