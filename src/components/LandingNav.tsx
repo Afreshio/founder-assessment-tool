@@ -101,6 +101,12 @@ export const LandingNav = () => {
               Why This
             </button>
             <button
+              onClick={() => scrollToSection('resources')}
+              className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors text-sm"
+            >
+              Resources
+            </button>
+            <button
               onClick={() => scrollToSection('about')}
               className="text-charcoal-700 hover:text-charcoal-900 font-medium transition-colors text-sm"
             >
@@ -171,6 +177,15 @@ export const LandingNav = () => {
               className="block w-full text-left text-charcoal-700 hover:text-charcoal-900 font-medium py-2"
             >
               Why This
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection('resources');
+                setMobileMenuOpen(false);
+              }}
+              className="block w-full text-left text-charcoal-700 hover:text-charcoal-900 font-medium py-2"
+            >
+              Resources
             </button>
             <button
               onClick={() => {

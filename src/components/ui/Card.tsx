@@ -5,9 +5,10 @@ interface CardProps {
   children: React.ReactNode;
   className?: string;
   hover?: boolean;
+  onClick?: () => void;
 }
 
-export const Card: React.FC<CardProps> = ({ children, className = '', hover = true }) => {
+export const Card: React.FC<CardProps> = ({ children, className = '', hover = true, onClick }) => {
   const baseClasses = 'bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-white/20 p-6 transition-all duration-300';
   const hoverClasses = hover ? 'hover:shadow-2xl hover:scale-[1.02]' : '';
   
@@ -16,6 +17,8 @@ export const Card: React.FC<CardProps> = ({ children, className = '', hover = tr
       whileHover={hover ? { y: -4, scale: 1.02 } : {}}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
       className={`${baseClasses} ${hoverClasses} ${className}`}
+      onClick={onClick}
+      style={onClick ? { cursor: 'pointer' } : {}}
     >
       {children}
     </motion.div>

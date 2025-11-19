@@ -10,6 +10,11 @@ import AntifragilityDiagnostic from './pages/AntifragilityDiagnostic'
 import TeamDiagnostic from './pages/TeamDiagnostic'
 import ScaleOSLanding from './pages/ScaleOSLanding'
 import ScalabilityDiagnosticPage from './pages/ScalabilityDiagnosticPage'
+import PRFAQ from './pages/PRFAQ'
+import PRFAQInstructions from './pages/PRFAQInstructions'
+import ORR from './pages/ORR'
+import COE from './pages/COE'
+import BarRaisingEngineering from './pages/BarRaisingEngineering'
 import './App.css'
 
 function App() {
@@ -17,6 +22,11 @@ function App() {
     <div className="app">
       <Routes>
         <Route path="/scaleos" element={<ScaleOSLanding />} />
+        <Route path="/pr-faq" element={<PRFAQ />} />
+        <Route path="/pr-faq-instructions" element={<PRFAQInstructions />} />
+        <Route path="/orr" element={<ORR />} />
+        <Route path="/coe" element={<COE />} />
+        <Route path="/bar-raising-engineering" element={<BarRaisingEngineering />} />
         <Route path="/scalability-diagnostic" element={<ScalabilityDiagnosticPage />} />
         <Route path="/" element={
           <div className="container">
