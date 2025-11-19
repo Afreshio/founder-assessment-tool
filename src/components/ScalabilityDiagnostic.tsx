@@ -1527,29 +1527,44 @@ export default function ScalabilityDiagnostic() {
                       </>
                     )}
 
-                    {/* Error Notice */}
+                    {/* Error/Info Notice */}
                     {emailError && (
                       <div style={{
                         padding: '16px',
                         borderRadius: '8px',
-                        backgroundColor: '#FEF3C7',
-                        border: '1px solid #FCD34D',
-                        color: '#92400E',
+                        backgroundColor: emailError.includes('local development') 
+                          ? '#EFF6FF' // Light blue for info
+                          : '#FEF3C7', // Yellow for actual errors
+                        border: emailError.includes('local development')
+                          ? '1px solid #93C5FD' // Blue border for info
+                          : '1px solid #FCD34D', // Yellow border for errors
+                        color: emailError.includes('local development')
+                          ? '#1E40AF' // Dark blue text
+                          : '#92400E', // Dark orange text
                         fontSize: '14px',
                         marginBottom: '16px',
                         textAlign: 'left' as const,
                       }}>
-                        <div style={{ fontWeight: 600, marginBottom: '8px' }}>Email Error</div>
-                        <div style={{ marginBottom: '8px' }}>{emailError}</div>
-                        <div style={{ marginTop: '8px', fontSize: '12px', opacity: 0.8 }}>
-                          <strong>Debug steps:</strong>
-                          <ol style={{ marginTop: '4px', paddingLeft: '20px' }}>
-                            <li>Open browser console (F12) and check for <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>[Email]</code> messages</li>
-                            <li>Check Network tab → find <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>/api/send-report</code> request</li>
-                            <li>Check Vercel function logs (Deployments → Functions → /api/send-report)</li>
-                            <li>Verify <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>RESEND_API_KEY</code> is set in Vercel environment variables</li>
-                          </ol>
+                        <div style={{ fontWeight: 600, marginBottom: '8px' }}>
+                          {emailError.includes('local development') ? 'ℹ️ Local Development' : 'Email Error'}
                         </div>
+                        <div style={{ marginBottom: '8px' }}>
+                          {emailError.includes('local development') 
+                            ? 'Email sending is not available in local development. You can download the PDF directly below. To test email functionality, use `vercel dev` or deploy to Vercel.'
+                            : emailError
+                          }
+                        </div>
+                        {!emailError.includes('local development') && (
+                          <div style={{ marginTop: '8px', fontSize: '12px', opacity: 0.8 }}>
+                            <strong>Debug steps:</strong>
+                            <ol style={{ marginTop: '4px', paddingLeft: '20px' }}>
+                              <li>Open browser console (F12) and check for <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>[Email]</code> messages</li>
+                              <li>Check Network tab → find <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>/api/send-report</code> request</li>
+                              <li>Check Vercel function logs (Deployments → Functions → /api/send-report)</li>
+                              <li>Verify <code style={{ backgroundColor: 'rgba(0,0,0,0.1)', padding: '2px 4px', borderRadius: '3px' }}>RESEND_API_KEY</code> is set in Vercel environment variables</li>
+                            </ol>
+                          </div>
+                        )}
                       </div>
                     )}
 
