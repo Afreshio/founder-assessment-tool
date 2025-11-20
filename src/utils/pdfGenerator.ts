@@ -344,11 +344,65 @@ export async function generatePDF(params: PDFGenerationParams): Promise<Blob> {
       
       // Center the image
       const imageX = marginLeft + (contentWidth - scaledWidth) / 2;
+      const imageY = currentY - scaledHeight;
+      
+      // Draw the gradient bar image
       currentPage.drawImage(gradientImage, {
         x: imageX,
-        y: currentY - scaledHeight,
+        y: imageY,
         width: scaledWidth,
         height: scaledHeight,
+      });
+      
+      // Draw the marker directly on the PDF canvas using paths
+      // Calculate marker position: (score - 12) / (60 - 12) * 100%
+      const markerPosition = ((score - 12) / (60 - 12)) * 100;
+      const clampedMarkerPos = Math.max(0, Math.min(100, markerPosition));
+      const markerX = imageX + (scaledWidth * clampedMarkerPos / 100);
+      const markerY = imageY + (scaledHeight / 2); // Center vertically on the bar
+      
+      // Draw a large, visible marker using circles
+      const markerSize = 10; // Radius in PDF points
+      const borderWidth = 3;
+      
+      // Draw white background circle (outermost)
+      currentPage.drawCircle({
+        x: markerX,
+        y: markerY,
+        size: markerSize + borderWidth + 2,
+        borderColor: rgb(1, 1, 1), // White border
+        borderWidth: 1,
+        color: rgb(1, 1, 1), // White fill
+      });
+      
+      // Draw blue border circle
+      currentPage.drawCircle({
+        x: markerX,
+        y: markerY,
+        size: markerSize + borderWidth,
+        borderColor: rgb(0.16, 0.4, 1), // #2A66FF
+        borderWidth: borderWidth,
+        color: rgb(1, 1, 1), // White fill
+      });
+      
+      // Draw white center circle
+      currentPage.drawCircle({
+        x: markerX,
+        y: markerY,
+        size: markerSize,
+        borderColor: rgb(0.16, 0.4, 1), // Blue border
+        borderWidth: 1,
+        color: rgb(1, 1, 1), // White fill
+      });
+      
+      // Draw vertical guide line extending down
+      const lineStartY = markerY + markerSize + borderWidth + 2;
+      const lineEndY = imageY + scaledHeight + 8;
+      currentPage.drawLine({
+        start: { x: markerX, y: lineStartY },
+        end: { x: markerX, y: lineEndY },
+        thickness: 2,
+        color: rgb(0.16, 0.4, 1), // #2A66FF
       });
       
       currentY -= scaledHeight + 40; // Increased spacing
