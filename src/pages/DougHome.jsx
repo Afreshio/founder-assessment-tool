@@ -232,6 +232,12 @@ function DougHome() {
             </p>
             <p className="testimonial-author">- Doug Stevenson</p>
           </div>
+          <div className="testimonial-card scroll-animate" ref={addToRefs}>
+            <p className="testimonial-quote">
+              "Doug has helped bring my partner and I from feeling lost and hopeless to understanding and acting on what's the most important for our business right now. He's helped us gain a better understanding of our monthly cashflow, helped us implement better cashflow hygiene, and has single handedly allowed us to build a better sales pipeline in 3 months than we've had in over 5 years. Doug comes highly recommended!"
+            </p>
+            <p className="testimonial-author">- Brandon Keoghan</p>
+          </div>
         </div>
 
         <div className="contact-section">

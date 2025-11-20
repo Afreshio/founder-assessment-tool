@@ -18,6 +18,7 @@ import ORR from './pages/ORR'
 import COE from './pages/COE'
 import BarRaisingEngineering from './pages/BarRaisingEngineering'
 import CoreManagementPractices from './pages/CoreManagementPractices'
+import ConfluenceAccess from './pages/ConfluenceAccess'
 import './App.css'
 
 function App() {
@@ -88,6 +89,7 @@ function App() {
             <Articles />
           </div>
         } />
+        <Route path="/confluence" element={<ConfluenceAccess />} />
       </Routes>
     </div>
   )
