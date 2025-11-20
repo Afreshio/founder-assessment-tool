@@ -346,7 +346,6 @@ const ScaleOSLanding: React.FC = () => {
             {[
               {
                 title: 'Founder Operating System',
-                tag: 'For Seed / Series A',
                 badge: null,
                 features: [
                   '2 x 90 minute sessions per month with the CEO',
@@ -357,7 +356,6 @@ const ScaleOSLanding: React.FC = () => {
               },
               {
                 title: 'Half Day Team Workshops',
-                tag: 'For Series A / B',
                 badge: null,
                 features: [
                   '4 hour morning workshops for exec or leadership teams',
@@ -366,7 +364,6 @@ const ScaleOSLanding: React.FC = () => {
               },
               {
                 title: 'ScaleOS 90 Day Sprint',
-                tag: 'For Series A / B',
                 badge: 'Most Popular',
                 features: [
                   '90-day commitment with two sessions per month',
@@ -388,10 +385,7 @@ const ScaleOSLanding: React.FC = () => {
                 <div className={`h-full flex flex-col bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border p-8 transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] ${
                   model.badge ? 'border-accent/50 border-2' : 'border-white/20'
                 }`}>
-                  <div className="flex items-start justify-between mb-6">
-                    <span className="px-3 py-1.5 bg-accent/10 text-accent text-xs font-bold rounded-full border border-accent/20 uppercase tracking-wide">
-                      {model.tag}
-                    </span>
+                  <div className="flex items-start justify-end mb-6">
                     {model.badge && (
                       <span className="px-3 py-1.5 bg-accent text-white text-xs font-bold rounded-full">
                         {model.badge}
