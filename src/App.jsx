@@ -9,24 +9,28 @@ import PainPoints from './pages/PainPoints'
 import AntifragilityDiagnostic from './pages/AntifragilityDiagnostic'
 import TeamDiagnostic from './pages/TeamDiagnostic'
 import ScaleOSLanding from './pages/ScaleOSLanding'
+import ScaleOSBusinessModel from './pages/ScaleOSBusinessModel'
 import ScalabilityDiagnosticPage from './pages/ScalabilityDiagnosticPage'
 import PRFAQ from './pages/PRFAQ'
 import PRFAQInstructions from './pages/PRFAQInstructions'
 import ORR from './pages/ORR'
 import COE from './pages/COE'
 import BarRaisingEngineering from './pages/BarRaisingEngineering'
+import CoreManagementPractices from './pages/CoreManagementPractices'
 import './App.css'
 
 function App() {
   return (
     <div className="app">
       <Routes>
+        <Route path="/scaleos/model" element={<ScaleOSBusinessModel />} />
         <Route path="/scaleos" element={<ScaleOSLanding />} />
         <Route path="/pr-faq" element={<PRFAQ />} />
         <Route path="/pr-faq-instructions" element={<PRFAQInstructions />} />
         <Route path="/orr" element={<ORR />} />
         <Route path="/coe" element={<COE />} />
         <Route path="/bar-raising-engineering" element={<BarRaisingEngineering />} />
+        <Route path="/core-management-practices" element={<CoreManagementPractices />} />
         <Route path="/scalability-diagnostic" element={<ScalabilityDiagnosticPage />} />
         <Route path="/" element={
           <div className="container">
