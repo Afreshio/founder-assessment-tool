@@ -12,6 +12,49 @@ const ScaleOSLanding: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Set page title and meta tags
+    document.title = 'ScaleOS - Scale Without Chaos';
+    
+    // Update meta description
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', 'ScaleOS equips high-growth founders and leaders with the operating system required to scale beyond early traction. Built by operators from Amazon and Facebook.');
+    
+    // Update Open Graph tags
+    const updateMetaTag = (property: string, content: string) => {
+      let metaTag = document.querySelector(`meta[property="${property}"]`);
+      if (!metaTag) {
+        metaTag = document.createElement('meta');
+        metaTag.setAttribute('property', property);
+        document.head.appendChild(metaTag);
+      }
+      metaTag.setAttribute('content', content);
+    };
+    
+    updateMetaTag('og:title', 'ScaleOS - Scale Without Chaos');
+    updateMetaTag('og:description', 'ScaleOS equips high-growth founders and leaders with the operating system required to scale beyond early traction.');
+    updateMetaTag('og:type', 'website');
+    updateMetaTag('og:url', window.location.href);
+    
+    // Update Twitter Card tags
+    const updateTwitterTag = (name: string, content: string) => {
+      let metaTag = document.querySelector(`meta[name="${name}"]`);
+      if (!metaTag) {
+        metaTag = document.createElement('meta');
+        metaTag.setAttribute('name', name);
+        document.head.appendChild(metaTag);
+      }
+      metaTag.setAttribute('content', content);
+    };
+    
+    updateTwitterTag('twitter:card', 'summary_large_image');
+    updateTwitterTag('twitter:title', 'ScaleOS - Scale Without Chaos');
+    updateTwitterTag('twitter:description', 'ScaleOS equips high-growth founders and leaders with the operating system required to scale beyond early traction.');
+    
     // Handle hash-based navigation when page loads or hash changes
     const hash = location.hash.replace('#', '');
     if (hash) {
