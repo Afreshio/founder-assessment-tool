@@ -346,8 +346,6 @@ const ScaleOSLanding: React.FC = () => {
             {[
               {
                 title: 'Founder Operating System',
-                price: 'From $5,000',
-                period: 'per month',
                 tag: 'For Seed / Series A',
                 badge: null,
                 features: [
@@ -359,8 +357,6 @@ const ScaleOSLanding: React.FC = () => {
               },
               {
                 title: 'Half Day Team Workshops',
-                price: 'From $7,500',
-                period: 'per workshop',
                 tag: 'For Series A / B',
                 badge: null,
                 features: [
@@ -370,8 +366,6 @@ const ScaleOSLanding: React.FC = () => {
               },
               {
                 title: 'ScaleOS 90 Day Sprint',
-                price: '$25,000 - $45,000',
-                period: 'typical range',
                 tag: 'For Series A / B',
                 badge: 'Most Popular',
                 features: [
@@ -405,10 +399,6 @@ const ScaleOSLanding: React.FC = () => {
                     )}
                   </div>
                   <h3 className="text-2xl font-bold text-charcoal-900 mb-6 leading-tight">{model.title}</h3>
-                  <div className="mb-8 pb-6 border-b border-charcoal-200/50">
-                    <span className="text-4xl font-bold text-charcoal-900">{model.price}</span>
-                    <span className="text-lg text-charcoal-600 ml-2">{model.period}</span>
-                  </div>
                   <ul className="space-y-4 flex-grow mb-6">
                     {model.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start text-charcoal-700 leading-relaxed" style={{ lineHeight: '1.75' }}>
