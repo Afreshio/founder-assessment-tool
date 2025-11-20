@@ -9,6 +9,7 @@ import PainPoints from './pages/PainPoints'
 import AntifragilityDiagnostic from './pages/AntifragilityDiagnostic'
 import TeamDiagnostic from './pages/TeamDiagnostic'
 import ScaleOSLanding from './pages/ScaleOSLanding'
+import ScaleOSLandingTest from './pages/ScaleOSLandingTest'
 import ScaleOSBusinessModel from './pages/ScaleOSBusinessModel'
 import ScalabilityDiagnosticPage from './pages/ScalabilityDiagnosticPage'
 import PRFAQ from './pages/PRFAQ'
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/scaleos/model" element={<ScaleOSBusinessModel />} />
         <Route path="/scaleos" element={<ScaleOSLanding />} />
+        <Route path="/scaleos-test" element={<ScaleOSLandingTest />} />
         <Route path="/pr-faq" element={<PRFAQ />} />
         <Route path="/pr-faq-instructions" element={<PRFAQInstructions />} />
         <Route path="/orr" element={<ORR />} />

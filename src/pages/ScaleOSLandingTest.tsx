@@ -7,9 +7,22 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { TimelineItem } from '../components/ui/TimelineItem';
 
-const ScaleOSLanding: React.FC = () => {
+const ScaleOSLandingTest: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check for access key in URL
+    const urlParams = new URLSearchParams(location.search);
+    const accessKey = urlParams.get('key');
+    
+    // Simple password protection - change this to whatever you want
+    if (accessKey !== 'scaleos2026') {
+      // Redirect to main page if no valid key
+      navigate('/scaleos');
+      return;
+    }
+  }, [location.search, navigate]);
 
   useEffect(() => {
     // Set page title and meta tags
@@ -128,6 +141,17 @@ const ScaleOSLanding: React.FC = () => {
                 >
                   See the ScaleOS Blueprint
                 </Button>
+              </div>
+              <div className="pt-2">
+                <div className="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-semibold rounded-full mb-2">TEST VERSION</div>
+                <div>
+                  <a 
+                    href="/scaleos" 
+                    className="text-sm text-charcoal-500 hover:text-accent underline"
+                  >
+                    ← Back to Production Version
+                  </a>
+                </div>
               </div>
             </motion.div>
             
@@ -1314,4 +1338,4 @@ const ScaleOSLanding: React.FC = () => {
   );
 };
 
-export default ScaleOSLanding;
+export default ScaleOSLandingTest;
