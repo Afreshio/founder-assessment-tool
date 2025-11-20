@@ -11,18 +11,21 @@ const ScaleOSLandingTest: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Check for access key in URL
+  const urlParams = new URLSearchParams(location.search);
+  const accessKey = urlParams.get('key');
+  
+  // Simple password protection - redirect if no valid key
   useEffect(() => {
-    // Check for access key in URL
-    const urlParams = new URLSearchParams(location.search);
-    const accessKey = urlParams.get('key');
-    
-    // Simple password protection - change this to whatever you want
     if (accessKey !== 'scaleos2026') {
-      // Redirect to main page if no valid key
       navigate('/scaleos');
-      return;
     }
-  }, [location.search, navigate]);
+  }, [accessKey, navigate]);
+
+  // Don't render content if key is invalid
+  if (accessKey !== 'scaleos2026') {
+    return null;
+  }
 
   useEffect(() => {
     // Set page title and meta tags
