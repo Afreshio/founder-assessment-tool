@@ -37,22 +37,10 @@ function Navigation() {
           Antifragility Diagnostic
         </Link>
         <Link 
-          to="/productive-meetings" 
-          className={location.pathname === '/productive-meetings' || location.pathname === '/team-diagnostic' ? 'nav-link active' : 'nav-link'}
-        >
-          Team Diagnostic
-        </Link>
-        <Link 
           to="/pain-points" 
           className={location.pathname === '/pain-points' ? 'nav-link active' : 'nav-link'}
         >
           Pain Points
-        </Link>
-        <Link 
-          to="/articles" 
-          className={location.pathname === '/articles' ? 'nav-link active' : 'nav-link'}
-        >
-          Articles
         </Link>
         <Link 
           to="/about" 
