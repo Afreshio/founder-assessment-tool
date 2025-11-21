@@ -1130,6 +1130,28 @@ const ScaleOSLanding: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
+              <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => navigate('/leadership-principles')}>
+                <div className="space-y-4">
+                  <div className="text-2xl font-bold text-accent mb-2">Amazon's 16 Leadership Principles</div>
+                  <h4 className="text-xl font-bold text-charcoal-900 mb-3">
+                    Foundational Leadership Framework
+                  </h4>
+                  <p className="text-charcoal-700 mb-4">
+                    The core principles that guide decision-making, hiring, and culture at Amazon. These 16 principles are used daily by leaders and teams to evaluate ideas, make decisions, and build products. Interactive, numbered guide with expandable details.
+                  </p>
+                  <div className="text-accent font-semibold text-sm group-hover:underline">
+                    Explore Principles →
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
               <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => navigate('/core-management-practices')}>
                 <div className="space-y-4">
                   <div className="text-2xl font-bold text-accent mb-2">Core Management Practices</div>
@@ -1150,7 +1172,7 @@ const ScaleOSLanding: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.5, delay: 0.05 }}
             >
               <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => navigate('/bar-raising-engineering')}>
                 <div className="space-y-4">
@@ -1172,7 +1194,7 @@ const ScaleOSLanding: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
               <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => navigate('/pr-faq-instructions')}>
                 <div className="space-y-4">
@@ -1194,7 +1216,7 @@ const ScaleOSLanding: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.15 }}
             >
               <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => navigate('/pr-faq')}>
                 <div className="space-y-4">
@@ -1216,7 +1238,7 @@ const ScaleOSLanding: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
               <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => navigate('/orr')}>
                 <div className="space-y-4">
@@ -1238,7 +1260,7 @@ const ScaleOSLanding: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
             >
               <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => navigate('/coe')}>
                 <div className="space-y-4">

@@ -18,6 +18,7 @@ import ORR from './pages/ORR'
 import COE from './pages/COE'
 import BarRaisingEngineering from './pages/BarRaisingEngineering'
 import CoreManagementPractices from './pages/CoreManagementPractices'
+import LeadershipPrinciples from './pages/LeadershipPrinciples'
 import ConfluenceAccess from './pages/ConfluenceAccess'
 import './App.css'
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/coe" element={<COE />} />
         <Route path="/bar-raising-engineering" element={<BarRaisingEngineering />} />
         <Route path="/core-management-practices" element={<CoreManagementPractices />} />
+        <Route path="/leadership-principles" element={<LeadershipPrinciples />} />
         <Route path="/scalability-diagnostic" element={<ScalabilityDiagnosticPage />} />
         <Route path="/" element={
           <div className="container">
