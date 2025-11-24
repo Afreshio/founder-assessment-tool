@@ -355,9 +355,8 @@ const ScaleOSLandingTest: React.FC = () => {
               {[
                 {
                   title: 'Leadership Principles',
-                  description: '',
+                  description: 'The foundational principles that guide decision-making, hiring, and culture at companies. Principles that are used daily by leaders and teams to evaluate ideas, make decisions, and build products.',
                   bullets: [
-                    'Principles guide decisions, hiring, and culture',
                     'Obsess over controllable inputs',
                     'Autonomous teams with single–threaded leaders',
                     'Culture codified in daily rituals',
