@@ -15,3 +15,5 @@ const ScalabilityDiagnosticPage: React.FC = () => {
 
 export default ScalabilityDiagnosticPage;
 
+
+

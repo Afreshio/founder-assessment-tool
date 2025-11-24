@@ -646,7 +646,7 @@ const ScaleOSLanding: React.FC = () => {
                 ],
               },
               {
-                title: 'ScaleOS 90 Day Sprint',
+                title: 'ScaleOS 90 Day',
                 badge: 'Most Popular',
                 features: [
                   '90-day commitment with two sessions per month',
