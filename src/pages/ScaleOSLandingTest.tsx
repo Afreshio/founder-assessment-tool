@@ -368,6 +368,13 @@ const ScaleOSLandingTest: React.FC = () => {
                   title: 'Bar-Raising Hiring System',
                   description: 'A rigorous, repeatable hiring system where every new leader and IC raises the bar.',
                   detail: 'We define what "great" looks like, hardwire it into sourcing, interviewing, and decision making, and protect the culture as you scale.',
+                  bullets: [
+                    'Better architecture and code quality',
+                    'Faster, more predictable delivery',
+                    'Fewer incidents and recoveries that are measured in minutes, not hours',
+                    'Healthier engineering culture',
+                    'Teams that get better every quarter',
+                  ],
                 },
                 {
                   title: 'Operational Excellence: Architecture, Agile, and Telemetry',
