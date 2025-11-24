@@ -321,38 +321,29 @@ const ScaleOSLanding: React.FC = () => {
           
           <div className="mb-12">
             <h3 className="text-3xl md:text-4xl font-bold text-charcoal-900 text-center mb-16 tracking-tight" style={{ letterSpacing: '-0.01em' }}>
-              The 7 Mechanisms of ScaleOS
+              The 3 Mechanisms of ScaleOS
             </h3>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
                 {
-                  title: 'Bar-Raising Hiring System',
-                  description: 'A systematic approach to hiring that ensures every new team member raises the bar, not just fills a seat.',
-                },
-                {
                   title: 'Leadership Principles and Cultural Reset',
-                  description: 'Clear principles that guide decision-making and create a culture of accountability without drama.',
+                  description: 'Clear, lived principles that drive decision making, conflict norms, and accountability.',
+                  detail: 'We reset the culture so leaders model truth seeking, healthy conflict, and execution without drama.',
                 },
                 {
-                  title: 'Architecture Coherence (Hardware, Software, AI)',
-                  description: 'Ensure your technical foundation scales with your business needs before it becomes a constraint.',
+                  title: 'Bar-Raising Hiring System',
+                  description: 'A rigorous, repeatable hiring system where every new leader and IC raises the bar.',
+                  detail: 'We define what "great" looks like, hardwire it into sourcing, interviewing, and decision making, and protect the culture as you scale.',
                 },
                 {
-                  title: 'Operational Excellence and Quality Mechanisms',
-                  description: 'Build quality and reliability into your systems from the start, not as an afterthought.',
-                },
-                {
-                  title: 'Agile Done Right: Reviews, Standards, Accountability',
-                  description: 'Implement reviews and standards that actually improve velocity and quality, not slow you down.',
-                },
-                {
-                  title: 'Telemetry, Metrics, and Truth Seeking',
-                  description: 'Use data to make decisions, not assumptions. Know what is actually happening in your organization.',
-                },
-                {
-                  title: 'CEO and CTO Coaching and Alignment',
-                  description: 'Ensure founders and technical leaders are aligned on strategy, risks, and operating cadence.',
+                  title: 'Operational Excellence: Architecture, Agile, and Telemetry',
+                  description: 'Operational excellence and quality mechanisms built into how the company runs, not layered on top.',
+                  bullets: [
+                    'Architecture coherence across hardware, software, and AI so the foundation scales with the business',
+                    'Agile done right with reviews, standards, and accountability that increase velocity and quality',
+                    'Telemetry and metrics that give leaders a single version of the truth so decisions are based on what is actually happening',
+                  ],
                 },
               ].map((mechanism, index) => (
                 <motion.div
@@ -367,9 +358,24 @@ const ScaleOSLanding: React.FC = () => {
                     <h4 className="text-xl font-bold text-charcoal-900 mb-3">
                       {mechanism.title}
                     </h4>
-                    <p className="text-charcoal-700">
+                    <p className="text-charcoal-700 mb-3">
                       {mechanism.description}
                     </p>
+                    {mechanism.detail && (
+                      <p className="text-charcoal-600 text-sm leading-relaxed">
+                        {mechanism.detail}
+                      </p>
+                    )}
+                    {mechanism.bullets && (
+                      <ul className="space-y-2 mt-3">
+                        {mechanism.bullets.map((bullet, idx) => (
+                          <li key={idx} className="flex items-start text-charcoal-600 text-sm leading-relaxed">
+                            <span className="text-accent mr-2 mt-1">•</span>
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </Card>
                 </motion.div>
               ))}
