@@ -1143,7 +1143,7 @@ const ScaleOSLandingTest: React.FC = () => {
                 <h3 className="text-2xl font-bold text-charcoal-900 mb-2">
                   Jim Phillips
                 </h3>
-                <div className="text-accent font-semibold mb-4">Engineering Leader</div>
+                <div className="text-accent font-semibold mb-4">Founder & Engineering Leader</div>
                 <p className="text-charcoal-700 leading-relaxed">
                   Former engineering leader at Amazon and Facebook, deep experience in large scale systems, reliability, and engineering organization design. Jim Phillips built Amazon's ad platform from $50M/quarter to $2B/quarter revenue, scaling to 75B daily transactions with millisecond latencies and reducing total cost of ownership by 93%. Special focus on bringing Working Backwards and Amazon style mechanisms into companies.
                 </p>
