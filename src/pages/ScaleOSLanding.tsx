@@ -327,9 +327,15 @@ const ScaleOSLanding: React.FC = () => {
             <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
                 {
-                  title: 'Leadership Principles and Cultural Reset',
-                  description: 'Clear, lived principles that drive decision making, conflict norms, and accountability.',
-                  detail: 'We reset the culture so leaders model truth seeking, healthy conflict, and execution without drama.',
+                  title: 'Leadership Principles',
+                  description: '',
+                  bullets: [
+                    'Principles guide decisions, hiring, and culture',
+                    'Obsess over controllable inputs',
+                    'Autonomous teams with single–threaded leaders',
+                    'Culture codified in daily rituals',
+                    'Shared flywheel everyone can draw on a whiteboard',
+                  ],
                 },
                 {
                   title: 'Bar-Raising Hiring System',
@@ -358,16 +364,18 @@ const ScaleOSLanding: React.FC = () => {
                     <h4 className="text-xl font-bold text-charcoal-900 mb-3">
                       {mechanism.title}
                     </h4>
-                    <p className="text-charcoal-700 mb-3">
-                      {mechanism.description}
-                    </p>
+                    {mechanism.description && (
+                      <p className="text-charcoal-700 mb-3">
+                        {mechanism.description}
+                      </p>
+                    )}
                     {mechanism.detail && (
-                      <p className="text-charcoal-600 text-sm leading-relaxed">
+                      <p className="text-charcoal-600 text-sm leading-relaxed mb-3">
                         {mechanism.detail}
                       </p>
                     )}
                     {mechanism.bullets && (
-                      <ul className="space-y-2 mt-3">
+                      <ul className="space-y-2">
                         {mechanism.bullets.map((bullet, idx) => (
                           <li key={idx} className="flex items-start text-charcoal-600 text-sm leading-relaxed">
                             <span className="text-accent mr-2 mt-1">•</span>
