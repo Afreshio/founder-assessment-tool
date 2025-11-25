@@ -73,12 +73,7 @@ function App() {
             <About />
           </div>
         } />
-        <Route path="/pain-points" element={
-          <div className="container">
-            <Navigation />
-            <PainPoints />
-          </div>
-        } />
+        <Route path="/pain-points" element={<PainPoints />} />
         <Route path="/contact" element={
           <div className="container">
             <Navigation />
