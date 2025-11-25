@@ -304,6 +304,26 @@ const ScaleOSLanding: React.FC = () => {
         </div>
       </Section>
 
+      {/* Pain Points Section */}
+      <Section id="pain-points" className="relative bg-gradient-to-b from-white via-charcoal-50/30 to-white overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <h2 className="text-5xl md:text-6xl font-bold text-charcoal-900 mb-8 leading-tight tracking-tight" style={{ letterSpacing: '-0.02em' }}>
+              Pain Points
+            </h2>
+            <p className="text-xl md:text-2xl text-charcoal-700 leading-relaxed mb-12" style={{ lineHeight: '1.75' }}>
+              Scaling a company puts extraordinary pressure on founders and executive teams. These recurring pain points are the signal that it is time to bring in a strategic partner and sounding board.
+            </p>
+            <Button
+              onClick={() => navigate('/pain-points')}
+              size="lg"
+            >
+              Explore Pain Points
+            </Button>
+          </div>
+        </div>
+      </Section>
+
       {/* What Is ScaleOS Section */}
       <Section id="scaleos" className="relative bg-gradient-to-b from-white via-charcoal-50/30 to-white overflow-hidden">
         {/* Radial gradient highlight */}
