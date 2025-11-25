@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LandingNav } from '../components/LandingNav';
 import { Section } from '../components/ui/Section';
@@ -6,6 +6,11 @@ import { Card } from '../components/ui/Card';
 
 const PainPoints = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-charcoal-50 via-white to-charcoal-50/30">
