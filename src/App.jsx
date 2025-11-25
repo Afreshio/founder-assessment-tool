@@ -21,6 +21,7 @@ import BarRaisingEngineering from './pages/BarRaisingEngineering'
 import CoreManagementPractices from './pages/CoreManagementPractices'
 import LeadershipPrinciples from './pages/LeadershipPrinciples'
 import ConfluenceAccess from './pages/ConfluenceAccess'
+import DeveloperWorkflowXRay from './pages/DeveloperWorkflowXRay'
 import './App.css'
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/core-management-practices" element={<CoreManagementPractices />} />
         <Route path="/leadership-principles" element={<LeadershipPrinciples />} />
         <Route path="/scalability-diagnostic" element={<ScalabilityDiagnosticPage />} />
+        <Route path="/developer-workflow-xray" element={<DeveloperWorkflowXRay />} />
         <Route path="/" element={
           <div className="container">
             <Navigation />
