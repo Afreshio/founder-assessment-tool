@@ -339,7 +339,7 @@ const ScaleOSLandingTest: React.FC = () => {
               Pain Points
             </h2>
             <p className="text-xl md:text-2xl text-charcoal-700 leading-relaxed mb-12" style={{ lineHeight: '1.75' }}>
-              Scaling a company puts extraordinary pressure on founders and executive teams. These recurring pain points are the signal that it is time to bring in a strategic partner and sounding board.
+              Scaling a company puts extraordinary pressure on founders and executive teams. These recurring pain points are the signal that it is time to evaluate new systems, processes and mechanisms to scale the organization.
             </p>
             <Button
               onClick={() => navigate('/pain-points')}
