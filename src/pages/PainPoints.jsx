@@ -18,7 +18,7 @@ const PainPoints = () => {
             Pain Points
           </h1>
           <p className="text-xl md:text-2xl text-charcoal-700 leading-relaxed max-w-4xl mx-auto text-center" style={{ lineHeight: '1.75' }}>
-            Amazon's "working backwards" mechanisms target specific pain points that prevent companies from scaling effectively. Here's how PRFAQ, Bar-Raising Engineering Reviews, and Operational Readiness Reviews address the core challenges.
+            Scaling a company puts extraordinary pressure on founders and executive teams. These recurring pain points are the signal that it is time to evaluate new systems, processes and mechanisms to scale the organization.
           </p>
         </div>
       </section>
