@@ -1318,6 +1318,28 @@ const ScaleOSLanding: React.FC = () => {
               </Card>
             </motion.div>
             
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Card className="h-full hover:shadow-xl transition-shadow cursor-pointer group" onClick={() => navigate('/scaleos/questions')}>
+                <div className="space-y-4">
+                  <div className="text-2xl font-bold text-accent mb-2">ScaleOS Questions</div>
+                  <h4 className="text-xl font-bold text-charcoal-900 mb-3">
+                    Diagnostic Questions
+                  </h4>
+                  <p className="text-charcoal-700 mb-4">
+                    21 questions across three categories to help identify where your operating system is breaking down. Foundational questions, operational excellence questions, and CEO & leadership questions.
+                  </p>
+                  <div className="text-accent font-semibold text-sm group-hover:underline">
+                    Explore Questions →
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+            
             {/* Add more resources here as needed */}
           </div>
         </div>
